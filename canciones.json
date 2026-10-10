@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "canciones": [
     {
       "titulo": "Bienvenido Espíritu Santo",
@@ -3882,6 +3882,111 @@
             {
               "acordes": "  A     D",
               "letra": " melodía angelical//"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Yahweh",
+      "artista": "",
+      "tono": "C#m",
+      "categoria": "Alabanza",
+      "seccion": "General",
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "C#m  B  A  B",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "       C#m                       G#m",
+              "letra": "//Se siente tu gloria en este lugar"
+            },
+            {
+              "acordes": "                   A",
+              "letra": "Algo grande va a pasar"
+            },
+            {
+              "acordes": "                        B     G#7",
+              "letra": "Se activa lo sobrenatural//"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "      A     B",
+              "letra": "//Yahweh, Rafa,"
+            },
+            {
+              "acordes": "  G#7      C#m   B",
+              "letra": "Elohim, Shaddai"
+            },
+            {
+              "acordes": "   A     B                 C#m",
+              "letra": "Jireh, Adonai, se manifestará//"
+            }
+          ]
+        },
+        {
+          "tipo": "interludio",
+          "titulo": "Interludio",
+          "lineas": [
+            {
+              "acordes": "C#m  B  A  B",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "Puente 1",
+          "lineas": [
+            {
+              "acordes": "   C#m                        B",
+              "letra": "//Si le adoras él se manifestará"
+            },
+            {
+              "acordes": "                           A",
+              "letra": "Si le llamas él se manifestará"
+            },
+            {
+              "acordes": "                             F#m  G#7",
+              "letra": "Si le buscas él se manifestará//"
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "Puente 2",
+          "lineas": [
+            {
+              "acordes": "     C#m",
+              "letra": "//Yahweh se manifestará"
+            },
+            {
+              "acordes": "  B",
+              "letra": "Jireh se manifestará"
+            },
+            {
+              "acordes": "  A",
+              "letra": "Rafa se manifestará"
+            },
+            {
+              "acordes": "             F#m  G#7",
+              "letra": "Se manifestará//"
             }
           ]
         }
