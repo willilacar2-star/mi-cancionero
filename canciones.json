@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "canciones": [
     {
       "titulo": "Bienvenido Espíritu Santo",
@@ -3513,6 +3513,51 @@
             {
               "acordes": "    G           G  F# F                           C",
               "letra": "La unción está so-bre mí, no la entiendo pero la tengo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Hay un gozo",
+      "artista": "Juan Carlos Alvarado",
+      "tono": "C",
+      "categoria": "Alabanza",
+      "seccion": "Medley Juan Carlos Alvarado",
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "C7",
+              "letra": "Hay un gozo que no puedo parar"
+            },
+            {
+              "acordes": "                C7",
+              "letra": "Hay un gozo que no puedo parar"
+            },
+            {
+              "acordes": "                F7",
+              "letra": "Hay un gozo que no puedo parar"
+            },
+            {
+              "acordes": "               C7",
+              "letra": "Hay un gozo que no puedo parar"
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "Puente",
+          "lineas": [
+            {
+              "acordes": "          G7                F7",
+              "letra": "Son como ríos de agua viva, ríos de agua viva"
+            },
+            {
+              "acordes": "  G7               Bb7       D7         G7       C7",
+              "letra": "Ríos de agua viva que saltan para vida eterna"
             }
           ]
         }
