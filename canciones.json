@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "canciones": [
     {
       "titulo": "Bienvenido Espíritu Santo",
@@ -7,7 +7,98 @@
       "tono": "C",
       "categoria": "Adoración",
       "seccion": "General",
-      "contenido": []
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "C - F - Am - C - F",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "          C                 F",
+              "letra": "Espíritu Santo bienvenido a este lugar"
+            },
+            {
+              "acordes": "     G                   F      C",
+              "letra": "Jesucristo bienvenido a este lugar"
+            },
+            {
+              "acordes": "       C      C/E    F",
+              "letra": "Padre omnipotente de gracia y amor"
+            },
+            {
+              "acordes": "       G             C",
+              "letra": "Bienvenido a este lugar."
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "    C",
+              "letra": "Bienvenido espíritu de Dios"
+            },
+            {
+              "acordes": "      Am",
+              "letra": "Damos Gloria solo a ti Señor"
+            },
+            {
+              "acordes": "      G",
+              "letra": "Bienvenido espíritu de Dios"
+            },
+            {
+              "acordes": "       Dm                  G",
+              "letra": "Hoy rendimos coronas a tus pies"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Instrumental",
+          "lineas": [
+            {
+              "acordes": "        C/E - F",
+              "letra": ""
+            },
+            {
+              "acordes": "        G - Am // G",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "    F",
+              "letra": "Bienvenido espíritu de Dios"
+            },
+            {
+              "acordes": "Em    Am             C",
+              "letra": "Damos Gloria solo a ti Señor"
+            },
+            {
+              "acordes": "      G",
+              "letra": "Bienvenido espíritu de Dios"
+            },
+            {
+              "acordes": "       Dm                  G",
+              "letra": "Hoy rendimos coronas a tus pies"
+            }
+          ]
+        }
+      ]
     },
     {
       "titulo": "Antorcha Encendida",
@@ -15,7 +106,128 @@
       "tono": "G",
       "categoria": "Adoración",
       "seccion": "General",
-      "contenido": []
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "G - Am - D - G",
+              "letra": ""
+            },
+            {
+              "acordes": "//G - G - C - C          G - C - G//",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "G                    C          G",
+              "letra": "Hoy se levanta una generación,"
+            },
+            {
+              "acordes": "Em                   D",
+              "letra": "llena del fuego de Dios"
+            },
+            {
+              "acordes": "G                    C          G",
+              "letra": "Niñas y jóvenes madres también,"
+            },
+            {
+              "acordes": "Am                   D",
+              "letra": "unidas en una sola voz"
+            },
+            {
+              "acordes": "C                    G",
+              "letra": "Su espíritu nos ha encendido"
+            },
+            {
+              "acordes": "Am                   D",
+              "letra": "para alumbrar con su verdad"
+            },
+            {
+              "acordes": "C                    G",
+              "letra": "Cristo nos llama a hacer antorcha"
+            },
+            {
+              "acordes": "Am                   D",
+              "letra": "que nunca dejaran de brillar"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "G          D          Em         Bm",
+              "letra": "Antorchas encendidas ardiendo para Dios"
+            },
+            {
+              "acordes": "C          G          Am         D          G",
+              "letra": "con el fuego de su espíritu brilla nuestro corazón."
+            },
+            {
+              "acordes": "G          D          Em         Bm",
+              "letra": "No se apagara la llama, Cristo la encendió"
+            },
+            {
+              "acordes": "C          G          Am         D",
+              "letra": "somos luz en esta tierra, para gloria del señor"
+            },
+            {
+              "acordes": "G          D          Em         Bm",
+              "letra": "con poder y con victoria caminamos con la fe"
+            },
+            {
+              "acordes": "C          G          Am         D          G",
+              "letra": "el espíritu nos guía, nadie nos podra vencer"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Instrumental",
+          "lineas": [
+            {
+              "acordes": "",
+              "letra": "fuego, fuego, fuego, del espíritu"
+            },
+            {
+              "acordes": "          Am         D          G          D#",
+              "letra": "fuego, fuego, fuego, arde en mi corazón"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "G#         D#         Fm         Cm",
+              "letra": "Antorchas encendidas ardiendo para Dios"
+            },
+            {
+              "acordes": "C#         G#         A#m        D#         G#",
+              "letra": "con el fuego de su espíritu brilla nuestro corazón"
+            }
+          ]
+        },
+        {
+          "tipo": "final",
+          "titulo": "Final",
+          "lineas": [
+            {
+              "acordes": "G# - G# - C# - C#          G# - C# - G#",
+              "letra": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "titulo": "Quiero Arder por Ti",
@@ -31,7 +243,160 @@
       "tono": "A",
       "categoria": "Adoración",
       "seccion": "General",
-      "contenido": []
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "//D - E - F#m - C#m//",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "      D                    E",
+              "letra": "Mi orgullo me sacó del jardín"
+            },
+            {
+              "acordes": "         F#m7               C#m",
+              "letra": "su humildad puso el jardín en mí"
+            },
+            {
+              "acordes": "          D",
+              "letra": "y si vendiera todo lo que tengo"
+            },
+            {
+              "acordes": "   E                          F#m7     C#m",
+              "letra": "a cambio de su amor, yo fallaría"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro 1",
+          "lineas": [
+            {
+              "acordes": "              D",
+              "letra": "//porque su amor no se compra"
+            },
+            {
+              "acordes": "E",
+              "letra": "ni se merece"
+            },
+            {
+              "acordes": "     F#m7",
+              "letra": "su amor es un regalo"
+            },
+            {
+              "acordes": "     C#m",
+              "letra": "de gracia se recibe//"
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "Puente",
+          "lineas": [
+            {
+              "acordes": "   D                E",
+              "letra": "quiero conocer a Jesús"
+            },
+            {
+              "acordes": "      F#m7           C#m",
+              "letra": "Yo quiero conocer a Jesús"
+            },
+            {
+              "acordes": "   D                E",
+              "letra": "quiero conocer a Jesús"
+            },
+            {
+              "acordes": "   F#m7           C#m",
+              "letra": "quiero conocer a Jesús"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Intermedio",
+          "lineas": [
+            {
+              "acordes": "",
+              "letra": "D - (E) - F#m7 - C#m  (solo un tiempo) se repite 2 veces"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Yeshua",
+          "lineas": [
+            {
+              "acordes": "    D     (E)Em7             C#m",
+              "letra": "Yeshuuuuaaaaaaaaaaaaaaaaaaaaaa (Se repite varias veces)"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro 2",
+          "lineas": [
+            {
+              "acordes": "       D              F#m7",
+              "letra": "//Mi amado es el más bello"
+            },
+            {
+              "acordes": "          A          C#m",
+              "letra": "entre millares y millares"
+            },
+            {
+              "acordes": "     D               F#m7",
+              "letra": "Mi amado es, el más bello"
+            },
+            {
+              "acordes": "          A          C#m",
+              "letra": "entre millares y millares//"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Yeshua Repetición",
+          "lineas": [
+            {
+              "acordes": "    D     (E)Em7             C#m",
+              "letra": "Yeshuuuuaaaaaaaaaaaaaaaaaaaaaa (Se repite varias veces)"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Instrumental Piano",
+          "lineas": [
+            {
+              "acordes": "",
+              "letra": "D E F#m C#m7 (parte donde solo toca el Piano)"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Nuestro Dios",
+          "lineas": [
+            {
+              "acordes": "          D     (E) F#m7",
+              "letra": "Nuestro Dios reina"
+            },
+            {
+              "acordes": "     F#m7       E     A",
+              "letra": "por siempre tú reinarás  (Se repite algunas veces)"
+            }
+          ]
+        }
+      ]
     },
     {
       "titulo": "Nuestro Dios",
@@ -47,7 +412,132 @@
       "tono": "Bm",
       "categoria": "Alabanza",
       "seccion": "General",
-      "contenido": []
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "C#m - A - E - B/D#",
+              "letra": ""
+            },
+            {
+              "acordes": "",
+              "letra": "Notas de guitarra:"
+            },
+            {
+              "acordes": "E B G# E B - E B G# E F#",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso 1",
+          "lineas": [
+            {
+              "acordes": "C#m                        A",
+              "letra": "Oh perfecto inigualable Dios"
+            },
+            {
+              "acordes": "                E               B/D#",
+              "letra": "amor inexplicable, tu reino inigualable"
+            },
+            {
+              "acordes": "C#m                    A",
+              "letra": "asombroso coronado estás,"
+            },
+            {
+              "acordes": "                   E                        B/D#",
+              "letra": "En tu trono de victoria, vestido estás de Gloria"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Pre-Coro",
+          "lineas": [
+            {
+              "acordes": "        C#m                       A",
+              "letra": "Por los siglos de los siglos, tu reino se establecerá"
+            },
+            {
+              "acordes": "           E                               B/D#",
+              "letra": "digno de gloria, digno de honor, digno de toda adoración"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "        C#m          A            E             B/D#",
+              "letra": "Tú eres Rey, tú eres Rey, tú eres Reeeeey-"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso 2",
+          "lineas": [
+            {
+              "acordes": "C#m                        A",
+              "letra": "Oh perfecto inigualable Dios"
+            },
+            {
+              "acordes": "                E               B/D#",
+              "letra": "tu amor inexplicable, tu reino incomparable"
+            },
+            {
+              "acordes": "C#m                    A",
+              "letra": "asombroso coronado estás,"
+            },
+            {
+              "acordes": "                   E                        B/D#",
+              "letra": "En tu trono de victoria, vestido estás de Gloria"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Pre-Coro",
+          "lineas": [
+            {
+              "acordes": "        C#m                       A",
+              "letra": "Por los siglos de los siglos, tu reino se establecerá"
+            },
+            {
+              "acordes": "           E                               B/D#",
+              "letra": "digno de gloria, digno de honor, digno de toda adoración"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "        C#m          A            E             B/D#",
+              "letra": "Tú eres Rey, tú eres Rey, tú eres Reeeeey-"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Bridge",
+          "lineas": [
+            {
+              "acordes": "C#m                     A",
+              "letra": "Hoy perfumamos tu trono, hoy perfumamos tu trono"
+            },
+            {
+              "acordes": "E                       B/D#",
+              "letra": "hoy perfumamos tu trono, recibe alabanza"
+            }
+          ]
+        }
+      ]
     },
     {
       "titulo": "Remolineando",
@@ -55,7 +545,68 @@
       "tono": "C#m",
       "categoria": "Alabanza",
       "seccion": "General",
-      "contenido": []
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "Verso 1",
+          "lineas": [
+            {
+              "acordes": "C#m                                             B       C#m",
+              "letra": "//Hay muchas formas de alabar tu nombre, y de exaltarte Jehová"
+            },
+            {
+              "acordes": "              A   B       C#m             B             C#m",
+              "letra": "hay muchas formas de magnificarte, pero ahora lo haré así.//"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso 2",
+          "lineas": [
+            {
+              "acordes": "C#m                                 B               C#m",
+              "letra": "Saco mi vida del anonimato, me dio corona y vestido real"
+            },
+            {
+              "acordes": " B       A           B        C#m",
+              "letra": "así es Jehová que exalta al pequeño"
+            },
+            {
+              "acordes": "             G#  A     B        C#m",
+              "letra": "por causa de él, yo me haré más vil"
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "Puente",
+          "lineas": [
+            {
+              "acordes": "   C#m                             B          C#m",
+              "letra": "//LARA, LARA LARA LARA, LARA LARA LARA, LARA LALA//"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "     C#m      A   B   C#m       B         C#m",
+              "letra": "Remolineando, remolineando, celebraré a Jehová"
+            },
+            {
+              "acordes": "     C#m      A     B    C#m",
+              "letra": "remolineando, remolineando"
+            },
+            {
+              "acordes": "             G#      A    B    C#m",
+              "letra": "Me haré más vil por causa de Jehová"
+            }
+          ]
+        }
+      ]
     },
     {
       "titulo": "Tus Cuerdas de Amor",
@@ -63,7 +614,204 @@
       "tono": "Dm",
       "categoria": "Adoración",
       "seccion": "General",
-      "contenido": []
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "////Dm7  Bb  F ////",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso 1",
+          "lineas": [
+            {
+              "acordes": "Dm7             Bb     F (C)",
+              "letra": "Aunque pase el tiempo sé"
+            },
+            {
+              "acordes": "     Dm7        Bb    F  (C)",
+              "letra": "que tu promesa cumplirás"
+            },
+            {
+              "acordes": " Dm7           Bb   F   (C)",
+              "letra": "Nada en ti se perderá"
+            },
+            {
+              "acordes": "Dm7          Bb  F   (C)",
+              "letra": "Esa es mi seguridad"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Pre-Coro",
+          "lineas": [
+            {
+              "acordes": "",
+              "letra": "     C       *Cadd6  C7"
+            },
+            {
+              "acordes": "",
+              "letra": "Tus cuerdas de     amor"
+            },
+            {
+              "acordes": "               F  C/E  Dm7",
+              "letra": "Cayeron sobre mí"
+            },
+            {
+              "acordes": "",
+              "letra": "     C       *Cadd6  C7"
+            },
+            {
+              "acordes": "",
+              "letra": "Tus cuerdas de     amor"
+            },
+            {
+              "acordes": "               F  C/E  Dm7 Bb",
+              "letra": "Cayeron sobre mí"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "                          F",
+              "letra": "// Es tu amor que me sostiene"
+            },
+            {
+              "acordes": "             Dm7",
+              "letra": "El que me levanta"
+            },
+            {
+              "acordes": "              Am",
+              "letra": "El que me da paz"
+            },
+            {
+              "acordes": "             Bb",
+              "letra": "Me da seguridad//"
+            },
+            {
+              "acordes": "                 Gm",
+              "letra": "Y de lo que vendrá"
+            },
+            {
+              "acordes": "                  Dm7",
+              "letra": "Tú tienes el control"
+            },
+            {
+              "acordes": "                     Csus4 (F/C) C",
+              "letra": "Nunca pierdes el control"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso 2",
+          "lineas": [
+            {
+              "acordes": "   Dm7          Bb    F   (C)",
+              "letra": "Escucho el eco de tu voz"
+            },
+            {
+              "acordes": " Dm7          Bb      F   (C)",
+              "letra": "Resonando en mi interior"
+            },
+            {
+              "acordes": " Dm7             Bb     F  (C)",
+              "letra": "Tus palabras me sostendrán"
+            },
+            {
+              "acordes": "Dm7           Bb  F  (C)",
+              "letra": "Esta es mi seguridad"
+            },
+            {
+              "acordes": "     Dm7           Bb    F    (C)",
+              "letra": "Los velos están cayendo hoy"
+            },
+            {
+              "acordes": "     Dm7            Bb  F   (C)",
+              "letra": "Hoy puedo ver con claridad"
+            },
+            {
+              "acordes": "    Dm7              Bb    F   (C)",
+              "letra": "Mi fe se está encendiendo hoy"
+            },
+            {
+              "acordes": "   Dm7             Bb   F",
+              "letra": "Y hoy me vuelvo a levantar"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "                         F",
+              "letra": "//Es tu amor que me sostiene"
+            },
+            {
+              "acordes": "             Dm7",
+              "letra": "El que me levanta"
+            },
+            {
+              "acordes": "              Am",
+              "letra": "El que me da paz"
+            },
+            {
+              "acordes": "             Bb",
+              "letra": "Me da seguridad//"
+            },
+            {
+              "acordes": "                 Gm",
+              "letra": "Y de lo que vendrá"
+            },
+            {
+              "acordes": "                  Dm7",
+              "letra": "Tú tienes el control"
+            },
+            {
+              "acordes": "                     Csus4 (F/C) C",
+              "letra": "Nunca pierdes el control"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Midley",
+          "lineas": [
+            {
+              "acordes": "//Dm7  C  Am  Bb //",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro Final",
+          "lineas": [
+            {
+              "acordes": "                 Gm",
+              "letra": "Y de lo que vendrá"
+            },
+            {
+              "acordes": "                  Dm7",
+              "letra": "Tú tienes el control"
+            },
+            {
+              "acordes": "                     Csus4 (F/C) C",
+              "letra": "Nunca pierdes el control"
+            }
+          ]
+        }
+      ]
     },
     {
       "titulo": "Cantaré de Tu Amor",
@@ -71,7 +819,92 @@
       "tono": "C",
       "categoria": "Adoración",
       "seccion": "General",
-      "contenido": []
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "////C - Csus4////",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso 1",
+          "lineas": [
+            {
+              "acordes": "F             C/E",
+              "letra": "por mucho tiempo busqué"
+            },
+            {
+              "acordes": "   F          C/E",
+              "letra": "una razón de vivir"
+            },
+            {
+              "acordes": "F        G          Am7",
+              "letra": "en medio de mil preguntas"
+            },
+            {
+              "acordes": "F                G",
+              "letra": "tu amor me respondió"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso 2",
+          "lineas": [
+            {
+              "acordes": "F             C/E",
+              "letra": "ahora veo la luz"
+            },
+            {
+              "acordes": "   F          C/E",
+              "letra": "y ya no tengo temor"
+            },
+            {
+              "acordes": "F        G          Am7",
+              "letra": "tu reino vino a mi vida"
+            },
+            {
+              "acordes": "F                G",
+              "letra": "y ahora vivo para tí"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "      C         G/B",
+              "letra": "cantaré de tu amor"
+            },
+            {
+              "acordes": "       Am7       C       F",
+              "letra": "rendiré mi corazón ante tí"
+            },
+            {
+              "acordes": "      C         G/B",
+              "letra": "tu serás mi pasión"
+            },
+            {
+              "acordes": "        Am7        C          F",
+              "letra": "y mis pasos se guiarán por tu voz"
+            },
+            {
+              "acordes": "Dm          G",
+              "letra": "mi jesús y mi rey"
+            },
+            {
+              "acordes": "         F          G",
+              "letra": "de tu gran amor cantaré"
+            }
+          ]
+        }
+      ]
     },
     {
       "titulo": "Con Mis Manos Levantadas",
@@ -79,7 +912,78 @@
       "tono": "G",
       "categoria": "Alabanza",
       "seccion": "General",
-      "contenido": []
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "G  D/F#  F  C/E  G  D/F#  Am7  D",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "            G                         C",
+              "letra": "//Con mis manos levantadas hacia el cielo"
+            },
+            {
+              "acordes": "       Em7       D          G",
+              "letra": "Me presento ante ti hoy mi Señor"
+            },
+            {
+              "acordes": "      Cmaj7    D/F#   G      D/F#   Em7",
+              "letra": "Para recibir de ti la fuerza y el poder"
+            },
+            {
+              "acordes": "       A    C      Em7  D",
+              "letra": "Para vivir junto a ti.//"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "        G                        Am7",
+              "letra": "Llenas hoy mi corazón con tu presencia"
+            },
+            {
+              "acordes": "Dsus4            Dsus4/C        Em7   C/E  A/C#",
+              "letra": "Llenas de alegría y paz todo mi ser"
+            },
+            {
+              "acordes": "      Cmaj7        G/B             Em7",
+              "letra": "De cualquier necesidad tu me responderás"
+            },
+            {
+              "acordes": "          Am7     Dsus4   D",
+              "letra": "Porque me amas me amas"
+            },
+            {
+              "acordes": "        G                        Am7",
+              "letra": "Llenas hoy mi corazón con tu presencia"
+            },
+            {
+              "acordes": "Dsus4          Dsus4/C        Em7     C/E  A/C#",
+              "letra": "Llenas de alegría y paz todo mi ser"
+            },
+            {
+              "acordes": "    Cmaj7         G/B            Em7",
+              "letra": "De cualquier necesidad tu me responderás"
+            },
+            {
+              "acordes": "        G/F  F  Cm7/Eb",
+              "letra": "Porque me amas me amas"
+            }
+          ]
+        }
+      ]
     },
     {
       "titulo": "Libre Soy",
@@ -87,16 +991,6 @@
       "tono": "D",
       "categoria": "Alabanza",
       "seccion": "General",
-      "estructura": [
-        "Intro",
-        "Verso 1",
-        "Coro",
-        "Verso 2",
-        "Coro",
-        "Solo",
-        "Coro",
-        "Puente"
-      ],
       "contenido": [
         {
           "tipo": "intro",
@@ -202,6 +1096,16 @@
             }
           ]
         }
+      ],
+      "estructura": [
+        "Intro",
+        "Verso 1",
+        "Coro",
+        "Verso 2",
+        "Coro",
+        "Solo",
+        "Coro",
+        "Puente"
       ]
     },
     {
@@ -210,7 +1114,68 @@
       "tono": "A",
       "categoria": "Adoración",
       "seccion": "General",
-      "contenido": []
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "A  B  C#m  G#m  A  E",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "          A         B     C#m",
+              "letra": "Cristo Jesús eres mi plenitud"
+            },
+            {
+              "acordes": "G#m       A         F#m     E",
+              "letra": "Cristo Jesús eres mi plenitud"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "              A",
+              "letra": "Si te tengo a Ti lo tengo todo"
+            },
+            {
+              "acordes": "B   C#m       G#m",
+              "letra": "mi amado mi tesoro"
+            },
+            {
+              "acordes": "         A",
+              "letra": "Fuera de Ti nada deseo"
+            },
+            {
+              "acordes": "F#m E",
+              "letra": "Señor"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "          A          B   C#m",
+              "letra": "Cristo Jesús eres mi plenitud"
+            },
+            {
+              "acordes": "G#m       A         F#m    E",
+              "letra": "Cristo Jesús eres mi plenitud"
+            }
+          ]
+        }
+      ]
     },
     {
       "titulo": "Unción en el Aire",
@@ -218,22 +1183,6 @@
       "tono": "Cm",
       "categoria": "Adoración",
       "seccion": "General",
-      "estructura": [
-        "Intro",
-        "Verso (voz de mujer)",
-        "Pre-coro",
-        "Verso (voz de hombre)",
-        "Pre-coro",
-        "Coro",
-        "Preludio",
-        "Puente 1",
-        "Coro (x4)",
-        "Instrumental",
-        "Puente 2",
-        "Coro (x4)",
-        "Puente 1 (x2)",
-        "Outro (instrumental del coro)"
-      ],
       "contenido": [
         {
           "tipo": "intro",
@@ -337,6 +1286,22 @@
             }
           ]
         }
+      ],
+      "estructura": [
+        "Intro",
+        "Verso (voz de mujer)",
+        "Pre-coro",
+        "Verso (voz de hombre)",
+        "Pre-coro",
+        "Coro",
+        "Preludio",
+        "Puente 1",
+        "Coro (x4)",
+        "Instrumental",
+        "Puente 2",
+        "Coro (x4)",
+        "Puente 1 (x2)",
+        "Outro (instrumental del coro)"
       ]
     },
     {
@@ -345,7 +1310,98 @@
       "tono": "C#m",
       "categoria": "Adoración",
       "seccion": "General",
-      "contenido": []
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "C#m  B  A  G#",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "C#m                          B",
+              "letra": "Estoy aquí, desesperado por ti"
+            },
+            {
+              "acordes": "             A                        G#",
+              "letra": "Con un corazón sediento, que espera beber de ti"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Pre-Coro",
+          "lineas": [
+            {
+              "acordes": "A",
+              "letra": "Cuando tu gloria desciende a un lugar"
+            },
+            {
+              "acordes": "B",
+              "letra": "Toda la tierra tiene que adorar"
+            },
+            {
+              "acordes": "A",
+              "letra": "Resucitan los muertos, se sanan enfermos"
+            },
+            {
+              "acordes": "G#",
+              "letra": "por tu poder."
+            },
+            {
+              "acordes": "A",
+              "letra": "Queremos de ti, llénanos de ti"
+            },
+            {
+              "acordes": "B",
+              "letra": "Espíritu Santo, envuélvenos en ti"
+            },
+            {
+              "acordes": "A                      G#",
+              "letra": "Derrama tu gloria, esperamos por ti"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "C#m",
+              "letra": "Ven, ven, ven Espíritu Santo"
+            },
+            {
+              "acordes": "B",
+              "letra": "Ven, ven, ven Espíritu Santo"
+            },
+            {
+              "acordes": "A                           G#",
+              "letra": "Ven, ven, ven, llena este lugar"
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "Puente",
+          "lineas": [
+            {
+              "acordes": "C#m",
+              "letra": "Transfórmame (Ven), quebrántame (Ven), restáurame"
+            },
+            {
+              "acordes": "             B",
+              "letra": "Oh, vivifícame, libértame (Hoy), envuélveme."
+            }
+          ]
+        }
+      ]
     },
     {
       "titulo": "Yo Navegaré",
@@ -353,7 +1409,162 @@
       "tono": "C#m",
       "categoria": "Alabanza",
       "seccion": "General",
-      "contenido": []
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "G#m - F# - E - C#m - D#sus4",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso 1",
+          "lineas": [
+            {
+              "acordes": "      G#m",
+              "letra": "Yo navegaré"
+            },
+            {
+              "acordes": "                  F#",
+              "letra": "En el río de tu Espíritu"
+            },
+            {
+              "acordes": "             E - E/C#",
+              "letra": "Y allí adoraré"
+            },
+            {
+              "acordes": "            D#sus4",
+              "letra": "Al Dios que me amó"
+            },
+            {
+              "acordes": "       G#m",
+              "letra": "Yo adoraré"
+            },
+            {
+              "acordes": "                   F#",
+              "letra": "Al Dios que me da vida"
+            },
+            {
+              "acordes": "               E - E/C#",
+              "letra": "Que me comprende"
+            },
+            {
+              "acordes": "                 D#sus4",
+              "letra": "Sin ninguna explicación"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "             G#m",
+              "letra": "//Espíritu, Espíritu"
+            },
+            {
+              "acordes": "                F#",
+              "letra": "desciende como fuego"
+            },
+            {
+              "acordes": "                 E - E/C#",
+              "letra": "como en Pentecostés"
+            },
+            {
+              "acordes": "           Dbsus4",
+              "letra": "Y lléname de nuevo//"
+            },
+            {
+              "acordes": "",
+              "letra": "[Verso] (x2)"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro 2",
+          "lineas": [
+            {
+              "acordes": "             G#m",
+              "letra": "//Espíritu, Espíritu"
+            },
+            {
+              "acordes": "                F#",
+              "letra": "desciende como fuego"
+            },
+            {
+              "acordes": "                 E - E/C#",
+              "letra": "como en Pentecostés"
+            },
+            {
+              "acordes": "           D#sus4",
+              "letra": "Y lléname de nuevo//"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Instrumental",
+          "lineas": [
+            {
+              "acordes": "G#m - F# - E - C#m - D#sus4",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro Final",
+          "lineas": [
+            {
+              "acordes": "               E - F#",
+              "letra": "//Espíritu, Espíritu"
+            },
+            {
+              "acordes": "",
+              "letra": "                F#/D# - G#m D# (Opcional, iría en el último tiempo antes de mí)"
+            },
+            {
+              "acordes": "",
+              "letra": "desciende como fuego"
+            },
+            {
+              "acordes": "               E - C#m",
+              "letra": "como en Pentecostés"
+            },
+            {
+              "acordes": "          D#sus4 - D#",
+              "letra": "Y lléname de nuevo//"
+            }
+          ]
+        },
+        {
+          "tipo": "final",
+          "titulo": "Verso Final",
+          "lineas": [
+            {
+              "acordes": "       G#m",
+              "letra": "Yo navegaré"
+            },
+            {
+              "acordes": "                   F#",
+              "letra": "En el río de tu Espíritu"
+            },
+            {
+              "acordes": "         E - E/C#",
+              "letra": "Y allí adoraré"
+            },
+            {
+              "acordes": "             D#sus4 - G#m",
+              "letra": "Al Dios que me amó."
+            }
+          ]
+        }
+      ]
     },
     {
       "titulo": "Aquí Estás / Way Maker",
@@ -361,7 +1572,104 @@
       "tono": "A",
       "categoria": "Adoración",
       "seccion": "General",
-      "contenido": []
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "VERSO 1",
+          "lineas": [
+            {
+              "acordes": "          D              A           E         F#m7",
+              "letra": "//Aquí estas Te vemos mover Te adorare Te adorare"
+            },
+            {
+              "acordes": "        D             A           E         A",
+              "letra": "Aquí estas Obrando en mi Te adorare Te adorare //y te llamamos"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "CORO",
+          "lineas": [
+            {
+              "acordes": "  D                         A",
+              "letra": "//  Milagroso abres caminos cumples promesas"
+            },
+            {
+              "acordes": "                E                  F#m7 A",
+              "letra": "luz en tinieblas  mi Dios así eres tú   //"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "VERSO 2",
+          "lineas": [
+            {
+              "acordes": "        D                 A            E         F#m7",
+              "letra": "Aquí estas tocando mi corazón te adorare te adorare."
+            },
+            {
+              "acordes": "        D                 A",
+              "letra": "Aquí estas tocando mi corazón"
+            },
+            {
+              "acordes": "         E         F#m7 E",
+              "letra": "Te adorare te adorare.  te llamamos"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "VERSO 2",
+          "lineas": [
+            {
+              "acordes": "        D                 A            E         F#m7",
+              "letra": "Aquí estas tocando mi corazón te adorare te adorare."
+            },
+            {
+              "acordes": "        D                 A",
+              "letra": "Aquí estas tocando mi corazón"
+            },
+            {
+              "acordes": "         E         F#m7 E",
+              "letra": "Te adorare te adorare.  hoy y siempre te llamamos"
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "PUENTE 1",
+          "lineas": [
+            {
+              "acordes": "           D            A             E           F#m7",
+              "letra": "//Así eres tu, así eres tu, así eres tú, así eres tú//"
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "PUENTE 2",
+          "lineas": [
+            {
+              "acordes": "  D",
+              "letra": "//  Aunque no pueda ver estas obrando"
+            },
+            {
+              "acordes": "A",
+              "letra": "  Aunque no pueda ver estas obrando"
+            },
+            {
+              "acordes": "E",
+              "letra": "  Siempre estas, siempre estas obrando"
+            },
+            {
+              "acordes": "F#m7",
+              "letra": "  Siempre estas, siempre estas obrando//"
+            }
+          ]
+        }
+      ]
     },
     {
       "titulo": "Cuando Pienso en lo Mucho",
@@ -369,7 +1677,120 @@
       "tono": "Cm",
       "categoria": "Adoración",
       "seccion": "General",
-      "contenido": []
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "Verso 1",
+          "lineas": [
+            {
+              "acordes": "Cm                    Bb       Cm7",
+              "letra": "Cuando pienso en lo mucho que hizo por mí,"
+            },
+            {
+              "acordes": "        Cm             Bb              Cm7",
+              "letra": "cuando pienso en el día que me liberó quiero"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro 1",
+          "lineas": [
+            {
+              "acordes": "   Bb7     .      .      .",
+              "letra": "//cantar, cantar, cantar, cantar,"
+            },
+            {
+              "acordes": " .      .      .      .      Cm7",
+              "letra": "cantar, cantar, cantar, cantar, cantar//"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso 2",
+          "lineas": [
+            {
+              "acordes": "        Cm                     Bb      Cm7",
+              "letra": "Cuando pienso en lo mucho que hizo por mí,"
+            },
+            {
+              "acordes": "        Cm              Bb             Cm",
+              "letra": "cuando pienso en el día que me liberó quiero"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro 2",
+          "lineas": [
+            {
+              "acordes": "    Bb7     .      .      .",
+              "letra": "//danzar, danzar, danzar, danzar,"
+            },
+            {
+              "acordes": "   .      .      .      .       Cm7",
+              "letra": "danzar, danzar, danzar, danzar, danzar//"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso 3",
+          "lineas": [
+            {
+              "acordes": "        Cm                     Bb      Cm7",
+              "letra": "Cuando pienso en lo mucho que hizo por mí,"
+            },
+            {
+              "acordes": "        Cm              Bb              Cm7",
+              "letra": "cuando pienso en el día que me liberó quiero"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro 3",
+          "lineas": [
+            {
+              "acordes": "    Bb7     .       .        .",
+              "letra": "//correr, correr, correr, correr,"
+            },
+            {
+              "acordes": "   .      .      .       .       Cm7",
+              "letra": "correr, correr, correr, correr, correr//"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso 4",
+          "lineas": [
+            {
+              "acordes": "        Cm                    Bb       Cm7",
+              "letra": "Cuando pienso en lo mucho que hizo por mí,"
+            },
+            {
+              "acordes": "        Cm              Bb              Cm7",
+              "letra": "cuando pienso en el día que me liberó quiero"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro 4",
+          "lineas": [
+            {
+              "acordes": "    Bb7     .       .        .",
+              "letra": "//gritar, gritar, gritar, gritar,"
+            },
+            {
+              "acordes": "  .      .      .       .        Cm7",
+              "letra": "gritar, gritar, gritar, gritar, gritar//"
+            }
+          ]
+        }
+      ]
     },
     {
       "titulo": "Creo en Ti",
@@ -377,7 +1798,76 @@
       "tono": "Bm",
       "categoria": "Adoración",
       "seccion": "General",
-      "contenido": []
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "G  A  D  G  G  A  Bm",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "Bm                      G",
+              "letra": "Quiero levantar a ti mis manos..."
+            },
+            {
+              "acordes": "        D               A",
+              "letra": "Maravilloso Jesús, Milagroso Señor..."
+            },
+            {
+              "acordes": "Bm                      G",
+              "letra": "Llena este lugar de tu presencia"
+            },
+            {
+              "acordes": "          D                        A",
+              "letra": "Has descender tu poder, a los que estamos aquí"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Pre-Coro",
+          "lineas": [
+            {
+              "acordes": "         Bm   A   G",
+              "letra": "Creo en ti... Je-sús"
+            },
+            {
+              "acordes": "           Bm    A  G         (x2)",
+              "letra": "De lo que harás en mí"
+            },
+            {
+              "acordes": "    D         A",
+              "letra": "En mí... en mí..."
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "        Bm",
+              "letra": "Recibe toda la gloria"
+            },
+            {
+              "acordes": "        G",
+              "letra": "Recibe toda la honra        (x2)"
+            },
+            {
+              "acordes": "    D            A",
+              "letra": "Precioso hijo de Dios"
+            }
+          ]
+        }
+      ]
     },
     {
       "titulo": "A Tus Pies",
@@ -385,7 +1875,82 @@
       "tono": "A",
       "categoria": "Adoración",
       "seccion": "General",
-      "contenido": []
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "A   D   A   D",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "     A              E",
+              "letra": "A tus pies arde mi corazón"
+            },
+            {
+              "acordes": "     F#m                D",
+              "letra": "A tus pies entrego lo que soy"
+            },
+            {
+              "acordes": "     A           E",
+              "letra": "Ese lugar de mi seguridad"
+            },
+            {
+              "acordes": "     F#m            D",
+              "letra": "Donde nadie me puede señalar"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Pre-Coro",
+          "lineas": [
+            {
+              "acordes": "     D                         E",
+              "letra": "Me perdonaste, me acercaste a tu presencia"
+            },
+            {
+              "acordes": "    F#m                      E",
+              "letra": "Me levantaste, hoy me postro a adorarte"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "C#m      A      D          E",
+              "letra": "No hay lugar más alto, más grande"
+            },
+            {
+              "acordes": "              F#m                       A   E",
+              "letra": "Que estar a tus pies, que estar a tus pies"
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "Puente/Interludio",
+          "lineas": [
+            {
+              "acordes": "    D       E            A   E  F#m",
+              "letra": "Y aquí permaneceré, postrado a tus pies"
+            },
+            {
+              "acordes": "     D      E                        F#m   A",
+              "letra": "Y aquí permaneceré, a los pies de Cristo"
+            }
+          ]
+        }
+      ]
     },
     {
       "titulo": "Digno",
@@ -393,7 +1958,54 @@
       "tono": "A",
       "categoria": "Adoración",
       "seccion": "General",
-      "contenido": []
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "A                  F#m",
+              "letra": "No tengo nada para ofrecer, nada que te pueda sorprender"
+            },
+            {
+              "acordes": "            D           F#m             E",
+              "letra": "Solo un corazón, quebrantado una y otra vez"
+            },
+            {
+              "acordes": "         A                        F#m",
+              "letra": "Y no hay nada que me enamore más, nada que me apasione más"
+            },
+            {
+              "acordes": "           D                 A              E",
+              "letra": "Solo tu presencia, solo tu mirada me hacen suspirar"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Pre-Coro",
+          "lineas": [
+            {
+              "acordes": "        D            Dm             A                  E",
+              "letra": "//Me inclino ante ti,    Rey que perdona multitud de errores//"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "Asus-A             F#m",
+              "letra": "Digno eternamente Digno"
+            },
+            {
+              "acordes": "                 E                     D         Dm",
+              "letra": "Impresionante y digno solo ante ti yo me inclino"
+            }
+          ]
+        }
+      ]
     },
     {
       "titulo": "Espíritu Santo Te Necesito",
@@ -401,7 +2013,52 @@
       "tono": "G",
       "categoria": "Adoración",
       "seccion": "General",
-      "contenido": []
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "G          C   D        Bm  Em",
+              "letra": "Espíritu Santo te necesito"
+            },
+            {
+              "acordes": "            Am D          G",
+              "letra": "Manda tu fuego a este lugar"
+            },
+            {
+              "acordes": "           C   D        Bm  Em",
+              "letra": "Espíritu Santo solo anhelo"
+            },
+            {
+              "acordes": "            Am  D        G",
+              "letra": "Mirar tu gloria y majestad."
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "              C    D",
+              "letra": "Tú eres mi fuerza"
+            },
+            {
+              "acordes": "              Bm  Em",
+              "letra": "Tú eres mi ayuda"
+            },
+            {
+              "acordes": "           Am",
+              "letra": "Espíritu Santo"
+            },
+            {
+              "acordes": "  D            G",
+              "letra": "Ven a este lugar."
+            }
+          ]
+        }
+      ]
     },
     {
       "titulo": "Hay una Unción",
@@ -409,7 +2066,72 @@
       "tono": "G",
       "categoria": "Adoración",
       "seccion": "General",
-      "contenido": []
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "G          C      D",
+              "letra": "Hay una unción aquí,"
+            },
+            {
+              "acordes": "        G     Em",
+              "letra": "Cayendo sobre mí,"
+            },
+            {
+              "acordes": "        C",
+              "letra": "Llenándome,"
+            },
+            {
+              "acordes": "D           G",
+              "letra": "Saciando mi ser,"
+            },
+            {
+              "acordes": "G          C      D",
+              "letra": "Hay una unción aquí,"
+            },
+            {
+              "acordes": "        G     Em",
+              "letra": "Cayendo sobre mí,"
+            },
+            {
+              "acordes": "        C",
+              "letra": "Llenándome,"
+            },
+            {
+              "acordes": "D            G   G7",
+              "letra": "Cambiando mi ser."
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "              C",
+              "letra": "Mi espíritu y mi alma,"
+            },
+            {
+              "acordes": "          D",
+              "letra": "Se están llenando,"
+            },
+            {
+              "acordes": "        G                  E",
+              "letra": "Con el Poder de tu Espíritu Santo,"
+            },
+            {
+              "acordes": "C       D",
+              "letra": "Mi vida nunca más,"
+            },
+            {
+              "acordes": "       G    G7",
+              "letra": "Será igual."
+            }
+          ]
+        }
+      ]
     },
     {
       "titulo": "Algo Está Cayendo Aquí",
@@ -417,11 +2139,6 @@
       "tono": "G",
       "categoria": "Adoración",
       "seccion": "General",
-      "estructura": [
-        "Intro",
-        "Verso",
-        "Coro"
-      ],
       "contenido": [
         {
           "tipo": "intro",
@@ -485,6 +2202,11 @@
             }
           ]
         }
+      ],
+      "estructura": [
+        "Intro",
+        "Verso",
+        "Coro"
       ]
     },
     {
@@ -493,7 +2215,56 @@
       "tono": "G",
       "categoria": "Adoración",
       "seccion": "General",
-      "contenido": []
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "G    D/F#    Em",
+              "letra": "//VEN ESPÍRITU VEN,"
+            },
+            {
+              "acordes": "    G/D           C",
+              "letra": "Y LLÉNAME SEÑOR"
+            },
+            {
+              "acordes": "    Am7              Dsus  D",
+              "letra": "CON TU PRECIOSA UNCIÓN.//"
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "Puente",
+          "lineas": [
+            {
+              "acordes": "     G            D/F#",
+              "letra": "PURIFÍCAME Y LÁVAME,"
+            },
+            {
+              "acordes": "   Em            G/D         C",
+              "letra": "RENUÉVAME, RESTÁURAME, SEÑOR,"
+            },
+            {
+              "acordes": "Am7        Dsus",
+              "letra": "CON TU PODER."
+            },
+            {
+              "acordes": "     G           D/F#",
+              "letra": "PURIFÍCAME Y LÁVAME,"
+            },
+            {
+              "acordes": "   Em             G/D        C",
+              "letra": "RENUÉVAME, RESTÁURAME, SEÑOR,"
+            },
+            {
+              "acordes": "     D11   D      G",
+              "letra": "TE QUIERO CONOCER."
+            }
+          ]
+        }
+      ]
     },
     {
       "titulo": "Júbilo Medley",
@@ -501,17 +2272,6 @@
       "tono": "Cm",
       "categoria": "Alabanza",
       "seccion": "General",
-      "estructura": [
-        "Intro",
-        "La Cosecha",
-        "La Cosecha (Coro)",
-        "No Hay Otro Nombre",
-        "Levántate Señor",
-        "Levántate Señor (Puente)",
-        "Guerra Espiritual",
-        "Aleluya / Grande es el Señor",
-        "Cantaré al Señor por Siempre"
-      ],
       "contenido": [
         {
           "tipo": "intro",
@@ -747,6 +2507,17 @@
             }
           ]
         }
+      ],
+      "estructura": [
+        "Intro",
+        "La Cosecha",
+        "La Cosecha (Coro)",
+        "No Hay Otro Nombre",
+        "Levántate Señor",
+        "Levántate Señor (Puente)",
+        "Guerra Espiritual",
+        "Aleluya / Grande es el Señor",
+        "Cantaré al Señor por Siempre"
       ]
     },
     {
@@ -755,17 +2526,6 @@
       "tono": "Cm",
       "categoria": "Alabanza",
       "seccion": "General",
-      "estructura": [
-        "Intro",
-        "La Cosecha",
-        "La Cosecha (Coro)",
-        "No Hay Otro Nombre",
-        "La Cosecha (Coro)",
-        "Levántate Señor",
-        "Huyan",
-        "Presencia",
-        "Cantaré al Señor por Siempre"
-      ],
       "contenido": [
         {
           "tipo": "intro",
@@ -1007,6 +2767,17 @@
             }
           ]
         }
+      ],
+      "estructura": [
+        "Intro",
+        "La Cosecha",
+        "La Cosecha (Coro)",
+        "No Hay Otro Nombre",
+        "La Cosecha (Coro)",
+        "Levántate Señor",
+        "Huyan",
+        "Presencia",
+        "Cantaré al Señor por Siempre"
       ]
     },
     {
@@ -1015,12 +2786,6 @@
       "tono": "Dm",
       "categoria": "Alabanza",
       "seccion": "Medley Dante Gebel",
-      "estructura": [
-        "Verso 1",
-        "Verso 2",
-        "Verso 3",
-        "Coro"
-      ],
       "contenido": [
         {
           "tipo": "verso",
@@ -1110,6 +2875,12 @@
             }
           ]
         }
+      ],
+      "estructura": [
+        "Verso 1",
+        "Verso 2",
+        "Verso 3",
+        "Coro"
       ]
     },
     {
@@ -1118,10 +2889,6 @@
       "tono": "G",
       "categoria": "Alabanza",
       "seccion": "Medley Dante Gebel",
-      "estructura": [
-        "Verso",
-        "Coro"
-      ],
       "contenido": [
         {
           "tipo": "verso",
@@ -1159,6 +2926,10 @@
             }
           ]
         }
+      ],
+      "estructura": [
+        "Verso",
+        "Coro"
       ]
     },
     {
@@ -1167,11 +2938,6 @@
       "tono": "D",
       "categoria": "Adoración",
       "seccion": "Medley Dante Gebel",
-      "estructura": [
-        "Intro",
-        "Verso",
-        "Coro"
-      ],
       "contenido": [
         {
           "tipo": "intro",
@@ -1219,6 +2985,11 @@
             }
           ]
         }
+      ],
+      "estructura": [
+        "Intro",
+        "Verso",
+        "Coro"
       ]
     },
     {
@@ -1227,15 +2998,6 @@
       "tono": "Cm",
       "categoria": "Alabanza",
       "seccion": "Medley Dante Gebel",
-      "estructura": [
-        "Intro",
-        "Verso",
-        "Pre-coro",
-        "Coro",
-        "Puente",
-        "Puente 2",
-        "Coro"
-      ],
       "contenido": [
         {
           "tipo": "intro",
@@ -1341,6 +3103,15 @@
             }
           ]
         }
+      ],
+      "estructura": [
+        "Intro",
+        "Verso",
+        "Pre-coro",
+        "Coro",
+        "Puente",
+        "Puente 2",
+        "Coro"
       ]
     },
     {
@@ -1349,13 +3120,6 @@
       "tono": "Am",
       "categoria": "Alabanza",
       "seccion": "Medley Dante Gebel",
-      "estructura": [
-        "Intro",
-        "Verso",
-        "Coro",
-        "Puente",
-        "Solo"
-      ],
       "contenido": [
         {
           "tipo": "intro",
@@ -1451,6 +3215,13 @@
             }
           ]
         }
+      ],
+      "estructura": [
+        "Intro",
+        "Verso",
+        "Coro",
+        "Puente",
+        "Solo"
       ]
     },
     {
@@ -1459,13 +3230,6 @@
       "tono": "C#m",
       "categoria": "Alabanza",
       "seccion": "Medley Dante Gebel",
-      "estructura": [
-        "Verso",
-        "Pre-coro",
-        "Coro",
-        "Intermedio",
-        "Puente"
-      ],
       "contenido": [
         {
           "tipo": "verso",
@@ -1597,6 +3361,13 @@
             }
           ]
         }
+      ],
+      "estructura": [
+        "Verso",
+        "Pre-coro",
+        "Coro",
+        "Intermedio",
+        "Puente"
       ]
     },
     {
@@ -1605,7 +3376,52 @@
       "tono": "Gm",
       "categoria": "Medley",
       "seccion": "Medley Juan Carlos Alvarado",
-      "contenido": []
+      "contenido": [
+        {
+          "tipo": "coro",
+          "titulo": "Intro / Coro",
+          "lineas": [
+            {
+              "acordes": "        Cm      F   Bb     Eb",
+              "letra": "// Pues tú glorioso eres Señor"
+            },
+            {
+              "acordes": "     Adim7     D          Gm   Ddim7-G",
+              "letra": "y tu nombre es digno de alabar"
+            },
+            {
+              "acordes": "       Cm   F         Bb         Eb",
+              "letra": "haz mi corazón puro y santo ante ti"
+            },
+            {
+              "acordes": "      Dsus4       D          Gm",
+              "letra": "yo te adoro con todo mi corazón //"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "        Gm            Cm",
+              "letra": "Yo te adoro Señor con todo mi ser"
+            },
+            {
+              "acordes": "        Gm            D",
+              "letra": "yo con salmos te alabaré,"
+            },
+            {
+              "acordes": "       Gm             Cm",
+              "letra": "yo te adoro Señor con todo mi ser"
+            },
+            {
+              "acordes": "        Gm   D     Gm - G/B",
+              "letra": "todo el día te alabaré."
+            }
+          ]
+        }
+      ]
     },
     {
       "titulo": "Cristo Vive",
@@ -1613,7 +3429,36 @@
       "tono": "Em",
       "categoria": "Medley",
       "seccion": "Medley Juan Carlos Alvarado",
-      "contenido": []
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "Em                      Cmaj7",
+              "letra": "Mi Salvador no está muerto, Él no está en una tumba"
+            },
+            {
+              "acordes": "Em/A                         Fmaj7    Bsus  B7",
+              "letra": "Mi Salvador no está muerto pues Él resucitó (2x)"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "Em7                        Cmaj7",
+              "letra": "Cristo Vive, Cristo Vive, Cristo Vive"
+            },
+            {
+              "acordes": "Em7                        Cmaj7",
+              "letra": "Cristo Vive, Cristo Vive, Cristo Vive"
+            }
+          ]
+        }
+      ]
     },
     {
       "titulo": "Cristo No Está Muerto",
@@ -1621,7 +3466,34 @@
       "tono": "C",
       "categoria": "Medley",
       "seccion": "Medley Juan Carlos Alvarado",
-      "contenido": []
+      "contenido": [
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "C",
+              "letra": "Cristo no está muerto (está vivo)"
+            },
+            {
+              "acordes": "F",
+              "letra": "Cristo no está muerto (está vivo)"
+            },
+            {
+              "acordes": "C",
+              "letra": "Cristo no está muerto (está vivo)"
+            },
+            {
+              "acordes": "C                          C",
+              "letra": "Lo siento en mis manos, Lo siento en mis pies"
+            },
+            {
+              "acordes": "     C",
+              "letra": "Lo siento en todo mí ser"
+            }
+          ]
+        }
+      ]
     },
     {
       "titulo": "La Tengo",
@@ -1629,7 +3501,22 @@
       "tono": "C",
       "categoria": "Medley",
       "seccion": "Medley Juan Carlos Alvarado",
-      "contenido": []
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "C             F          C         F",
+              "letra": "La tengo, la tengo, la tengo, la tengo"
+            },
+            {
+              "acordes": "    G           G  F# F                           C",
+              "letra": "La unción está so-bre mí, no la entiendo pero la tengo"
+            }
+          ]
+        }
+      ]
     },
     {
       "titulo": "Danza Hija de Sión",
@@ -1637,7 +3524,56 @@
       "tono": "C",
       "categoria": "Medley",
       "seccion": "Medley Juan Carlos Alvarado",
-      "contenido": []
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "  C7",
+              "letra": "Danza hija de Sion"
+            },
+            {
+              "acordes": "  C7",
+              "letra": "Danza en tu creador"
+            },
+            {
+              "acordes": "  C7",
+              "letra": "Danza hija de Sion"
+            },
+            {
+              "acordes": "  C7",
+              "letra": "Danza en tu creador"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "  G         F7",
+              "letra": "Gózate"
+            },
+            {
+              "acordes": "          C7           C7",
+              "letra": "porque Él reina, Él vive"
+            },
+            {
+              "acordes": "    C7          C7",
+              "letra": "Él reina, Él vive"
+            },
+            {
+              "acordes": "    C7          C7",
+              "letra": "Él vive, Él reina,"
+            },
+            {
+              "acordes": "    C7          C7",
+              "letra": "Él vive, Él reina"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
