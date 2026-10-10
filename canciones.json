@@ -1,5 +1,5 @@
 {
-  "version": 5,
+  "version": 6,
   "canciones": [
     {
       "titulo": "Bienvenido Espíritu Santo",
@@ -3728,6 +3728,160 @@
             {
               "acordes": "A  Asus4  A",
               "letra": "Abba Padre enséñanos a ser familia"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Deseable",
+      "artista": "",
+      "tono": "Em",
+      "categoria": "Adoración",
+      "seccion": "General",
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "Estrofa 1",
+          "lineas": [
+            {
+              "acordes": "   Em        Bm        C  Em          G/B    Am",
+              "letra": "No sé lo que viste en mí, para amarme tanto así"
+            },
+            {
+              "acordes": "Em         C        G         C",
+              "letra": "Tanta paciencia, tanta misericordia"
+            },
+            {
+              "acordes": "        Am       G/B        D",
+              "letra": "Y me hiciste deseable para ti"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Estrofa 2",
+          "lineas": [
+            {
+              "acordes": "      Em          Bm          C",
+              "letra": "Me elegiste antes que dijera sí"
+            },
+            {
+              "acordes": "      Em           Bm         Am",
+              "letra": "Tanta gracia yo no puedo resistir"
+            },
+            {
+              "acordes": "       G            C",
+              "letra": "Me llamaste por mi nombre"
+            },
+            {
+              "acordes": "       G             C",
+              "letra": "Me compraste con tu sangre"
+            },
+            {
+              "acordes": "        Am        G         D",
+              "letra": "Y me hiciste deseable para ti"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "  G        D/F#                   Am",
+              "letra": "//Llévame Señor a tus cámaras de amor"
+            },
+            {
+              "acordes": "       G/B         C      D",
+              "letra": "Donde me enamoro más de ti"
+            },
+            {
+              "acordes": "  G        D/F#                  Am",
+              "letra": "Llévame Señor dentro de tu corazón"
+            },
+            {
+              "acordes": "",
+              "letra": "       G/B          C  [   D ]"
+            },
+            {
+              "acordes": "",
+              "letra": "Yo encuentro mi lugar en ti//"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Estribillo",
+          "lineas": [
+            {
+              "acordes": "    // Em  - Bm  / C - D  //",
+              "letra": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Que dulce",
+      "artista": "",
+      "tono": "D",
+      "categoria": "Adoración",
+      "seccion": "General",
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "D           F#m7",
+              "letra": "//Qué dulce es estar en tu"
+            },
+            {
+              "acordes": "  G     A",
+              "letra": "presencia"
+            },
+            {
+              "acordes": "  D             F#m7",
+              "letra": "contemplando la hermosura"
+            },
+            {
+              "acordes": "     G       A",
+              "letra": "de tu majestad"
+            },
+            {
+              "acordes": "F#m7   F#        Bm7",
+              "letra": "y reconociendo que tú"
+            },
+            {
+              "acordes": " A   E/G#",
+              "letra": "eres Señor"
+            },
+            {
+              "acordes": "  Em         Em/D",
+              "letra": "todopoderoso y el gran"
+            },
+            {
+              "acordes": "   A",
+              "letra": "¡Yo Soy!//"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": " G A/G F#m D7  G A/G F#m D",
+              "letra": " // S a n t o,  S a n t o"
+            },
+            {
+              "acordes": "  G       G/F#    Em",
+              "letra": "mi corazón se une a la"
+            },
+            {
+              "acordes": "  A     D",
+              "letra": " melodía angelical//"
             }
           ]
         }
