@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "canciones": [
     {
       "titulo": "Bienvenido Espíritu Santo",
@@ -3615,6 +3615,119 @@
             {
               "acordes": "    C7          C7",
               "letra": "Él vive, Él reina"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Abba",
+      "artista": "",
+      "tono": "A",
+      "categoria": "Adoración",
+      "seccion": "General",
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "       D9",
+              "letra": "Escucho tu corazón."
+            },
+            {
+              "acordes": "                                   A/C#",
+              "letra": "Cada latido está llamando mi nombre."
+            },
+            {
+              "acordes": "                              D9",
+              "letra": "Soy atraído otra vez por tu sangre"
+            },
+            {
+              "acordes": "                           A",
+              "letra": "Me siento tan amado por ti."
+            },
+            {
+              "acordes": "                       D9",
+              "letra": "Me encuentro en tu corazón."
+            },
+            {
+              "acordes": "                           A/C#",
+              "letra": "Decidiste aceptarme por siempre."
+            },
+            {
+              "acordes": "                              D9",
+              "letra": "Tu amor por mí es tan sorprendente."
+            },
+            {
+              "acordes": "                         A",
+              "letra": "Me siento tan mimado por ti, mi papá."
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Pre-Coro",
+          "lineas": [
+            {
+              "acordes": "         E/G#                 F#m7",
+              "letra": "Y es tan bello saber que soy hijo."
+            },
+            {
+              "acordes": "         E/G#                A",
+              "letra": "Y que tengo un lugar en tu mesa."
+            },
+            {
+              "acordes": "         E/G#                     F#m7",
+              "letra": "No hay nada mejor que escuchar tu voz"
+            },
+            {
+              "acordes": "         E/G#                     A",
+              "letra": "Diciendo: nuestra comunión es eterna."
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "Puente 1",
+          "lineas": [
+            {
+              "acordes": "             Bm             E/G#",
+              "letra": "Oh, oh, oh, oh, Oh, oh, oh, oh,"
+            },
+            {
+              "acordes": "             A",
+              "letra": "me amaste primero con amor verdadero."
+            },
+            {
+              "acordes": "             Bm             E/G#",
+              "letra": "Oh, oh, oh, oh, Oh, oh, oh, oh,"
+            },
+            {
+              "acordes": "             A",
+              "letra": "Y mi respuesta es adorar. Mi respuesta es adorar."
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "      Bm - A/C#m - E/G#                   A",
+              "letra": "// Aaaaaaabba, tu amor nunca falla, siempre me abrazas.//"
+            },
+            {
+              "acordes": "",
+              "letra": "[Puente 2] (x2)"
+            },
+            {
+              "acordes": "Bm  A/C#m  E/G#",
+              "letra": "//Abba Padre enséñanos a ser familia"
+            },
+            {
+              "acordes": "A  Asus4  A",
+              "letra": "Abba Padre enséñanos a ser familia"
             }
           ]
         }
