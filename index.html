@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f1f5f4" id="metaTheme">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Cancionero">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Mi Cancionero</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- ====================== LISTA ====================== -->
+<section id="vLista">
+  <header class="top">
+    <div class="wrap">
+      <div class="brand">🎵 Mi Cancionero</div>
+      <button class="btn icon js-theme" aria-label="Cambiar tema"></button>
+      <button class="btn icon" id="bMenu" aria-label="Más opciones" aria-expanded="false">⋯</button>
+    </div>
+    <div class="menu" id="menu" hidden>
+      <a href="#/nueva">➕ Nueva canción</a>
+      <button id="mImp">📥 Importar JSON</button>
+      <button id="mAct">🔄 Actualizar desde GitHub</button>
+      <button id="mExp">📤 Exportar JSON</button>
+      <button id="mRes">↺ Restaurar lista del repositorio</button>
+    </div>
+    <input type="file" id="fileImp" accept="application/json,.json">
+  </header>
+  <div class="wrap">
+    <div class="search">
+      <input id="q" type="search" placeholder="🔎 Buscar canción, artista o tono…" autocomplete="off" enterkeyhint="search" aria-label="Buscar canción">
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Filtros">
+      <button class="chip" data-f="todas">Todas</button>
+      <button class="chip" data-f="Alabanza">Alabanza</button>
+      <button class="chip" data-f="Adoración">Adoración</button>
+      <button class="chip" data-f="medleys">Medleys</button>
+      <button class="chip" data-f="favoritos">⭐ Favoritos</button>
+    </div>
+    <div class="count" id="count" role="status"></div>
+    <div id="lista"><div class="empty-msg">Cargando…</div></div>
+    <div style="height:40px"></div>
+  </div>
+</section>
+
+<!-- ====================== CANCIÓN ====================== -->
+<section id="vCancion" hidden>
+  <header class="top">
+    <div class="wrap">
+      <a class="btn" href="#/" id="bVolver">← Volver</a>
+      <div class="grow"></div>
+      <button class="btn fav" id="bFav" aria-pressed="false">☆ Favorito</button>
+      <button class="btn icon" id="bEditar" aria-label="Editar canción">✎</button>
+      <button class="btn icon js-theme" aria-label="Cambiar tema"></button>
+    </div>
+  </header>
+  <div class="wrap">
+    <div class="shead">
+      <div class="meta">
+        <h1 id="sTitulo"></h1>
+        <div class="muted" id="sArtista"></div>
+        <div class="muted" id="sSeccion"></div>
+      </div>
+      <div class="keybig"><small>Tono original</small><b id="sTono">–</b></div>
+    </div>
+    <div class="mednav" id="medNav" hidden></div>
+
+    <div class="controls">
+      <div class="crow">
+        <span class="lbl">Tono actual</span>
+        <button class="btn icon" id="tMenos" aria-label="Bajar un semitono">−</button>
+        <span class="val" id="tAct">–</span>
+        <button class="btn icon" id="tMas" aria-label="Subir un semitono">+</button>
+        <button class="btn icon" id="tReset" aria-label="Volver al tono original">↺</button>
+      </div>
+      <div class="crow">
+        <span class="lbl">Tamaño</span>
+        <button class="btn icon" id="fMenos" aria-label="Letra más pequeña">A-</button>
+        <button class="btn icon" id="fNorm" aria-label="Tamaño normal">A</button>
+        <button class="btn icon" id="fMas" aria-label="Letra más grande">A+</button>
+      </div>
+      <div class="seg" id="modos" role="group" aria-label="Qué mostrar">
+        <button data-m="letra">Letra</button>
+        <button data-m="acordes">Acordes</button>
+        <button data-m="ambos">Ambos</button>
+      </div>
+      <div class="seg" id="ordenSeg" role="group" aria-label="Orden de las partes" hidden>
+        <button data-o="secciones">Cada parte una vez</button>
+        <button data-o="estructura">Según estructura</button>
+      </div>
+    </div>
+
+    <div class="struct" id="struct" hidden>
+      <div class="stchips" id="stChips" role="group" aria-label="Estructura de la canción"></div>
+      <button class="btn" id="stEdit" aria-expanded="false">✎ Orden</button>
+    </div>
+    <div class="stpanel" id="stPanel" hidden></div>
+
+    <div class="song" id="songBody"></div>
+    <div class="mednav" id="medNav2" hidden></div>
+    <div class="song-pad"></div>
+  </div>
+  <div class="autobar" id="autobar">
+    <div class="wrap">
+      <button class="btn pri" id="bAuto">▶ Auto-scroll</button>
+      <label class="speed"><span>Lento</span><input type="range" id="vel" min="1" max="10" step="1" aria-label="Velocidad del auto-scroll"><span>Rápido</span></label>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== EDITOR ====================== -->
+<section id="vEditor" hidden>
+  <header class="top">
+    <div class="wrap">
+      <a class="btn" href="#/" id="eVolver">← Cancelar</a>
+      <div class="grow"></div>
+      <button class="btn pri" id="eGuardar">Guardar</button>
+    </div>
+  </header>
+  <div class="wrap form">
+    <h2 id="eHead" style="font-family:var(--serif);margin:6px 0 0"></h2>
+    <label for="eTitulo">Título</label>
+    <input id="eTitulo" autocomplete="off">
+    <div class="two">
+      <div>
+        <label for="eArtista">Artista</label>
+        <input id="eArtista" autocomplete="off">
+      </div>
+      <div>
+        <label for="eTono">Tono original</label>
+        <input id="eTono" placeholder="C, F#m, Bb…" autocomplete="off" autocapitalize="characters">
+      </div>
+    </div>
+    <div class="two">
+      <div>
+        <label for="eCat">Categoría</label>
+        <select id="eCat"></select>
+      </div>
+      <div>
+        <label for="eSec">Sección / medley</label>
+        <input id="eSec" list="secList" autocomplete="off">
+        <datalist id="secList"></datalist>
+      </div>
+    </div>
+    <label for="eTexto">Letra y acordes</label>
+    <textarea id="eTexto" wrap="off" spellcheck="false" autocapitalize="off" autocorrect="off" placeholder="[Verso 1]&#10;C        G&#10;Escribe aquí la letra"></textarea>
+    <p class="help">Escribe cada parte entre corchetes: [Intro], [Verso 1], [Coro], [Puente], [Final]. Pon la línea de acordes justo arriba de la línea de letra y alinea cada acorde con la sílaba donde cambia.</p>
+    <label for="eEst">Estructura (opcional)</label>
+    <input id="eEst" placeholder="Intro, Verso 1, Coro, Verso 2, Coro, Puente, Coro" autocomplete="off">
+    <p class="help">El orden en que se toca, separado por comas. Puedes repetir partes (Coro, Coro), agregar notas entre paréntesis (Coro (x4), Verso (voz de hombre)) y partes sin letra (Instrumental). Si lo dejas vacío se usa el orden en que escribiste las partes.</p>
+    <div class="actions">
+      <button class="btn danger" id="eBorrar" hidden>Eliminar canción</button>
+    </div>
+  </div>
+</section>
+
+<div id="toast" hidden role="status"></div>
+
+<script src="music.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
