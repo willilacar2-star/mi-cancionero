@@ -187,9 +187,27 @@
         if (!mapa[s.seccion]) { mapa[s.seccion] = []; grupos.push(s.seccion); }
         mapa[s.seccion].push(s);
       });
-      grupos.forEach(function (g) {
-        html += '<div class="mhead">🎵 ' + esc(g) + '</div>';
-        mapa[g].forEach(function (s, i) { html += itemHTML(s, i + 1); });
+      var puedeOrdenar = !q;
+      if (!puedeOrdenar) ordenMed = null;
+      grupos.forEach(function (g, gi) {
+        var editando = ordenMed === g;
+        html += '<div class="mhead"><span class="mtit">🎵 ' + esc(g) + '</span>' +
+          (puedeOrdenar && !editando ? '<button class="btn mini" data-mo="' + esc(g) + '">✎ Orden</button>' : '') + '</div>';
+        if (!editando) {
+          mapa[g].forEach(function (s, i) { html += itemHTML(s, i + 1); });
+          return;
+        }
+        html += '<div class="morden">';
+        mapa[g].forEach(function (s, i, lst) {
+          html += '<div class="item"><span class="num">' + (i + 1) + '.</span>' +
+            '<span class="txt"><div class="tit">' + esc(s.titulo) + '</div></span>' +
+            '<button class="btn icon" data-mv="-1" data-id="' + s.id + '" aria-label="Subir"' + (i === 0 ? ' disabled' : '') + '>↑</button>' +
+            '<button class="btn icon" data-mv="1" data-id="' + s.id + '" aria-label="Bajar"' + (i === lst.length - 1 ? ' disabled' : '') + '>↓</button></div>';
+        });
+        html += '<div class="mactions">' +
+          '<button class="btn" data-gmv="-1" data-g="' + esc(g) + '"' + (gi === 0 ? ' disabled' : '') + '>▲ Subir medley</button>' +
+          '<button class="btn" data-gmv="1" data-g="' + esc(g) + '"' + (gi === grupos.length - 1 ? ' disabled' : '') + '>▼ Bajar medley</button>' +
+          '<button class="btn pri" data-mlisto="1">Listo</button></div></div>';
       });
     } else {
       arr.slice().sort(function (a, b) { return norm(a.titulo).localeCompare(norm(b.titulo), 'es'); })
@@ -199,6 +217,44 @@
   }
 
   $('q').addEventListener('input', renderList);
+  /* ---------- Orden de los medleys ---------- */
+  var ordenMed = null;
+  function grupoDe(g) { return songs.filter(function (s) { return isMedley(s) && s.seccion === g; }); }
+  function gruposMedley() {
+    var gs = [];
+    songs.forEach(function (s) { if (isMedley(s) && gs.indexOf(s.seccion) < 0) gs.push(s.seccion); });
+    return gs;
+  }
+  // Mueve una canción dentro de su medley (intercambia su lugar con la vecina).
+  function moverCancion(id, d) {
+    var s = findSong(id); if (!s) return;
+    var g = grupoDe(s.seccion), i = g.indexOf(s), o = g[i + d];
+    if (!o) return;
+    var a = songs.indexOf(s), b = songs.indexOf(o);
+    songs[a] = o; songs[b] = s;
+  }
+  // Mueve un medley completo antes o después del medley vecino.
+  function moverGrupo(g, d) {
+    var gs = gruposMedley(), i = gs.indexOf(g), otro = gs[i + d];
+    if (!otro) return;
+    var bloque = grupoDe(g);
+    songs = songs.filter(function (s) { return bloque.indexOf(s) < 0; });
+    var ref = grupoDe(otro);
+    var pos = d < 0 ? songs.indexOf(ref[0]) : songs.indexOf(ref[ref.length - 1]) + 1;
+    Array.prototype.splice.apply(songs, [pos, 0].concat(bloque));
+  }
+  $('lista').addEventListener('click', function (e) {
+    var b = e.target.closest('button');
+    if (!b || b.disabled) return;
+    if (b.hasAttribute('data-mo')) { ordenMed = b.getAttribute('data-mo'); }
+    else if (b.hasAttribute('data-mlisto')) { ordenMed = null; }
+    else if (b.hasAttribute('data-mv')) { moverCancion(+b.getAttribute('data-id'), +b.getAttribute('data-mv')); saveSongs(); }
+    else if (b.hasAttribute('data-gmv')) { moverGrupo(b.getAttribute('data-g'), +b.getAttribute('data-gmv')); saveSongs(); }
+    else return;
+    e.preventDefault();
+    renderList();
+  });
+
   $('chips').addEventListener('click', function (e) {
     var f = e.target.getAttribute('data-f');
     if (!f) return;
