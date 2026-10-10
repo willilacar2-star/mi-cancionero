@@ -1,5 +1,5 @@
 {
-  "version": 7,
+  "version": 8,
   "canciones": [
     {
       "titulo": "Bienvenido Espíritu Santo",
@@ -3987,6 +3987,627 @@
             {
               "acordes": "             F#m  G#7",
               "letra": "Se manifestará//"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Dios de generaciones",
+      "artista": "",
+      "tono": "C",
+      "categoria": "Alabanza",
+      "seccion": "General",
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "",
+              "letra": "Piano & Guitarra Eléctrica"
+            },
+            {
+              "acordes": "C  Fmaj7  C  Fmaj7",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso 1",
+          "lineas": [
+            {
+              "acordes": "C",
+              "letra": "Dios de todas las generaciones"
+            },
+            {
+              "acordes": "F",
+              "letra": "Dios de Abraham"
+            },
+            {
+              "acordes": "C",
+              "letra": "Isaac y Jacob"
+            },
+            {
+              "acordes": "C",
+              "letra": "Dios que cumple todas sus promesas"
+            },
+            {
+              "acordes": "Am7",
+              "letra": "Tu espíritu gobierna"
+            },
+            {
+              "acordes": "Gsus4",
+              "letra": "En mi hogar"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "C",
+              "letra": "Reina en mi casa"
+            },
+            {
+              "acordes": "Am7          Gsus4",
+              "letra": "Habita en mi hogar"
+            },
+            {
+              "acordes": "F            Gsus4",
+              "letra": "Y mis generaciones"
+            },
+            {
+              "acordes": "Am7          Gsus4",
+              "letra": "Por siempre te honrarán"
+            }
+          ]
+        },
+        {
+          "tipo": "interludio",
+          "titulo": "Interludio",
+          "lineas": [
+            {
+              "acordes": "C  Fmaj7",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso 2",
+          "lineas": [
+            {
+              "acordes": "",
+              "letra": "Toda la Banda"
+            },
+            {
+              "acordes": "C",
+              "letra": "Yo soy de los que buscan Tu nombre"
+            },
+            {
+              "acordes": "F          C",
+              "letra": "Y enseño a mis hijos a adorar"
+            },
+            {
+              "acordes": "C",
+              "letra": "Y siempre levanto"
+            },
+            {
+              "acordes": "C/E  Fsus2",
+              "letra": "Mi mirada"
+            },
+            {
+              "acordes": "Am7",
+              "letra": "A Ti mi Dios que"
+            },
+            {
+              "acordes": "Gsus4",
+              "letra": "Siempre reinarás"
+            },
+            {
+              "acordes": "",
+              "letra": "(Repetir Verso 2)"
+            },
+            {
+              "acordes": "Dm7",
+              "letra": "A Ti mi Dios que"
+            },
+            {
+              "acordes": "Gsus4",
+              "letra": "Siempre reinarás"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "",
+              "letra": "Ritmo completo"
+            },
+            {
+              "acordes": "C            F",
+              "letra": "Reina en mi casa"
+            },
+            {
+              "acordes": "Am7          Gsus4",
+              "letra": "Habita en mi hogar"
+            },
+            {
+              "acordes": "F            Gsus4",
+              "letra": "Y mis generaciones"
+            },
+            {
+              "acordes": "Am7          Gsus4",
+              "letra": "Por siempre te honrarán"
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "Puente",
+          "lineas": [
+            {
+              "acordes": "",
+              "letra": "Bajar intensidad, suave"
+            },
+            {
+              "acordes": "F      Gsus4",
+              "letra": "Mi familia te honrará"
+            },
+            {
+              "acordes": "Am7",
+              "letra": "Y mis hijos te amarán"
+            },
+            {
+              "acordes": "C/E",
+              "letra": "Mi casa y yo"
+            },
+            {
+              "acordes": "F",
+              "letra": "Serviremos a Jehová"
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "Puente",
+          "lineas": [
+            {
+              "acordes": "",
+              "letra": "Toda la Banda"
+            },
+            {
+              "acordes": "Gsus4",
+              "letra": "Mi familia te honrará"
+            },
+            {
+              "acordes": "Am7",
+              "letra": "Y mis hijos te amarán"
+            },
+            {
+              "acordes": "C/E",
+              "letra": "Mi casa y yo"
+            },
+            {
+              "acordes": "F",
+              "letra": "Serviremos a Jehová"
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "Puente",
+          "lineas": [
+            {
+              "acordes": "",
+              "letra": "Subir intensidad"
+            },
+            {
+              "acordes": "Gsus4",
+              "letra": "Mi familia te honrará"
+            },
+            {
+              "acordes": "Am7",
+              "letra": "Y mis hijos te amarán"
+            },
+            {
+              "acordes": "C/E",
+              "letra": "Mi casa y yo"
+            },
+            {
+              "acordes": "F",
+              "letra": "Serviremos a Jehová"
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "Puente",
+          "lineas": [
+            {
+              "acordes": "",
+              "letra": "Ritmo completo"
+            },
+            {
+              "acordes": "F      Gsus4",
+              "letra": "Mi familia te honrará"
+            },
+            {
+              "acordes": "C/E",
+              "letra": "Y mis hijos te amarán"
+            },
+            {
+              "acordes": "Am7",
+              "letra": "Mi casa y yo"
+            },
+            {
+              "acordes": "Gsus4    F",
+              "letra": "Serviremos a Jehová"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Instrumental",
+          "lineas": [
+            {
+              "acordes": "",
+              "letra": "Ritmo completo"
+            },
+            {
+              "acordes": "F  Gsus4  Am7  C/E",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Vamp",
+          "lineas": [
+            {
+              "acordes": "",
+              "letra": "Bajar intensidad, espacio de 2 compases"
+            },
+            {
+              "acordes": "Fmaj7",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "",
+              "letra": "Bajar intensidad, suave"
+            },
+            {
+              "acordes": "",
+              "letra": "Subir intensidad en la 2da vuelta"
+            },
+            {
+              "acordes": "C            F",
+              "letra": "Reina en mi casa"
+            },
+            {
+              "acordes": "Am7          Gsus4",
+              "letra": "Habita en mi hogar"
+            },
+            {
+              "acordes": "F            Gsus4",
+              "letra": "Y mis generaciones"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "",
+              "letra": "Suave"
+            },
+            {
+              "acordes": "C            F",
+              "letra": "Reina en mi casa"
+            },
+            {
+              "acordes": "Am7          Gsus4",
+              "letra": "Habita en mi hogar"
+            },
+            {
+              "acordes": "F            Gsus4",
+              "letra": "Y mis generaciones"
+            },
+            {
+              "acordes": "Am7          Gsus4",
+              "letra": "Por siempre te honrarán"
+            }
+          ]
+        },
+        {
+          "tipo": "final",
+          "titulo": "Final",
+          "lineas": [
+            {
+              "acordes": "F",
+              "letra": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Toda la noche",
+      "artista": "",
+      "tono": "Cm",
+      "categoria": "Alabanza",
+      "seccion": "General",
+      "contenido": [
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "     Cm7                         Ebmaj7",
+              "letra": "//Toda la noche sin parar"
+            },
+            {
+              "acordes": "       Bb                              Gm7",
+              "letra": "Cantando alabanzas al Señor"
+            },
+            {
+              "acordes": "       Ab                                   Fm7",
+              "letra": "Diciendo de su gloria y majestad"
+            },
+            {
+              "acordes": "           G           F+/G",
+              "letra": "Él es el Rey//"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "     Cm",
+              "letra": "//Toda la noche sin parar"
+            },
+            {
+              "acordes": "       Bb",
+              "letra": "Cantando alabanzas al Señor"
+            },
+            {
+              "acordes": "       Ab                                   Fm",
+              "letra": "Diciendo de su gloria y majestad"
+            },
+            {
+              "acordes": "           G",
+              "letra": "Él es el Rey//"
+            }
+          ]
+        },
+        {
+          "tipo": "final",
+          "titulo": "Final",
+          "lineas": [
+            {
+              "acordes": "        Cm",
+              "letra": "De Israel"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "El señor es mi rey",
+      "artista": "",
+      "tono": "Cm",
+      "categoria": "Alabanza",
+      "seccion": "General",
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "",
+              "letra": "Notas punteo: Eb Eb Eb D  Bb C"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "                    Fm7-Gm7-Ab-Bb",
+              "letra": "El Señor es mi rey, mi todo"
+            },
+            {
+              "acordes": "Cm7                    Bb",
+              "letra": "El Señor es mi Luz, mi rey"
+            },
+            {
+              "acordes": "Ab                        Gm7    Eb/G - Gm7",
+              "letra": "El que me hace vibrar de gozo"
+            },
+            {
+              "acordes": "Ab                     Eb/G      Bb/G - Eb/G",
+              "letra": "El que guía mis pasos"
+            },
+            {
+              "acordes": "Ab                        Eb/G   Bb/G - Eb/G",
+              "letra": "El que extiende sus brazos"
+            },
+            {
+              "acordes": "Ab                Eb   Bb  Cm",
+              "letra": "El creador de los cie---los"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Outro",
+          "lineas": [
+            {
+              "acordes": "",
+              "letra": "Notas punteo: Eb Eb Eb D  Bb C"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Gozate delante del señor",
+      "artista": "",
+      "tono": "Cm",
+      "categoria": "Alabanza",
+      "seccion": "General",
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "Verso 1",
+          "lineas": [
+            {
+              "acordes": "Cm",
+              "letra": "Gózate delante del Señor"
+            },
+            {
+              "acordes": "          Bb     Cm",
+              "letra": "porque Él es, tu Rey (x2)"
+            },
+            {
+              "acordes": "Cm     Eb    Fm   Ab     Cm",
+              "letra": "Él es, Él es, Él es, Él es, tu Rey"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso 2",
+          "lineas": [
+            {
+              "acordes": "Cm",
+              "letra": "Gózate delante del Señor"
+            },
+            {
+              "acordes": "          Bb     Cm",
+              "letra": "porque Él es, tu Roca (x2)"
+            },
+            {
+              "acordes": "Cm     Eb    Fm   Ab     Cm",
+              "letra": "Él es, Él es, Él es, Él es, tu Roca"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso 3",
+          "lineas": [
+            {
+              "acordes": "Cm",
+              "letra": "Gózate delante del Señor"
+            },
+            {
+              "acordes": "          Bb     Cm",
+              "letra": "porque Él es, tu Escudo (x2)"
+            },
+            {
+              "acordes": "Cm     Eb    Fm   Ab     Cm",
+              "letra": "Él es, Él es, Él es, Él es, tu Escudo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Grande y fuerte",
+      "artista": "",
+      "tono": "Am",
+      "categoria": "Alabanza",
+      "seccion": "General",
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "Am  F  Em  Am",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "Am    F       Em     Am    F    Em",
+              "letra": "Grande y fuerte es nuestro Dios"
+            },
+            {
+              "acordes": "Am    F       Em     Am    F    Em",
+              "letra": "Grande y fuerte es nuestro Dios"
+            },
+            {
+              "acordes": "Am    F       Em     Am    F    Em",
+              "letra": "Grande y fuerte es nuestro Dios"
+            },
+            {
+              "acordes": "Am    F       Em     Am    F    Em",
+              "letra": "Grande y fuerte es nuestro Dios"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "Dm         G    Dm       Am",
+              "letra": "Vestido en majestad, coronado con poder"
+            },
+            {
+              "acordes": "F      G          Am - G - C",
+              "letra": "Digno de toda la adoración"
+            },
+            {
+              "acordes": "Dm         G    Dm       Am",
+              "letra": "Vestido en majestad, coronado con poder"
+            },
+            {
+              "acordes": "F          G    Am",
+              "letra": "Toda gloria y honra sea para ti"
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "Puente",
+          "lineas": [
+            {
+              "acordes": "Am    F     Em    Am    F    Em",
+              "letra": "¡Grande!    ¡Fuerte!"
+            },
+            {
+              "acordes": "       Am     F     Em",
+              "letra": "¡Es nuestro Dios!"
+            },
+            {
+              "acordes": "Am  Am       G  G     F    F     Em",
+              "letra": "¡Grande! y ¡Fuerte! ¡Es nuestro Dios!"
+            },
+            {
+              "acordes": "Am  Am       G  G     F    F     Em",
+              "letra": "¡Grande! y ¡Fuerte! Es nuestro Dios, todos"
             }
           ]
         }
