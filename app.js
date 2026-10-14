@@ -627,18 +627,57 @@
     return null;
   }
 
+  // Acordes y letra en bloques por palabra (cada acorde va con la palabra donde cae).
+  // Así una línea larga baja al siguiente renglón sin perder la alineación ni pedir scroll horizontal.
+  function lineaAmbos(ch, ly) {
+    var toks = [], re = /\s+|\S+\s*/g, m;
+    while ((m = re.exec(ly))) toks.push({ s: m.index, e: m.index + m[0].length, l: m[0], mk: [] });
+    var cola = null;
+    re = /\S+/g;
+    while ((m = re.exec(ch))) {
+      var t = null;
+      for (var i = 0; i < toks.length; i++) if (m.index >= toks[i].s && m.index < toks[i].e) { t = toks[i]; break; }
+      if (!t) { if (!cola) toks.push(cola = { s: ly.length, e: Infinity, l: '', mk: [] }); t = cola; }
+      t.mk.push({ p: m.index, t: m[0] });
+    }
+    function fin(t) { return t.mk.reduce(function (x, k) { return Math.max(x, k.p + k.t.length); }, 0); }
+    // Si un acorde se sale de su palabra y llega a la siguiente, se unen las dos
+    // para que el acorde quede encima como en el original, sin abrir huecos en la letra.
+    for (var k = 0; k < toks.length - 1; k++) {
+      while (k < toks.length - 1 && (fin(toks[k]) > toks[k].e || (fin(toks[k]) === toks[k].e && toks[k + 1].mk.length))) {
+        var nx = toks.splice(k + 1, 1)[0];
+        toks[k].l += nx.l; toks[k].e = nx.e; toks[k].mk = toks[k].mk.concat(nx.mk);
+      }
+    }
+    toks.forEach(function (t) {
+      t.c = '';
+      t.mk.forEach(function (x) {
+        var off = x.p - t.s;
+        t.c += t.c.length < off ? new Array(off - t.c.length + 1).join(' ') : (t.c ? ' ' : '');
+        t.c += x.t;
+      });
+    });
+    return toks.map(function (t) {
+      // Si aún así el acorde es más largo, deja un espacio para que no se pegue al siguiente.
+      if (t.c && t.c.length >= t.l.length) t.c += ' ';
+      return '<span class="u"><span class="ch">' + (t.c ? esc(t.c) : '&nbsp;') + '</span>' +
+        '<span class="ly">' + (t.l ? esc(t.l) : '&nbsp;') + '</span></span>';
+    }).join('');
+  }
+
   function secRows(sec, n, flat, modo) {
     var rows = '';
     (sec.lineas || []).forEach(function (l) {
       var ch = l.acordes ? Music.transposeLine(l.acordes, n, flat) : '';
-      var ly = l.letra || '', r = '';
+      var ly = l.letra || '', r = '', cls = 'ln';
       if (modo === 'letra') { if (ly) r = '<div class="ly">' + esc(ly) + '</div>'; }
       else if (modo === 'acordes') { if (ch) r = '<div class="ch">' + esc(ch) + '</div>'; }
+      else if (ch.trim() && ly.trim()) { r = lineaAmbos(ch, ly); cls = 'ln w'; }
       else {
         if (ch) r += '<div class="ch">' + esc(ch) + '</div>';
         if (ly) r += '<div class="ly">' + esc(ly) + '</div>';
       }
-      if (r) rows += '<div class="ln">' + r + '</div>';
+      if (r) rows += '<div class="' + cls + '">' + r + '</div>';
     });
     return rows;
   }
@@ -860,12 +899,12 @@
   function startAuto() {
     if (auto.on) return;
     auto.on = true; auto.acc = 0; auto.last = performance.now();
-    $('bAuto').textContent = '⏸ Pausar';
+    $('bAuto').innerHTML = '⏸<span class="lbl-auto"> Pausar</span>'; $('bAuto').setAttribute('aria-label', 'Pausar auto-scroll');
     auto.raf = requestAnimationFrame(tick);
   }
   function stopAuto() {
     auto.on = false; cancelAnimationFrame(auto.raf);
-    $('bAuto').textContent = '▶ Auto-scroll';
+    $('bAuto').innerHTML = '▶<span class="lbl-auto"> Auto-scroll</span>'; $('bAuto').setAttribute('aria-label', 'Iniciar auto-scroll');
   }
   $('bAuto').addEventListener('click', function () { auto.on ? stopAuto() : startAuto(); });
   $('vel').addEventListener('input', function () { prefs.vel = +this.value; savePrefs(); });

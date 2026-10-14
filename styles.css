@@ -193,8 +193,12 @@
   .sec .vacio { color: var(--muted); font-size: .9em; padding-bottom: 6px; }
   .sec h3 { margin: 0 0 8px; font-size: .85em; color: var(--accent); font-family: var(--sans); font-weight: 700; }
   .ln { margin-bottom: .55em; }
-  .ch { font-family: var(--mono); font-weight: 700; color: var(--chord); white-space: pre; line-height: 1.25; }
-  .ly { font-family: var(--mono); white-space: pre; line-height: 1.3; }
+  .ch { font-family: var(--mono); font-weight: 700; color: var(--chord); white-space: pre-wrap; line-height: 1.25; }
+  .ly { font-family: var(--mono); white-space: pre-wrap; line-height: 1.3; }
+  /* Línea con acordes y letra: bloques por palabra que bajan de renglón según el ancho */
+  .ln.w { display: flex; flex-wrap: wrap; align-items: flex-start; row-gap: .35em; }
+  .ln.w .u { display: flex; flex-direction: column; }
+  .ln.w .ch, .ln.w .ly { white-space: pre; }
   .m-letra .ly { font-family: var(--sans); white-space: pre-wrap; line-height: 1.45; }
   .noletra { color: var(--muted); padding: 24px 0; text-align: center; }
 
@@ -232,4 +236,24 @@
   @media (min-width: 700px) {
     .item { padding: 12px 8px; }
   }
+  /* ---------- Celular en horizontal: solo la canción y un auto-scroll pequeño ---------- */
+  @media (orientation: landscape) and (max-height: 520px) {
+    #vCancion .top, #vCancion .shead, #medNav, #vCancion .controls,
+    #struct, #stPanel, #plAdd { display: none !important; }
+    #vCancion > .wrap { padding-top: 8px; }
+    .sec { scroll-margin-top: 8px; }
+    .autobar {
+      left: auto; right: 10px; bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+      padding: 4px 6px; border: 1px solid var(--line); border-radius: 999px;
+      box-shadow: 0 4px 14px rgba(0,0,0,.2); opacity: .92;
+    }
+    .autobar .wrap { gap: 4px; }
+    .autobar .btn { min-height: 36px; padding: 0 12px; border-radius: 999px; font-size: .9rem; }
+    .autobar .lbl-auto, .speed span { display: none; }
+    .speed { flex: none; width: 96px; }
+    .speed input { height: 28px; }
+    .song-pad { height: 56px; }
+    #toast { bottom: 60px; }
+  }
+
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
