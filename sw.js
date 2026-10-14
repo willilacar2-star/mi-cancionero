@@ -1,7 +1,7 @@
 // Service worker de Mi Cancionero.
 // Si cambias index.html, styles.css, app.js o music.js, sube el número de VERSION
 // para que los teléfonos descarguen la versión nueva.
-var VERSION = 'cancionero-v4';
+var VERSION = 'cancionero-v5';
 var APP = [
   './', 'index.html', 'styles.css', 'app.js', 'music.js',
   'manifest.json', 'canciones.json',
@@ -9,7 +9,15 @@ var APP = [
 ];
 
 self.addEventListener('install', function (e) {
-  e.waitUntil(caches.open(VERSION).then(function (c) { return c.addAll(APP); }));
+  // Cada archivo por separado: si alguno falta, los demás se guardan igual
+  // (con addAll, un solo archivo faltante hacía fallar toda la instalación).
+  e.waitUntil(caches.open(VERSION).then(function (c) {
+    return Promise.all(APP.map(function (url) {
+      return c.add(url).catch(function (err) {
+        console.warn('[sw] No se pudo guardar ' + url, err);
+      });
+    }));
+  }));
   self.skipWaiting();
 });
 
