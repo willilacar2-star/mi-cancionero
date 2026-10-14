@@ -53,6 +53,7 @@ Abre `canciones.json`, edita y confirma el cambio. Cada canción tiene esta form
 - En `estructura` puedes repetir partes y agregar notas entre paréntesis: `"Coro (x4)"`, `"Verso (voz de hombre)"`. Un nombre que no existe en `contenido` (por ejemplo `"Instrumental"`) se muestra como parte sin letra.
 - No pongas `id`: la app lo asigna.
 - Para un medley, pon en `seccion` algo como `"Medley Dante Gebel"`.
+- En la app, filtro **Medleys → ✎ Orden** permite reordenar, **✎ Renombrar medley** y **Eliminar medley** (sus canciones no se borran: pasan a `General`).
 - Los espacios dentro de `acordes` alinean cada acorde con la letra.
 
 **Siempre que cambies `canciones.json`, sube el número de `"version"`** (de 1 a 2, etc.). Así los teléfonos se enteran de que hay cambios.

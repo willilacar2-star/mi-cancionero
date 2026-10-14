@@ -217,7 +217,10 @@
         html += '<div class="mactions">' +
           '<button class="btn" data-gmv="-1" data-g="' + esc(g) + '"' + (gi === 0 ? ' disabled' : '') + '>▲ Subir medley</button>' +
           '<button class="btn" data-gmv="1" data-g="' + esc(g) + '"' + (gi === grupos.length - 1 ? ' disabled' : '') + '>▼ Bajar medley</button>' +
-          '<button class="btn pri" data-mlisto="1">Listo</button></div></div>';
+          '<button class="btn pri" data-mlisto="1">Listo</button></div>' +
+          '<div class="mactions">' +
+          '<button class="btn" data-mren="' + esc(g) + '">✎ Renombrar medley</button>' +
+          '<button class="btn danger" data-mdel="' + esc(g) + '">Eliminar medley</button></div></div>';
       });
     } else {
       arr.slice().sort(function (a, b) { return norm(a.titulo).localeCompare(norm(b.titulo), 'es'); })
@@ -253,6 +256,31 @@
     var pos = d < 0 ? songs.indexOf(ref[0]) : songs.indexOf(ref[ref.length - 1]) + 1;
     Array.prototype.splice.apply(songs, [pos, 0].concat(bloque));
   }
+  // Cambia el nombre de un medley en todas sus canciones (siempre empieza con "Medley").
+  function renombrarMedley(g) {
+    var v = prompt('Nuevo nombre del medley', g);
+    if (v === null) return;
+    v = v.trim().replace(/\s+/g, ' ');
+    if (!v) { toast('Escribe un nombre'); return; }
+    if (!isMedley({ seccion: v })) v = 'Medley ' + v;
+    if (v === g) return;
+    if (gruposMedley().indexOf(v) > -1 &&
+        !confirm('Ya existe “' + v + '”. Las canciones de “' + g + '” se unirán a ese medley. ¿Continuar?')) return;
+    var n = 0;
+    songs.forEach(function (s) { if (isMedley(s) && s.seccion === g) { s.seccion = v; n++; } });
+    ordenMed = v; saveSongs(); renderList();
+    toast('Medley renombrado (' + n + (n === 1 ? ' canción' : ' canciones') + ')');
+  }
+  // Deshace el medley: sus canciones quedan en el cancionero, en la sección General.
+  function eliminarMedley(g) {
+    var n = grupoDe(g).length;
+    if (!confirm('¿Eliminar el medley “' + g + '”?\n\nSus ' + n + (n === 1 ? ' canción no se borra: pasa' : ' canciones no se borran: pasan') +
+        ' a la sección General y las sigues encontrando en Todas.')) return;
+    songs.forEach(function (s) { if (isMedley(s) && s.seccion === g) s.seccion = 'General'; });
+    ordenMed = null; saveSongs(); renderList();
+    toast('Medley eliminado');
+  }
+
   $('lista').addEventListener('click', function (e) {
     var b = e.target.closest('button');
     if (!b || b.disabled) return;
@@ -260,6 +288,8 @@
     else if (b.hasAttribute('data-mlisto')) { ordenMed = null; }
     else if (b.hasAttribute('data-mv')) { moverCancion(+b.getAttribute('data-id'), +b.getAttribute('data-mv')); saveSongs(); }
     else if (b.hasAttribute('data-gmv')) { moverGrupo(b.getAttribute('data-g'), +b.getAttribute('data-gmv')); saveSongs(); }
+    else if (b.hasAttribute('data-mren')) { e.preventDefault(); renombrarMedley(b.getAttribute('data-mren')); return; }
+    else if (b.hasAttribute('data-mdel')) { e.preventDefault(); eliminarMedley(b.getAttribute('data-mdel')); return; }
     else return;
     e.preventDefault();
     renderList();
