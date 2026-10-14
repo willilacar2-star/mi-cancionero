@@ -108,13 +108,21 @@
   });
   if (!prefs.theme) prefs.theme = (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
 
+  // Listas para tocar en orden: [{ id, nombre, items: [idCanción, …] }]
+  var listas = store.get('cc_listas', []);
+  if (!Array.isArray(listas)) listas = [];
+
   var state = { filtro: 'todas' };
   var cur = null, editingId = null, listY = 0;
+  var plCtx = null, curHash = '';
 
   function saveSongs() { store.set('cc_songs', songs); }
   function savePrefs() { store.set('cc_prefs', prefs); }
   function findSong(id) { for (var i = 0; i < songs.length; i++) if (songs[i].id === id) return songs[i]; return null; }
   function nextId() { return songs.reduce(function (m, s) { return Math.max(m, s.id); }, 0) + 1; }
+  function saveListas() { store.set('cc_listas', listas); }
+  function findLista(id) { for (var i = 0; i < listas.length; i++) if (listas[i].id === id) return listas[i]; return null; }
+  function songKey(s) { return norm(s.titulo) + '|' + norm(s.artista); }
 
   /* ---------- Toast ---------- */
   var toastT;
@@ -146,11 +154,11 @@
     });
   }
 
-  function itemHTML(s, numero) {
+  function itemHTML(s, numero, href) {
     var sub = [];
     if (s.artista) sub.push(esc(s.artista));
     if (isMedley(s) && state.filtro !== 'medleys') sub.push(esc(s.seccion));
-    return '<a class="item" href="#/c/' + s.id + '">' +
+    return '<a class="item" href="' + (href || '#/c/' + s.id) + '">' +
       (numero ? '<span class="num">' + numero + '.</span>' : '') +
       '<span class="txt"><div class="tit">' + esc(s.titulo) +
       (favs.indexOf(s.id) > -1 ? ' <span class="star" aria-label="Favorito">★</span>' : '') + '</div>' +
@@ -160,6 +168,8 @@
 
   function renderList() {
     renderChips();
+    $('q').parentNode.hidden = state.filtro === 'listas';
+    if (state.filtro === 'listas') { renderListas(); return; }
     var q = norm($('q').value.trim()), f = state.filtro;
     var arr = songs.filter(function (s) {
       if (f === 'favoritos' && favs.indexOf(s.id) < 0) return false;
@@ -259,6 +269,157 @@
     var f = e.target.getAttribute('data-f');
     if (!f) return;
     state.filtro = f; renderList();
+  });
+
+  /* ---------- Listas: canciones en el orden en que se van a tocar ---------- */
+  var plEdit = null, plQuery = '';
+  function cancionesDe(L) { return L.items.map(findSong).filter(Boolean); }
+  function limpiarLista(L) { L.items = L.items.filter(function (id) { return !!findSong(id); }); }
+
+  function plRowsHTML(L) {
+    if (!L.items.length) return '<p class="help">La lista está vacía. Busca canciones abajo para agregarlas.</p>';
+    return L.items.map(function (id, i, lst) {
+      var s = findSong(id);
+      return '<div class="item"><span class="num">' + (i + 1) + '.</span>' +
+        '<span class="txt"><div class="tit">' + esc(s.titulo) + '</div>' +
+        (s.tono ? '<div class="sub">' + esc(s.tono) + '</div>' : '') + '</span>' +
+        '<button class="btn icon" data-pl="up" data-i="' + i + '" aria-label="Subir"' + (i === 0 ? ' disabled' : '') + '>↑</button>' +
+        '<button class="btn icon" data-pl="down" data-i="' + i + '" aria-label="Bajar"' + (i === lst.length - 1 ? ' disabled' : '') + '>↓</button>' +
+        '<button class="btn icon" data-pl="del" data-i="' + i + '" aria-label="Quitar de la lista">✕</button></div>';
+    }).join('');
+  }
+
+  function plResHTML(L) {
+    var q = norm(plQuery.trim());
+    if (!q) return '<p class="help">Escribe parte del título, artista o tono.</p>';
+    var arr = songs.filter(function (s) {
+      var hay = norm([s.titulo, s.artista, s.tono, s.seccion].join(' '));
+      return q.split(/\s+/).every(function (w) { return hay.indexOf(w) > -1; });
+    }).sort(function (a, b) { return norm(a.titulo).localeCompare(norm(b.titulo), 'es'); }).slice(0, 25);
+    if (!arr.length) return '<p class="help">No hay canciones con esa búsqueda.</p>';
+    return arr.map(function (s) {
+      var ya = L.items.indexOf(s.id) > -1;
+      return '<button class="item plres" data-pl="add" data-id="' + s.id + '">' +
+        '<span class="txt"><div class="tit">' + esc(s.titulo) + '</div>' +
+        '<div class="sub">' + [s.artista ? esc(s.artista) : '', ya ? '✓ Ya está en la lista' : ''].filter(Boolean).join(' · ') + '</div></span>' +
+        '<span class="keytile' + (s.tono ? '' : ' empty') + '">' + (s.tono ? esc(s.tono) : '–') + '</span>' +
+        '<span class="plus" aria-hidden="true">＋</span></button>';
+    }).join('');
+  }
+
+  function renderListas() {
+    listas.forEach(limpiarLista);
+    $('count').textContent = listas.length + (listas.length === 1 ? ' lista' : ' listas');
+    var html = '<div class="mactions"><button class="btn pri" data-pl="nueva">➕ Nueva lista</button></div>';
+    if (!listas.length) html += '<div class="empty-msg">Aún no tienes listas. Crea una, agrega canciones en el orden en que las vas a tocar y toca ▶ Tocar para irlas pasando una tras otra.</div>';
+
+    listas.forEach(function (L, li) {
+      if (plEdit !== L.id) {
+        html += '<div class="mhead"><span class="mtit">📋 ' + esc(L.nombre) + '</span>' +
+          (L.items.length ? '<a class="btn mini pri" href="#/l/' + L.id + '/0">▶ Tocar</a>' : '') +
+          '<button class="btn mini" data-pl="edit" data-l="' + L.id + '">✎ Editar</button></div>';
+        cancionesDe(L).forEach(function (s, i) { html += itemHTML(s, i + 1, '#/l/' + L.id + '/' + i); });
+        if (!L.items.length) html += '<p class="help">Lista vacía. Toca ✎ Editar para agregar canciones.</p>';
+        return;
+      }
+      html += '<div class="mhead"><span class="mtit">✎ Editando lista</span></div>' +
+        '<div class="morden plform">' +
+        '<label class="pllbl" for="plNombre">Nombre</label>' +
+        '<input id="plNombre" class="plinput" value="' + esc(L.nombre) + '" autocomplete="off" placeholder="Ej. Domingo 19 de octubre">' +
+        '<div class="pllbl">Orden</div><div id="plRows">' + plRowsHTML(L) + '</div>' +
+        '<label class="pllbl" for="plBuscar">Agregar canciones</label>' +
+        '<input id="plBuscar" class="plinput" type="search" value="' + esc(plQuery) + '" autocomplete="off" placeholder="🔎 Buscar canción…" enterkeyhint="search">' +
+        '<div id="plRes">' + plResHTML(L) + '</div>' +
+        '<div class="mactions">' +
+        '<button class="btn" data-pl="lup"' + (li === 0 ? ' disabled' : '') + '>▲ Subir lista</button>' +
+        '<button class="btn" data-pl="ldown"' + (li === listas.length - 1 ? ' disabled' : '') + '>▼ Bajar lista</button></div>' +
+        '<div class="mactions"><button class="btn danger" data-pl="borrar">Eliminar lista</button>' +
+        '<button class="btn pri" data-pl="listo">Listo</button></div></div>';
+    });
+    $('lista').innerHTML = html;
+  }
+
+  function plAccion(act, b) {
+    var L = findLista(plEdit), i = +b.getAttribute('data-i'), x;
+    if (act === 'nueva') {
+      var id = listas.reduce(function (m, l) { return Math.max(m, l.id); }, 0) + 1;
+      listas.push({ id: id, nombre: 'Lista ' + id, items: [] });
+      plEdit = id; plQuery = ''; saveListas(); renderList();
+      var inp = $('plNombre'); if (inp) { inp.focus(); inp.select(); }
+      return;
+    }
+    if (act === 'edit') { plEdit = +b.getAttribute('data-l'); plQuery = ''; renderList(); return; }
+    if (!L) return;
+    if (act === 'listo') { plEdit = null; renderList(); return; }
+    if (act === 'borrar') {
+      if (!confirm('¿Eliminar la lista “' + L.nombre + '”? Las canciones no se borran.')) return;
+      listas = listas.filter(function (l) { return l !== L; });
+      plEdit = null; saveListas(); renderList(); toast('Lista eliminada'); return;
+    }
+    if (act === 'lup' || act === 'ldown') {
+      var li = listas.indexOf(L), lj = li + (act === 'lup' ? -1 : 1);
+      if (!listas[lj]) return;
+      listas[li] = listas[lj]; listas[lj] = L;
+      saveListas(); renderList(); return;
+    }
+    if (act === 'up' && i > 0) { x = L.items[i - 1]; L.items[i - 1] = L.items[i]; L.items[i] = x; }
+    else if (act === 'down' && i < L.items.length - 1) { x = L.items[i + 1]; L.items[i + 1] = L.items[i]; L.items[i] = x; }
+    else if (act === 'del') { L.items.splice(i, 1); }
+    else if (act === 'add') {
+      var s = findSong(+b.getAttribute('data-id'));
+      if (!s) return;
+      L.items.push(s.id); toast('“' + s.titulo + '” agregada (' + L.items.length + ')');
+    } else return;
+    saveListas();
+    // Solo se redibuja el orden y los resultados, para no cerrar el teclado.
+    $('plRows').innerHTML = plRowsHTML(L);
+    $('plRes').innerHTML = plResHTML(L);
+  }
+
+  $('lista').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-pl]');
+    if (!b || b.disabled) return;
+    e.preventDefault();
+    plAccion(b.getAttribute('data-pl'), b);
+  });
+  $('lista').addEventListener('input', function (e) {
+    var L = findLista(plEdit);
+    if (!L) return;
+    if (e.target.id === 'plBuscar') { plQuery = e.target.value; $('plRes').innerHTML = plResHTML(L); }
+    else if (e.target.id === 'plNombre') { L.nombre = e.target.value.trim() || 'Sin nombre'; saveListas(); }
+  });
+
+  /* Agregar la canción abierta a una lista */
+  function renderPlAdd() {
+    var h = '<b>Agregar “' + esc(cur.titulo) + '” a…</b><div class="stadd">';
+    listas.forEach(function (L) {
+      var n = L.items.filter(function (id) { return id === cur.id; }).length;
+      h += '<button class="chip" data-pa="' + L.id + '">📋 ' + esc(L.nombre) + (n ? ' ✓' : '') + '</button>';
+    });
+    h += '<button class="chip" data-pa="nueva">➕ Nueva lista</button></div>';
+    if (!listas.length) h += '<p class="help">Aún no tienes listas. Crea la primera con esta canción.</p>';
+    $('plAdd').innerHTML = h;
+  }
+  $('bLista').addEventListener('click', function () {
+    var abrir = $('plAdd').hidden;
+    $('plAdd').hidden = !abrir;
+    this.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+    if (abrir) renderPlAdd();
+  });
+  $('plAdd').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-pa]');
+    if (!b || !cur) return;
+    var v = b.getAttribute('data-pa'), L;
+    if (v === 'nueva') {
+      var id = listas.reduce(function (m, l) { return Math.max(m, l.id); }, 0) + 1;
+      L = { id: id, nombre: 'Lista ' + id, items: [] };
+      listas.push(L);
+    } else L = findLista(+v);
+    if (!L) return;
+    if (L.items.indexOf(cur.id) > -1 && !confirm('“' + cur.titulo + '” ya está en “' + L.nombre + '”. ¿Agregarla otra vez?')) return;
+    L.items.push(cur.id); saveListas();
+    $('plAdd').hidden = true; $('bLista').setAttribute('aria-expanded', 'false');
+    toast('Agregada a “' + L.nombre + '” (' + L.items.length + ')');
   });
 
   /* ---------- Menú ---------- */
@@ -372,11 +533,22 @@
 
   $('mRes').addEventListener('click', function () {
     if (!confirm('Se borrarán todas tus canciones y ediciones y se volverá a la lista del repositorio. ¿Continuar?')) return;
+    // Las listas guardan ids; se recuerdan por título + artista para volver a enlazarlas.
+    var claves = listas.map(function (L) {
+      return L.items.map(function (id) { var s = findSong(id); return s ? songKey(s) : ''; });
+    });
     descargarRepo().then(function (r) {
       songs = []; fusionar(r.lista, false); store.set('cc_ver', r.ver);
     }).catch(function () {
       songs = iniciales();
-    }).then(function () { saveSongs(); renderList(); toast('Lista restaurada'); });
+    }).then(function () {
+      var porClave = {};
+      songs.forEach(function (s) { if (!porClave[songKey(s)]) porClave[songKey(s)] = s.id; });
+      listas.forEach(function (L, i) {
+        L.items = claves[i].map(function (k) { return porClave[k]; }).filter(Boolean);
+      });
+      saveSongs(); saveListas(); renderList(); toast('Lista restaurada');
+    });
   });
 
   /* ---------- Canción ---------- */
@@ -393,6 +565,15 @@
   });
 
   function medNavHTML() {
+    if (plCtx) {
+      var L = plCtx.lista, k = plCtx.i, n = L.items.length;
+      var ant = k > 0 ? '#/l/' + L.id + '/' + (k - 1) : '', sig = k < n - 1 ? '#/l/' + L.id + '/' + (k + 1) : '';
+      var prox = sig ? findSong(L.items[k + 1]) : null;
+      return '<a class="btn" href="' + (ant || '#') + '"' + (ant ? '' : ' aria-disabled="true"') + '>‹ Anterior</a>' +
+        '<span class="mid">📋 ' + esc(L.nombre) + ' · ' + (k + 1) + ' de ' + n +
+        '<br>' + (prox ? 'Sigue: ' + esc(prox.titulo) + (prox.tono ? ' (' + esc(prox.tono) + ')' : '') : 'Última canción') + '</span>' +
+        '<a class="btn' + (sig ? ' pri' : '') + '" href="' + (sig || '#') + '"' + (sig ? '' : ' aria-disabled="true"') + '>Siguiente ›</a>';
+    }
     if (!isMedley(cur)) return '';
     var grupo = songs.filter(function (s) { return s.seccion === cur.seccion; });
     var i = grupo.indexOf(cur);
@@ -607,10 +788,11 @@
   });
   $('bEditar').addEventListener('click', function () { location.hash = '#/e/' + cur.id; });
 
-  function showSong(id) {
+  function showSong(id, ctx) {
     var s = findSong(id);
     if (!s) { location.hash = '#/'; return; }
-    cur = s;
+    cur = s; plCtx = ctx || null;
+    $('plAdd').hidden = true; $('bLista').setAttribute('aria-expanded', 'false');
     $('sTitulo').textContent = s.titulo;
     $('sArtista').textContent = s.artista || '';
     $('sArtista').hidden = !s.artista;
@@ -638,7 +820,9 @@
       var px = Math.floor(auto.acc);
       if (px >= 1) { auto.acc -= px; window.scrollBy(0, px); }
       if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
-        stopAuto(); toast('Fin de la canción'); return;
+        stopAuto();
+        var sigL = plCtx && findSong(plCtx.lista.items[plCtx.i + 1]);
+        toast(sigL ? 'Fin de la canción · Sigue: ' + sigL.titulo : 'Fin de la canción'); return;
       }
     }
     auto.raf = requestAnimationFrame(tick);
@@ -681,6 +865,9 @@
     $('eCat').innerHTML = base.map(function (c) { return '<option' + (c === sel ? ' selected' : '') + '>' + esc(c) + '</option>'; }).join('');
   }
 
+  // Al salir del editor se vuelve a donde estaba la canción (por ejemplo, dentro de una lista).
+  function volverA(id) { return (cur && cur.id === id && curHash) ? curHash : '#/c/' + id; }
+
   function showEditor(id) {
     var s = id ? findSong(id) : null;
     if (id && !s) { location.hash = '#/'; return; }
@@ -697,7 +884,7 @@
     $('secList').innerHTML = Object.keys(secs).map(function (k) { return '<option value="' + esc(k) + '">'; }).join('');
     $('eTexto').value = s ? Music.toTexto(s.contenido) : '[Verso 1]\n';
     $('eBorrar').hidden = !s;
-    $('eVolver').setAttribute('href', s ? '#/c/' + s.id : '#/');
+    $('eVolver').setAttribute('href', s ? volverA(s.id) : '#/');
   }
 
   $('eGuardar').addEventListener('click', function () {
@@ -722,7 +909,7 @@
     }
     saveSongs();
     toast('Canción guardada');
-    location.hash = '#/c/' + editingId;
+    location.hash = volverA(editingId);
   });
 
   $('eBorrar').addEventListener('click', function () {
@@ -731,7 +918,8 @@
     songs = songs.filter(function (x) { return x.id !== s.id; });
     favs = favs.filter(function (x) { return x !== s.id; });
     delete shifts[s.id];
-    saveSongs(); store.set('cc_favs', favs); store.set('cc_shifts', shifts);
+    listas.forEach(function (L) { L.items = L.items.filter(function (x) { return x !== s.id; }); });
+    saveSongs(); store.set('cc_favs', favs); store.set('cc_shifts', shifts); saveListas();
     toast('Canción eliminada');
     location.hash = '#/';
   });
@@ -747,9 +935,19 @@
     var h = location.hash || '#/', m;
     if (!$('vLista').hidden) listY = window.scrollY;
     stopAuto();
-    if (!(m = h.match(/^#\/c\/(\d+)$/))) wakeOff();
+    if (!/^#\/(c|l)\//.test(h)) wakeOff();
+    m = h.match(/^#\/c\/(\d+)$/);
 
-    if (m) { view('cancion'); showSong(+m[1]); window.scrollTo(0, 0); }
+    if (!m && (m = h.match(/^#\/l\/(\d+)\/(\d+)$/))) {
+      // Canción dentro de una lista: se navega con Anterior / Siguiente como en un medley.
+      var L = findLista(+m[1]), k = +m[2];
+      if (L) limpiarLista(L);
+      if (!L || k >= L.items.length) { state.filtro = 'listas'; location.hash = '#/'; return; }
+      state.filtro = 'listas'; plEdit = null; curHash = h;
+      view('cancion'); showSong(L.items[k], { lista: L, i: k }); window.scrollTo(0, 0);
+      return;
+    }
+    if (m) { curHash = h; view('cancion'); showSong(+m[1]); window.scrollTo(0, 0); }
     else if (h === '#/nueva') { view('editor'); showEditor(null); window.scrollTo(0, 0); }
     else if ((m = h.match(/^#\/e\/(\d+)$/))) { view('editor'); showEditor(+m[1]); window.scrollTo(0, 0); }
     else { view('lista'); renderList(); window.scrollTo(0, listY); }

@@ -57,6 +57,14 @@ Abre `canciones.json`, edita y confirma el cambio. Cada canción tiene esta form
 
 **Siempre que cambies `canciones.json`, sube el número de `"version"`** (de 1 a 2, etc.). Así los teléfonos se enteran de que hay cambios.
 
+## Listas (para tocar en orden)
+
+- Toca el filtro **📋 Listas** → **➕ Nueva lista**, ponle nombre y busca las canciones para agregarlas.
+- Cambia el orden con ↑ ↓ y quita canciones con ✕. Una canción puede estar en varias listas o repetirse.
+- También puedes agregar desde una canción abierta con **📋 Agregar a lista**.
+- **▶ Tocar** abre la primera canción; **Siguiente ›** pasa a la que sigue, como en un medley, y arriba se ve cuál viene y en qué tono.
+- Las listas se guardan solo en el teléfono (no van en `canciones.json`).
+
 ## Cómo llegan los cambios al teléfono
 
 - **Primera vez:** la app baja `canciones.json` y lo guarda en el teléfono.

@@ -41,6 +41,7 @@
       <button class="chip" data-f="Adoración">Adoración</button>
       <button class="chip" data-f="medleys">Medleys</button>
       <button class="chip" data-f="favoritos">⭐ Favoritos</button>
+      <button class="chip" data-f="listas">📋 Listas</button>
     </div>
     <div class="count" id="count" role="status"></div>
     <div id="lista"><div class="empty-msg">Cargando…</div></div>
@@ -65,9 +66,11 @@
         <h1 id="sTitulo"></h1>
         <div class="muted" id="sArtista"></div>
         <div class="muted" id="sSeccion"></div>
+        <button class="btn mini plbtn" id="bLista" aria-expanded="false">📋 Agregar a lista</button>
       </div>
       <div class="keybig"><small>Tono original</small><b id="sTono">–</b></div>
     </div>
+    <div class="stpanel" id="plAdd" hidden></div>
     <div class="mednav" id="medNav" hidden></div>
 
     <div class="controls">
