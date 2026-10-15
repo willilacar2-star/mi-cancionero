@@ -130,7 +130,7 @@
     var t = $('toast');
     t.textContent = msg; t.hidden = false;
     clearTimeout(toastT);
-    toastT = setTimeout(function () { t.hidden = true; }, 2600);
+    toastT = setTimeout(function () { t.hidden = true; }, Math.max(2600, msg.length * 55));
   }
 
   /* ---------- Tema ---------- */
@@ -549,16 +549,137 @@
     input.value = '';
   });
 
-  $('mExp').addEventListener('click', function () {
+  // El mismo formato que canciones.json del repositorio (sin los id internos).
+  function jsonCanciones(version) {
     var limpio = songs.map(function (x) { var c = Object.assign({}, x); delete c.id; return c; });
-    var salida = { version: store.get('cc_ver', 0) + 1, canciones: limpio };
-    var blob = new Blob([JSON.stringify(salida, null, 2)], { type: 'application/json' });
+    return JSON.stringify({ version: version, canciones: limpio }, null, 2);
+  }
+
+  $('mExp').addEventListener('click', function () {
+    var blob = new Blob([jsonCanciones(store.get('cc_ver', 0) + 1)], { type: 'application/json' });
     var url = URL.createObjectURL(blob);
     var a = document.createElement('a');
     a.href = url; a.download = 'canciones.json';
     document.body.appendChild(a); a.click();
     setTimeout(function () { URL.revokeObjectURL(url); a.remove(); }, 600);
     toast('canciones.json exportado');
+  });
+
+  /* ---------- Publicar en GitHub (API de contenidos con un token fine-grained) ---------- */
+  // Repositorio por defecto: el de la página publicada (usuario.github.io/repo).
+  function repoPorDefecto() {
+    var h = location.hostname.match(/^([^.]+)\.github\.io$/i), p = location.pathname.split('/')[1];
+    return h && p ? h[1] + '/' + p : 'willilacar2-star/mi-cancionero';
+  }
+  function ghConf() {
+    var c = store.get('cc_gh', {}) || {};
+    return { token: c.token || '', repo: c.repo || repoPorDefecto() };
+  }
+  function b64aTexto(b) { return decodeURIComponent(escape(atob(b.replace(/\s/g, '')))); }
+  function textoAb64(t) { return btoa(unescape(encodeURIComponent(t))); }
+
+  function ghApi(conf, metodo, ruta, cuerpo) {
+    return fetch('https://api.github.com/repos/' + conf.repo + ruta, {
+      method: metodo,
+      cache: 'no-store',
+      headers: {
+        'Authorization': 'Bearer ' + conf.token,
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28',
+        'Content-Type': 'application/json'
+      },
+      body: cuerpo ? JSON.stringify(cuerpo) : undefined
+    }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (d) {
+        if (r.ok) return d;
+        var e = new Error(d.message || ('http ' + r.status)); e.status = r.status; throw e;
+      });
+    });
+  }
+  function ghMsgError(e) {
+    if (e.status === 401) return 'El token no es válido o ya venció. Revisa 🔑 Conexión con GitHub.';
+    if (e.status === 403) return 'El token no tiene permiso de escritura (Contents: Read and write) en este repositorio.';
+    if (e.status === 404) return 'No se encontró el repositorio o el token no tiene acceso a él.';
+    if (e.status === 409 || e.status === 422) return 'El archivo cambió en GitHub mientras publicabas. Vuelve a intentarlo.';
+    if (!e.status) return 'Sin conexión con GitHub. Revisa internet e inténtalo de nuevo.';
+    return 'GitHub respondió: ' + e.message;
+  }
+
+  /* Ventana de conexión */
+  function ghEstado(txt, cls) { var el = $('ghEstado'); el.textContent = txt; el.className = 'ghestado' + (cls ? ' ' + cls : ''); }
+  function ghLeerForm() {
+    return { token: $('ghTok').value.trim(), repo: $('ghRepo').value.trim().replace(/^https?:\/\/github\.com\//i, '').replace(/\/+$/, '') || repoPorDefecto() };
+  }
+  function abrirGh() {
+    var c = ghConf();
+    $('ghTok').value = c.token; $('ghRepo').value = c.repo;
+    $('ghRepoTxt').textContent = c.repo;
+    ghEstado(c.token ? 'Hay un token guardado en este teléfono.' : 'Aún no hay token guardado.');
+    var d = $('ghDlg');
+    if (d.showModal) d.showModal(); else d.setAttribute('open', '');
+  }
+  $('mTok').addEventListener('click', abrirGh);
+  $('ghRepo').addEventListener('input', function () { $('ghRepoTxt').textContent = ghLeerForm().repo; });
+  $('ghGuardar').addEventListener('click', function () {
+    var c = ghLeerForm();
+    if (!c.token) { ghEstado('Pega el token primero.', 'mal'); $('ghTok').focus(); return; }
+    if (!/^[\w.-]+\/[\w.-]+$/.test(c.repo)) { ghEstado('El repositorio debe verse así: usuario/mi-cancionero', 'mal'); return; }
+    store.set('cc_gh', c);
+    ghEstado('Guardado. Toca Probar para revisar que funcione.', 'ok');
+  });
+  $('ghProbar').addEventListener('click', function () {
+    var c = ghLeerForm();
+    if (!c.token) { ghEstado('Pega el token primero.', 'mal'); return; }
+    ghEstado('Probando…');
+    ghApi(c, 'GET', '').then(function (d) {
+      if (d.permissions && !d.permissions.push) throw Object.assign(new Error('sin escritura'), { status: 403 });
+      return ghApi(c, 'GET', '/contents/canciones.json');
+    }).then(function () {
+      ghEstado('✓ Conectado a ' + c.repo + '. Ya puedes publicar.', 'ok');
+    }).catch(function (e) { ghEstado(ghMsgError(e), 'mal'); });
+  });
+  $('ghBorrar').addEventListener('click', function () {
+    if (!confirm('¿Borrar el token de este teléfono? (Para anularlo del todo, bórralo también en GitHub.)')) return;
+    store.set('cc_gh', { repo: ghLeerForm().repo });
+    $('ghTok').value = '';
+    ghEstado('Token borrado de este teléfono.');
+  });
+
+  /* Publicar */
+  var publicando = false;
+  $('mPub').addEventListener('click', function () {
+    var c = ghConf();
+    if (!c.token) { toast('Primero conecta tu cuenta en 🔑 Conexión con GitHub'); abrirGh(); return; }
+    if (publicando) return;
+    publicando = true;
+    toast('Revisando GitHub…');
+    ghApi(c, 'GET', '/contents/canciones.json').then(function (f) {
+      var remoto = {};
+      try { remoto = JSON.parse(b64aTexto(f.content || '')); } catch (e) {}
+      var lista = Array.isArray(remoto) ? remoto : (remoto.canciones || []);
+      var ver = Math.max(+remoto.version || 0, store.get('cc_ver', 0)) + 1;
+      // Avisar si en GitHub hay canciones que este teléfono no tiene (se perderían).
+      var mias = {};
+      songs.forEach(function (s) { mias[songKey(s)] = 1; });
+      var faltan = lista.filter(function (s) { return s && s.titulo && !mias[songKey(s)]; }).map(function (s) { return s.titulo; });
+      var msg = 'Se publicarán ' + songs.length + ' canciones en GitHub como versión ' + ver + '.';
+      if (faltan.length) {
+        msg += '\n\n⚠️ GitHub tiene ' + faltan.length + (faltan.length === 1 ? ' canción que no está' : ' canciones que no están') +
+          ' en este teléfono y se quitarían:\n• ' + faltan.slice(0, 8).join('\n• ') + (faltan.length > 8 ? '\n• …' : '') +
+          '\n\nSi no quieres perderlas, cancela y usa primero 🔄 Actualizar desde GitHub.';
+      }
+      if (!confirm(msg + '\n\n¿Publicar?')) return null;
+      toast('Publicando…');
+      return ghApi(c, 'PUT', '/contents/canciones.json', {
+        message: 'Actualizar canciones desde la app (versión ' + ver + ')',
+        content: textoAb64(jsonCanciones(ver)),
+        sha: f.sha
+      }).then(function () {
+        store.set('cc_ver', ver);
+        toast('✓ Publicado (versión ' + ver + '). GitHub Pages lo actualiza en 1–2 minutos.');
+      });
+    }).catch(function (e) { toast(ghMsgError(e)); })
+      .then(function () { publicando = false; });
   });
 
   $('mRes').addEventListener('click', function () {

@@ -26,6 +26,8 @@
       <a href="#/nueva">➕ Nueva canción</a>
       <button id="mImp">📥 Importar JSON</button>
       <button id="mAct">🔄 Actualizar desde GitHub</button>
+      <button id="mPub">☁️ Publicar en GitHub</button>
+      <button id="mTok">🔑 Conexión con GitHub</button>
       <button id="mExp">📤 Exportar JSON</button>
       <button id="mRes">↺ Restaurar lista del repositorio</button>
     </div>
@@ -161,6 +163,36 @@
     </div>
   </div>
 </section>
+
+<!-- ====================== CONEXIÓN CON GITHUB ====================== -->
+<dialog id="ghDlg" aria-labelledby="ghTit">
+  <form method="dialog" class="ghform" id="ghForm">
+    <h2 id="ghTit">🔑 Conexión con GitHub</h2>
+    <p class="help">Con un token, <b>☁️ Publicar en GitHub</b> sube tus canciones a <code id="ghRepoTxt"></code> sin salir de la app. El token se guarda solo en este teléfono.</p>
+    <details>
+      <summary>Cómo crear el token</summary>
+      <ol class="help">
+        <li>Abre <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com → Fine-grained token nuevo</a>.</li>
+        <li><b>Token name</b>: Cancionero. <b>Expiration</b>: la que prefieras (por ejemplo, 1 año).</li>
+        <li><b>Repository access</b> → <i>Only select repositories</i> → elige <b>mi-cancionero</b>.</li>
+        <li><b>Permissions</b> → <i>Repository permissions</i> → <b>Contents</b>: <i>Read and write</i>. Nada más.</li>
+        <li><b>Generate token</b>, cópialo (empieza con <code>github_pat_</code>) y pégalo aquí.</li>
+      </ol>
+      <p class="help">Si pierdes el teléfono, bórralo en github.com → Settings → Developer settings → Personal access tokens.</p>
+    </details>
+    <label for="ghTok">Token</label>
+    <input id="ghTok" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="github_pat_…">
+    <label for="ghRepo">Repositorio</label>
+    <input id="ghRepo" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="usuario/mi-cancionero">
+    <div class="ghestado" id="ghEstado" role="status"></div>
+    <div class="ghacts">
+      <button type="button" class="btn danger" id="ghBorrar">Borrar token</button>
+      <button type="button" class="btn" id="ghProbar">Probar</button>
+      <button type="button" class="btn pri" id="ghGuardar">Guardar</button>
+    </div>
+    <button type="submit" class="btn ghcerrar" value="cancel">Cerrar</button>
+  </form>
+</dialog>
 
 <div id="toast" hidden role="status"></div>
 

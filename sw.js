@@ -1,7 +1,7 @@
 // Service worker de Mi Cancionero.
 // Si cambias index.html, styles.css, app.js o music.js, sube el número de VERSION
 // para que los teléfonos descarguen la versión nueva.
-var VERSION = 'cancionero-v7';
+var VERSION = 'cancionero-v8';
 var APP = [
   './', 'index.html', 'styles.css', 'app.js', 'music.js',
   'manifest.json', 'canciones.json',

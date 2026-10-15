@@ -26,7 +26,15 @@ Cancionero con acordes, transposición y estructura de cada canción. Funciona e
 
 ## Cómo agregar o cambiar canciones
 
-**Opción A: desde la app**
+**Opción recomendada: publicar desde la app**
+1. Una sola vez: menú ⋯ → **🔑 Conexión con GitHub** y sigue los pasos para crear un *fine-grained token* (solo el repositorio `mi-cancionero`, permiso **Contents: Read and write**). Pégalo, **Guardar** y **Probar**.
+2. Agrega o edita canciones en la app.
+3. Menú ⋯ → **☁️ Publicar en GitHub**. La app sube `canciones.json`, aumenta `"version"` sola y hace el commit. GitHub Pages lo publica en 1–2 minutos.
+4. Si GitHub tiene canciones que tu teléfono no tiene, la app te avisa antes de publicar; usa primero **🔄 Actualizar desde GitHub** para no perderlas.
+
+El token se guarda solo en ese navegador. Si pierdes el teléfono, bórralo en github.com → Settings → Developer settings → Personal access tokens.
+
+**Opción A: exportar a mano**
 1. Agrega y edita canciones con ➕ y ✎.
 2. Menú ⋯ → **📤 Exportar JSON**. Se descarga `canciones.json`.
 3. En GitHub abre `canciones.json` → ✎ editar (o **Add file → Upload files** y súbelo con el mismo nombre) → **Commit changes**.
