@@ -263,21 +263,32 @@
   .ghacts .btn { flex: 1; }
   .ghcerrar { width: 100%; margin-top: 8px; }
 
-  /* ---------- Celular en horizontal: solo la canción y un auto-scroll pequeño ---------- */
+  /* ---------- Celular en horizontal: la canción, las partes y un auto-scroll pequeño abajo ---------- */
   @media (orientation: landscape) and (max-height: 520px) {
     #vCancion .top, #vCancion .shead, #medNav, #vCancion .controls,
-    #struct, #stPanel, #plAdd { display: none !important; }
+    #stPanel, #plAdd, #stEdit { display: none !important; }
     #vCancion > .wrap { padding-top: 8px; }
     .sec { scroll-margin-top: 8px; }
     .autobar {
-      left: auto; right: 10px; bottom: calc(8px + env(safe-area-inset-bottom, 0px));
-      padding: 4px 6px; border: 1px solid var(--line); border-radius: 999px;
+      left: auto; right: calc(10px + env(safe-area-inset-right, 0px)); bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+      width: 176px; padding: 4px 6px; border: 1px solid var(--line); border-radius: 999px;
       box-shadow: 0 4px 14px rgba(0,0,0,.2); opacity: .92;
     }
     .autobar .wrap { gap: 4px; }
     .autobar .btn { min-height: 36px; padding: 0 12px; border-radius: 999px; font-size: .9rem; }
     .autobar .lbl-auto, .speed span { display: none; }
-    .speed { flex: none; width: 96px; }
+    .speed { flex: 1; width: auto; }
+    /* Partes de la canción (Intro, Verso, Coro…) a la par del auto-scroll; tocar una salta a ella */
+    .struct {
+      position: fixed; top: auto; z-index: 25;
+      left: calc(10px + env(safe-area-inset-left, 0px));
+      right: calc(10px + 176px + 8px + env(safe-area-inset-right, 0px));
+      bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+      padding: 4px; border: 1px solid var(--line); border-radius: 999px;
+      background: var(--panel); box-shadow: 0 4px 14px rgba(0,0,0,.2); opacity: .92;
+    }
+    .stchips { gap: 4px; }
+    .stchip { min-height: 36px; padding: 0 10px; font-size: .85rem; border-radius: 999px; }
     .speed input { height: 28px; }
     .song-pad { height: 56px; }
     #toast { bottom: 60px; }

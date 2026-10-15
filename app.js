@@ -937,7 +937,9 @@
   function marcarActivo() {
     if ($('vCancion').hidden || $('struct').hidden || Date.now() < stLock) return;
     var els = $('songBody').querySelectorAll('.sec');
-    var lim = $('struct').getBoundingClientRect().bottom + 12, act = -1;
+    // En horizontal la barra de partes está abajo: la parte activa es la que llega arriba de la pantalla.
+    var abajo = getComputedStyle($('struct')).position === 'fixed';
+    var lim = abajo ? 40 : $('struct').getBoundingClientRect().bottom + 12, act = -1;
     for (var k = 0; k < els.length; k++) {
       if (els[k].getBoundingClientRect().top <= lim) act = +els[k].getAttribute('data-c');
       else break;
