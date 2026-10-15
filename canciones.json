@@ -1,5 +1,5 @@
 {
-  "version": 8,
+  "version": 9,
   "canciones": [
     {
       "titulo": "Bienvenido Espíritu Santo",
@@ -3229,7 +3229,7 @@
       "artista": "Montesanto",
       "tono": "C#m",
       "categoria": "Alabanza",
-      "seccion": "Medley Dante Gebel",
+      "seccion": "General",
       "contenido": [
         {
           "tipo": "verso",
@@ -3254,7 +3254,7 @@
           ]
         },
         {
-          "tipo": "pre-coro",
+          "tipo": "coro",
           "titulo": "Pre-coro",
           "lineas": [
             {
@@ -3314,7 +3314,7 @@
           ]
         },
         {
-          "tipo": "interludio",
+          "tipo": "verso",
           "titulo": "Intermedio",
           "lineas": [
             {
@@ -3375,7 +3375,7 @@
       "artista": "",
       "tono": "Gm",
       "categoria": "Medley",
-      "seccion": "Medley Juan Carlos Alvarado",
+      "seccion": "Medley Pues tu Glorioso",
       "contenido": [
         {
           "tipo": "coro",
@@ -3428,7 +3428,7 @@
       "artista": "",
       "tono": "Em",
       "categoria": "Medley",
-      "seccion": "Medley Juan Carlos Alvarado",
+      "seccion": "Medley Pues tu Glorioso",
       "contenido": [
         {
           "tipo": "verso",
@@ -3465,7 +3465,7 @@
       "artista": "",
       "tono": "C",
       "categoria": "Medley",
-      "seccion": "Medley Juan Carlos Alvarado",
+      "seccion": "Medley Pues tu Glorioso",
       "contenido": [
         {
           "tipo": "coro",
@@ -3500,7 +3500,7 @@
       "artista": "",
       "tono": "C",
       "categoria": "Medley",
-      "seccion": "Medley Juan Carlos Alvarado",
+      "seccion": "Medley Pues tu Glorioso",
       "contenido": [
         {
           "tipo": "verso",
@@ -3523,7 +3523,7 @@
       "artista": "Juan Carlos Alvarado",
       "tono": "C",
       "categoria": "Alabanza",
-      "seccion": "Medley Juan Carlos Alvarado",
+      "seccion": "Medley Pues tu Glorioso",
       "contenido": [
         {
           "tipo": "verso",
@@ -3568,7 +3568,7 @@
       "artista": "",
       "tono": "C",
       "categoria": "Medley",
-      "seccion": "Medley Juan Carlos Alvarado",
+      "seccion": "Medley Pues tu Glorioso",
       "contenido": [
         {
           "tipo": "verso",
