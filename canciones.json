@@ -1,5 +1,5 @@
 {
-  "version": 9,
+  "version": 10,
   "canciones": [
     {
       "titulo": "Bienvenido Espíritu Santo",
@@ -3229,7 +3229,7 @@
       "artista": "Montesanto",
       "tono": "C#m",
       "categoria": "Alabanza",
-      "seccion": "General",
+      "seccion": "Medley Dante Gebel",
       "contenido": [
         {
           "tipo": "verso",
@@ -3254,7 +3254,7 @@
           ]
         },
         {
-          "tipo": "coro",
+          "tipo": "pre-coro",
           "titulo": "Pre-coro",
           "lineas": [
             {
@@ -3314,7 +3314,7 @@
           ]
         },
         {
-          "tipo": "verso",
+          "tipo": "interludio",
           "titulo": "Intermedio",
           "lineas": [
             {
@@ -3375,7 +3375,7 @@
       "artista": "",
       "tono": "Gm",
       "categoria": "Medley",
-      "seccion": "Medley Pues tu Glorioso",
+      "seccion": "Medley Juan Carlos Alvarado",
       "contenido": [
         {
           "tipo": "coro",
@@ -3428,7 +3428,7 @@
       "artista": "",
       "tono": "Em",
       "categoria": "Medley",
-      "seccion": "Medley Pues tu Glorioso",
+      "seccion": "Medley Juan Carlos Alvarado",
       "contenido": [
         {
           "tipo": "verso",
@@ -3465,7 +3465,7 @@
       "artista": "",
       "tono": "C",
       "categoria": "Medley",
-      "seccion": "Medley Pues tu Glorioso",
+      "seccion": "Medley Juan Carlos Alvarado",
       "contenido": [
         {
           "tipo": "coro",
@@ -3500,7 +3500,7 @@
       "artista": "",
       "tono": "C",
       "categoria": "Medley",
-      "seccion": "Medley Pues tu Glorioso",
+      "seccion": "Medley Juan Carlos Alvarado",
       "contenido": [
         {
           "tipo": "verso",
@@ -3523,7 +3523,7 @@
       "artista": "Juan Carlos Alvarado",
       "tono": "C",
       "categoria": "Alabanza",
-      "seccion": "Medley Pues tu Glorioso",
+      "seccion": "Medley Juan Carlos Alvarado",
       "contenido": [
         {
           "tipo": "verso",
@@ -3568,7 +3568,7 @@
       "artista": "",
       "tono": "C",
       "categoria": "Medley",
-      "seccion": "Medley Pues tu Glorioso",
+      "seccion": "Medley Juan Carlos Alvarado",
       "contenido": [
         {
           "tipo": "verso",
@@ -4608,6 +4608,1347 @@
             {
               "acordes": "Am  Am       G  G     F    F     Em",
               "letra": "¡Grande! y ¡Fuerte! Es nuestro Dios, todos"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "La Cosecha",
+      "artista": "",
+      "tono": "Cm",
+      "categoria": "Medley",
+      "seccion": "Medley Jubilo",
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Introducción",
+          "lineas": [
+            {
+              "acordes": "//Fm - Gm - G# - A# - Cm",
+              "letra": ""
+            },
+            {
+              "acordes": "Cm - B - Bb - A - G# - D",
+              "letra": ""
+            },
+            {
+              "acordes": "G# - A# - Cm7//",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "Cm",
+              "letra": "Alza tus ojos y mira"
+            },
+            {
+              "acordes": "Fm              G7",
+              "letra": "la cosecha esta lista"
+            },
+            {
+              "acordes": "Cm",
+              "letra": "el tiempo ha llegado"
+            },
+            {
+              "acordes": "Fm              G7",
+              "letra": "la mies está madura"
+            },
+            {
+              "acordes": "Cm",
+              "letra": "esfuérzate y se valiente"
+            },
+            {
+              "acordes": "Fm              G7",
+              "letra": "levántate y predica"
+            },
+            {
+              "acordes": "Cm              G#",
+              "letra": "a todas las naciones"
+            },
+            {
+              "acordes": "F               G",
+              "letra": "que Cristo es la vida"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "Fm Gm G# A#              Cm   Cm B Bb   A",
+              "letra": "Y Sera (aa) llena la tierra de su gloria"
+            },
+            {
+              "acordes": "G#         D    G#          A#         Cm7",
+              "letra": "se cubrirá(aa), como las aguas cubren al mar"
+            },
+            {
+              "acordes": "Fm Gm G# A#              Cm   Cm B Bb   A",
+              "letra": "Y Sera (aa) llena la tierra de su gloria"
+            },
+            {
+              "acordes": "G#         D    G#          A#         Cm7",
+              "letra": "se cubrirá(aa), como las aguas cubren al mar"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Instrumental",
+          "lineas": [
+            {
+              "acordes": "",
+              "letra": "[Puente] x2"
+            },
+            {
+              "acordes": "G7              Cm",
+              "letra": "No, no hay otro nombre"
+            },
+            {
+              "acordes": "G7              Cm",
+              "letra": "dado a los hombres"
+            },
+            {
+              "acordes": "Fm   Cm    G#    G",
+              "letra": "Jesucristo es el Señor"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Salida",
+          "lineas": [
+            {
+              "acordes": "////Cm - G#/C - A#/C - Cm///",
+              "letra": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Levántate señor",
+      "artista": "",
+      "tono": "Cm",
+      "categoria": "Medley",
+      "seccion": "Medley Jubilo",
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "Letra",
+          "lineas": [
+            {
+              "acordes": "",
+              "letra": "[Verso] x2"
+            },
+            {
+              "acordes": "Cm              Bb      Cm    Ab-Bb   Cm",
+              "letra": "Levántate levántate Señor         levántate"
+            },
+            {
+              "acordes": "",
+              "letra": "Ab   Bb    Cm   Ab-Bb → (NO van en segunda vuelta)"
+            },
+            {
+              "acordes": "",
+              "letra": "levántate Señor"
+            },
+            {
+              "acordes": "",
+              "letra": "[Pre-coro] x1"
+            },
+            {
+              "acordes": "Fm                  Bb          Cm",
+              "letra": "Huyan delante de ti tus enemigos"
+            },
+            {
+              "acordes": "                Fm              G",
+              "letra": "Se dispersen delante de ti todos aquellos"
+            },
+            {
+              "acordes": "Cm   Cm    Cm       Cm - G# - A#",
+              "letra": "Que aborrecen tu presencia"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "Fm                  Bb          Cm",
+              "letra": "Tu presencia reinará sobre todo imperio"
+            },
+            {
+              "acordes": "Fm                  G           Cm               (Cm - G# - A#)",
+              "letra": "Tu presencia reinará gobernará sobre todo principado"
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "Puente",
+          "lineas": [
+            {
+              "acordes": "Cm        Bb      Cm        Ab - Bb",
+              "letra": "espíritu de te - mor, ¡huye!"
+            },
+            {
+              "acordes": "Cm        Eb  Bb/D  Cm      Ab - Bb",
+              "letra": "espíritu de mal - dad, ¡huye!"
+            },
+            {
+              "acordes": "Cm        Bb      Cm        Ab - Bb",
+              "letra": "espíritu de rencor, ¡huye!"
+            },
+            {
+              "acordes": "Cm        Ab      Gsus4",
+              "letra": "espíritu de división, ¡huye!"
+            },
+            {
+              "acordes": "Cm        Bb      Cm        Ab - Bb",
+              "letra": "espíritu de enferme - dad, ¡huye!"
+            },
+            {
+              "acordes": "Cm        Eb  Bb/D  Cm      Ab - Bb",
+              "letra": "espíritu de re - be - lión, ¡huye!"
+            },
+            {
+              "acordes": "Cm        Bb      Cm        Ab - Bb",
+              "letra": "espíritu inmo - ral, ¡huye!"
+            },
+            {
+              "acordes": "",
+              "letra": "Cm        D#      Gsus4     G (3 cortes)"
+            },
+            {
+              "acordes": "",
+              "letra": "espíritu de oscuridad, ¡huye!"
+            },
+            {
+              "acordes": "",
+              "letra": "[Coro] (primer coro lleva cortes)"
+            },
+            {
+              "acordes": "Fm                  Bb          Cm",
+              "letra": "Tu presencia reinará sobre todo imperio"
+            },
+            {
+              "acordes": "Fm                  G           Cm               (D#-E-C#-A-B-G-Fm7)",
+              "letra": "Tu presencia reinará gobernará sobre todo principado"
+            },
+            {
+              "acordes": "Fm                  Bb          Cm",
+              "letra": "Tu presencia reinará sobre todo imperio"
+            },
+            {
+              "acordes": "Fm                  G           Cm               (Cm - G# - A#)",
+              "letra": "Tu presencia reinará gobernará sobre todo principado"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Salida",
+          "lineas": [
+            {
+              "acordes": "/Cm - G#/C - A#/C - Cm/  //C#m - A/C - B/C - C#m//",
+              "letra": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Grande es el señor",
+      "artista": "",
+      "tono": "C#m",
+      "categoria": "Medley",
+      "seccion": "Medley Jubilo",
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "C#m                                    C#m - B",
+              "letra": "Grande es el Señor, Creador del Universo,          B - A"
+            },
+            {
+              "acordes": "",
+              "letra": "canta y danza al Rey que viene pronto,"
+            },
+            {
+              "acordes": "E  F#m",
+              "letra": "de felicidad     el corazón nos llena,"
+            },
+            {
+              "acordes": "G#   (G# F#m) (F#m G#) F#m - E - D# - C#m",
+              "letra": "Grande es el Señor   oh   oh   oh"
+            },
+            {
+              "acordes": "C#m",
+              "letra": "Grande es el Señor, Creador del Universo,"
+            },
+            {
+              "acordes": "B",
+              "letra": "canta y danza al Rey que viene pronto,"
+            },
+            {
+              "acordes": "F#m          G#",
+              "letra": "de felicidad     el corazón nos llena,"
+            },
+            {
+              "acordes": "G#   (G# F#m) (F#m G#) F#m - E - D# - C#m",
+              "letra": "Grande es el Señor   oh   oh   oh"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "C#m",
+              "letra": "//Oh, oh, oh, Hosanna al Altísimo."
+            },
+            {
+              "acordes": "B",
+              "letra": "Oh, oh, oh, Hosanna al Altísimo."
+            },
+            {
+              "acordes": "F#m          G#",
+              "letra": "Oh, oh, oh, Hosanna al Altísimo."
+            },
+            {
+              "acordes": "G#   (G# F#m) (F#m G#) F#m - E - D# - C#m",
+              "letra": "Grande es el Señor   oh   oh   oh   //"
+            }
+          ]
+        },
+        {
+          "tipo": "interludio",
+          "titulo": "Interludio",
+          "lineas": [
+            {
+              "acordes": "C#m - C#m - G# - C#m",
+              "letra": ""
+            },
+            {
+              "acordes": "G# - C#m - C#m - G# - C#m",
+              "letra": ""
+            },
+            {
+              "acordes": "G# - C#m - C#m - G# - C#m",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Corte",
+          "lineas": [
+            {
+              "acordes": "Bbm - Fm - F#m - G#m - C#m",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "C#m                                    C#m - B",
+              "letra": "Grande es el Señor, Creador del Universo,          B - A"
+            },
+            {
+              "acordes": "",
+              "letra": "canta y danza al Rey que viene pronto,"
+            },
+            {
+              "acordes": "E  F#m",
+              "letra": "de felicidad     el corazón nos llena,"
+            },
+            {
+              "acordes": "G#   (G# F#m) (F#m G#) F#m - E - D# - C#m",
+              "letra": "Grande es el Señor   oh   oh   oh"
+            },
+            {
+              "acordes": "C#m",
+              "letra": "Grande es el Señor, Creador del Universo,"
+            },
+            {
+              "acordes": "B",
+              "letra": "canta y danza al Rey que viene pronto,"
+            },
+            {
+              "acordes": "F#m          G#",
+              "letra": "de felicidad     el corazón nos llena,"
+            },
+            {
+              "acordes": "G#   (G# F#m) (F#m G#) F#m - E - D# - C#m",
+              "letra": "Grande es el Señor   oh   oh   oh"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "C#m",
+              "letra": "//Oh, oh, oh, Hosanna al Altísimo."
+            },
+            {
+              "acordes": "B",
+              "letra": "Oh, oh, oh, Hosanna al Altísimo."
+            },
+            {
+              "acordes": "F#m          G#",
+              "letra": "Oh, oh, oh, Hosanna al Altísimo."
+            },
+            {
+              "acordes": "G#   (G# F#m) (F#m G#) F#m - E - D# - C#m",
+              "letra": "Grande es el Señor   oh   oh   oh   //"
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "Puente",
+          "lineas": [
+            {
+              "acordes": "A#m - A - F#m - G#",
+              "letra": ""
+            },
+            {
+              "acordes": "C - B - A - G# - G# - G#",
+              "letra": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Cantaré al señor por siempre",
+      "artista": "",
+      "tono": "C#m",
+      "categoria": "Medley",
+      "seccion": "Medley Jubilo",
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "C#m                        B",
+              "letra": "//Cantaré al Señor por siempre,"
+            },
+            {
+              "acordes": "A         B      C#m",
+              "letra": "Su diestra es todo poder//"
+            },
+            {
+              "acordes": "C#m         (B B B)                    (C#m C#m C#m)",
+              "letra": "//Echó a la mar     quien nos perseguía."
+            },
+            {
+              "acordes": "         (B B B)         C#m",
+              "letra": "Jinete y caballo    echó a la mar//"
+            },
+            {
+              "acordes": "",
+              "letra": "[Corte] B - A - F#m - G#"
+            },
+            {
+              "acordes": "B      A      F#m      G#      G#      G#",
+              "letra": "Echó a la mar los carros de Faraón. Oho. Hey! Hey!"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "| C#m | B | A - B | C#m ||",
+              "letra": "Lalalalala..."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Remolineando",
+      "artista": "",
+      "tono": "C#m",
+      "categoria": "Medley",
+      "seccion": "Medley Jubilo",
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "C#m - B - C#m - B",
+              "letra": ""
+            },
+            {
+              "acordes": "G#m - C#m",
+              "letra": ""
+            },
+            {
+              "acordes": "A - G#m",
+              "letra": ""
+            },
+            {
+              "acordes": "C#m - F#m - A - G#m",
+              "letra": ""
+            },
+            {
+              "acordes": "F#m - G#m - A - B",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "          C#m",
+              "letra": "//hay muchas formas de alabar tu nombre"
+            },
+            {
+              "acordes": "     B                C#m",
+              "letra": "y de exaltarte oh Jehová"
+            },
+            {
+              "acordes": "          A        B          C#m",
+              "letra": "hay muchas formas de magnificarte"
+            },
+            {
+              "acordes": "     A        B        C#m-B",
+              "letra": "pero ahora lo are así//"
+            },
+            {
+              "acordes": "       C#m",
+              "letra": "saco mi vida del anonimato, me dio corona"
+            },
+            {
+              "acordes": "     B          C#m      A          B          C#m",
+              "letra": "y vestido real, así es Jehová que exalta al pequeño"
+            },
+            {
+              "acordes": "          B        G#",
+              "letra": "///por causa de el yo me hare más vil///"
+            },
+            {
+              "acordes": "",
+              "letra": "[Corte] F#m - G#m - A - B"
+            },
+            {
+              "acordes": "        C#m                          B           C#m",
+              "letra": "///lala lalalalalaila lalalalalaila lalalala///"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "          C#m",
+              "letra": "//hay muchas formas de alabar tu nombre"
+            },
+            {
+              "acordes": "     B                C#m",
+              "letra": "y de exaltarte oh Jehová"
+            },
+            {
+              "acordes": "          A        B          C#m",
+              "letra": "hay muchas formas de magnificarte"
+            },
+            {
+              "acordes": "     A        B        C#m-B",
+              "letra": "pero ahora lo are así//"
+            },
+            {
+              "acordes": "       C#m",
+              "letra": "saco mi vida del anonimato, me dio corona"
+            },
+            {
+              "acordes": "     B          C#m      A          B          C#m",
+              "letra": "y vestido real, así es Jehová que exalta al pequeño"
+            },
+            {
+              "acordes": "          B        G#",
+              "letra": "///por causa de el yo me hare más vil///"
+            },
+            {
+              "acordes": "",
+              "letra": "[Corte] F#m - G#m - A - B"
+            },
+            {
+              "acordes": "        C#m                          B           C#m",
+              "letra": "///lala lalalalalaila lalalalalaila lalalala///"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "          C#m",
+              "letra": "//hay muchas formas de alabar tu nombre"
+            },
+            {
+              "acordes": "     B                C#m",
+              "letra": "y de exaltarte oh Jehová"
+            },
+            {
+              "acordes": "          A        B          C#m",
+              "letra": "hay muchas formas de magnificarte"
+            },
+            {
+              "acordes": "     A        B        C#m-B",
+              "letra": "pero ahora lo are así//"
+            },
+            {
+              "acordes": "       C#m",
+              "letra": "saco mi vida del anonimato, me dio corona"
+            },
+            {
+              "acordes": "     B          C#m      A          B          C#m",
+              "letra": "y vestido real, así es Jehová que exalta al pequeño"
+            },
+            {
+              "acordes": "          B        G#",
+              "letra": "///por causa de el yo me hare más vil///"
+            },
+            {
+              "acordes": "",
+              "letra": "[Corte] F#m - G#m - A - B"
+            },
+            {
+              "acordes": "        C#m                          B           C#m",
+              "letra": "///lala lalalalalaila lalalalalaila lalalala///"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "          C#m                          B           C#m",
+              "letra": "remolineando, remolineando, celebrare a Jehová"
+            },
+            {
+              "acordes": "     C#m",
+              "letra": "remolineando, remolineando"
+            },
+            {
+              "acordes": "     B          G#          C#m",
+              "letra": "me hare más vil por causa de Jehová"
+            },
+            {
+              "acordes": "          C#m                          B           C#m",
+              "letra": "remolineando, remolineando, celebrare a Jehová"
+            },
+            {
+              "acordes": "     C#m",
+              "letra": "remolineando, remolineando"
+            },
+            {
+              "acordes": "          B          G#          C#m",
+              "letra": "///me hare más vil por causa de Jehová///"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Corte",
+          "lineas": [
+            {
+              "acordes": "F#m - G#m - A - B",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "C#m - B",
+              "letra": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "El Señor está en este lugar",
+      "artista": "",
+      "tono": "Em",
+      "categoria": "Alabanza",
+      "seccion": "General",
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Introducción",
+          "lineas": [
+            {
+              "acordes": "//Em - G - C//",
+              "letra": ""
+            },
+            {
+              "acordes": "D - Bm",
+              "letra": ""
+            },
+            {
+              "acordes": "//Em - G - C//",
+              "letra": ""
+            },
+            {
+              "acordes": "D - Bm",
+              "letra": ""
+            },
+            {
+              "acordes": "Em",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "Em            C            D",
+              "letra": "El SEÑOR ESTÁ EN ESTE LUGAR"
+            },
+            {
+              "acordes": "Em            C            D/Bm",
+              "letra": "EL SEÑOR ESTÁ EN ESTE LUGAR"
+            },
+            {
+              "acordes": "Em            C            D",
+              "letra": "EL SEÑOR ESTÁ EN ESTE LUGAR"
+            },
+            {
+              "acordes": "Em            C            D/Bm",
+              "letra": "EL SEÑOR ESTÁ EN ESTE LUGAR"
+            },
+            {
+              "acordes": "",
+              "letra": "[Coro] x2"
+            },
+            {
+              "acordes": "C                     D",
+              "letra": "PARA SANAR, PARA LIBRAR"
+            },
+            {
+              "acordes": "Em",
+              "letra": "PARA ROMPER TODA OBRA DE MALDAD"
+            },
+            {
+              "acordes": "C                     D            Em",
+              "letra": "PARA SANAR, PARA LIBRAR MI ALMA"
+            }
+          ]
+        },
+        {
+          "tipo": "interludio",
+          "titulo": "Interludio",
+          "lineas": [
+            {
+              "acordes": "Em",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "Em            C            D",
+              "letra": "EL SEÑOR ESTÁ EN ESTE LUGAR"
+            },
+            {
+              "acordes": "Em            C            D/Bm",
+              "letra": "EL SEÑOR ESTÁ EN ESTE LUGAR"
+            },
+            {
+              "acordes": "Em            C            D",
+              "letra": "EL SEÑOR ESTÁ EN ESTE LUGAR"
+            },
+            {
+              "acordes": "Em            C            D/Bm",
+              "letra": "EL SEÑOR ESTÁ EN ESTE LUGAR"
+            },
+            {
+              "acordes": "",
+              "letra": "[Coro] x2"
+            },
+            {
+              "acordes": "C                     D",
+              "letra": "PARA SANAR, PARA LIBRAR"
+            },
+            {
+              "acordes": "Em",
+              "letra": "PARA ROMPER TODA OBRA DE MALDAD"
+            },
+            {
+              "acordes": "C                     D            Em",
+              "letra": "PARA SANAR, PARA LIBRAR MI ALMA"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Solo",
+          "lineas": [
+            {
+              "acordes": "C - D - Bm - C",
+              "letra": ""
+            },
+            {
+              "acordes": "Em - F# - G - A",
+              "letra": "Bm(de paso) C - D - Bm - C"
+            },
+            {
+              "acordes": "Em - F# - G - A - Bm",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "C                     D",
+              "letra": "PARA SANAR, PARA LIBRAR"
+            },
+            {
+              "acordes": "Em",
+              "letra": "PARA ROMPER TODA OBRA DE MALDAD"
+            },
+            {
+              "acordes": "C                     D            Em",
+              "letra": "PARA SANAR, PARA LIBRAR MI ALMA"
+            }
+          ]
+        },
+        {
+          "tipo": "final",
+          "titulo": "Final",
+          "lineas": [
+            {
+              "acordes": "C  Bm Am  C  Bm Am  C  Bm Am  C  Bm Am  C  D  Em",
+              "letra": "EL SEÑOR, EL SEÑOR, EL SEÑOR, EL SEÑOR  ¡ESTÁ AQUÍ!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "CELEBRA VICTORIOSO",
+      "artista": "",
+      "tono": "Bm",
+      "categoria": "Alabanza",
+      "seccion": "General",
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "Bm - G - Em - F#m",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Arreglo",
+          "lineas": [
+            {
+              "acordes": "Em - F# G - A - Bm",
+              "letra": ""
+            },
+            {
+              "acordes": "Em - F# G - A - Bm - D - Bm",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "Bm                    G                    Em",
+              "letra": "Celebra victorioso el Triunfo de Cristo"
+            },
+            {
+              "acordes": "",
+              "letra": "               F#m         Bm(arreglo)"
+            },
+            {
+              "acordes": "",
+              "letra": "te ha hecho más que Vencedor."
+            },
+            {
+              "acordes": "Bm                    G                    Em",
+              "letra": "Mayor es el que está en mi que el que está en el mundo"
+            },
+            {
+              "acordes": "",
+              "letra": "               F#m         Bm(arreglo)"
+            },
+            {
+              "acordes": "",
+              "letra": "me ha hecho más que vencedor."
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "A         D         Bm      Em",
+              "letra": "Todo lo puedo en cristo que me fortalece!!"
+            },
+            {
+              "acordes": "G         A         Bm",
+              "letra": "Más que vencedor."
+            },
+            {
+              "acordes": "Am   A         D         Bm      Em",
+              "letra": "Si Dios esta conmigo quien contra mi!!"
+            },
+            {
+              "acordes": "G         A         Bm",
+              "letra": "Más que vencedor."
+            },
+            {
+              "acordes": "A         D         Bm      Em",
+              "letra": "Soy más que vencedor en cristo!!"
+            },
+            {
+              "acordes": "Gm   A    Gm        A    Bm",
+              "letra": "Más que vencedor."
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "Bm                    G                    Em",
+              "letra": "Celebra victorioso el Triunfo de Cristo"
+            },
+            {
+              "acordes": "",
+              "letra": "               F#m         Bm(arreglo)"
+            },
+            {
+              "acordes": "",
+              "letra": "te ha hecho más que Vencedor."
+            },
+            {
+              "acordes": "Bm                    G                    Em",
+              "letra": "Mayor es el que está en mi que el que está en el mundo"
+            },
+            {
+              "acordes": "               F#m         Bm",
+              "letra": "me ha hecho más que vencedor."
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "A         D         Bm      Em",
+              "letra": "Todo lo puedo en cristo que me fortalece!!"
+            },
+            {
+              "acordes": "G         A         Bm",
+              "letra": "Más que vencedor."
+            },
+            {
+              "acordes": "Am   A         D         Bm      Em",
+              "letra": "Si Dios esta conmigo quien contra mi!!"
+            },
+            {
+              "acordes": "G         A         Bm",
+              "letra": "Más que vencedor."
+            },
+            {
+              "acordes": "A         D         Bm      Em",
+              "letra": "Soy más que vencedor en cristo!!"
+            },
+            {
+              "acordes": "Gm   A    Gm        A    Bm",
+              "letra": "Más que vencedor."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "CRISTO VIVE",
+      "artista": "",
+      "tono": "Em",
+      "categoria": "Alabanza",
+      "seccion": "General",
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "Em - C x4",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "Em7                   C",
+              "letra": "Cristo Vive, Cristo Vive, Cristo Vive"
+            },
+            {
+              "acordes": "Em7                   C",
+              "letra": "Cristo Vive, Cristo Vive, Cristo Vive"
+            },
+            {
+              "acordes": "Em7                   C",
+              "letra": "Cristo Vive, Cristo Vive, Cristo Vive"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "Em                    C",
+              "letra": "//Mi Salvador no está muerto, Él no está en una tumba"
+            },
+            {
+              "acordes": "Em/A                  Fmaj7    Bsus  B7",
+              "letra": "Mi Salvador no está muerto pues Él resucitó//"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "Em7                   C",
+              "letra": "Cristo Vive, Cristo Vive, Cristo Vive"
+            },
+            {
+              "acordes": "Em7                   C",
+              "letra": "Cristo Vive, Cristo Vive, Cristo Vive"
+            },
+            {
+              "acordes": "Em7                   C",
+              "letra": "Cristo Vive, Cristo Vive, Cristo Vive"
+            },
+            {
+              "acordes": "Em7                   C",
+              "letra": "Cristo Vive, Cristo Vive, Cristo Vive"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "Em                    C",
+              "letra": "//Mi Salvador no está muerto, Él no está en una tumba"
+            },
+            {
+              "acordes": "Em/A                  Fmaj7    Bsus  B7",
+              "letra": "Mi Salvador no está muerto pues Él resucitó//"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "Em7                   C",
+              "letra": "Cristo Vive, Cristo Vive, Cristo Vive"
+            },
+            {
+              "acordes": "Em7                   C",
+              "letra": "Cristo Vive, Cristo Vive, Cristo Vive"
+            },
+            {
+              "acordes": "Em7                   C",
+              "letra": "Cristo Vive, Cristo Vive, Cristo Vive"
+            },
+            {
+              "acordes": "Em7                   C",
+              "letra": "Cristo Vive, Cristo Vive, Cristo Vive"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "LA BIENVENIDA MEDLEY",
+      "artista": "",
+      "tono": "G",
+      "categoria": "Alabanza",
+      "seccion": "General",
+      "contenido": [
+        {
+          "tipo": "coro",
+          "titulo": "Coro 1",
+          "lineas": [
+            {
+              "acordes": "                                   G C/G C/G   G           Ab°  Am  D",
+              "letra": "Bienvenido a esta iglesia que te ama, a esta iglesia de Cristo Jesús,"
+            },
+            {
+              "acordes": "            G    F     C Cm              G        D       G    C-G/B-Am-G",
+              "letra": "Si tu corazón es como el mío, dame la mano y mi hermano serás"
+            },
+            {
+              "acordes": "           C    D      Bm Em           Am       D       G  F",
+              "letra": "Dame la mano, dame la mano, dame la mano y mi hermano serás"
+            },
+            {
+              "acordes": "           C    D      Bm Em           Am       D       G  C-G/B-Am-G",
+              "letra": "Dame la mano, dame la mano, dame la mano y mi hermano serás."
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro 2",
+          "lineas": [
+            {
+              "acordes": "                       G C/G C/G   G            D",
+              "letra": "Ama si quieres ser feliz,       ama y todo cambiará,"
+            },
+            {
+              "acordes": "G    F           C Cm          G    D    G C-G/B-Am-G",
+              "letra": "Ama y así comprenderás la alegría de amar."
+            },
+            {
+              "acordes": "",
+              "letra": "Solo notas (G-A-B) C            G            D"
+            },
+            {
+              "acordes": "",
+              "letra": "Dios te ama,       yo te amo y así debemos vivir"
+            },
+            {
+              "acordes": "G    F           C Cm      G    D       G C-G/B-Am-G",
+              "letra": "Dios te ama, yo te amo sigamos siempre así"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro 3",
+          "lineas": [
+            {
+              "acordes": "                 G G G          D D D             D D D       G",
+              "letra": "//Cristo está aquí, tú no lo ves, Cristo está aquí, tú no lo ves"
+            },
+            {
+              "acordes": "          G   Dm7/G    C Cm7/Eb           G   D   C-G/B-Am-G",
+              "letra": "Viene por ti, viene por mí, viene por todos el Señor//"
+            },
+            {
+              "acordes": "          G  C/G C/G  G            Ab° Am7 D         G",
+              "letra": "Y si no fuera por el Señor, que fuera yo-o que fuera yo oh-oh"
+            },
+            {
+              "acordes": "          G           G          Ab° Am7 D                G",
+              "letra": "Y si no fuera por el Señor que fuera yo,   él es mi Salvador"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro 4",
+          "lineas": [
+            {
+              "acordes": "          G    F/G  C               D          Bm7",
+              "letra": "Todos nosotros por la fe nos acercamos Cristo a ti,"
+            },
+            {
+              "acordes": "            Em7  E/G# Am7           D7           G",
+              "letra": "Aunque su rostro no se ve, sabemos que tú estás aquí"
+            },
+            {
+              "acordes": "             G  G  F/A B° Cmaj7        D       Bm7",
+              "letra": "Todos nosotros por  la  fe nos acercamos Cristo a ti,"
+            },
+            {
+              "acordes": "              Em7  E/G# Am7         D7           G",
+              "letra": "Aunque tu rostro no se ve, sabemos que tú estás aquí."
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro 5",
+          "lineas": [
+            {
+              "acordes": "                G          D                    D          G",
+              "letra": "//Jesús está aquí pide lo quieras, Jesús está aquí pide lo quieras,"
+            },
+            {
+              "acordes": "               Dm7/G        C Cm7/Eb         G   D           G",
+              "letra": "Él tiene poder, él te lo dará, Jesús está aquí pide lo quieras//"
+            },
+            {
+              "acordes": "",
+              "letra": "Transición: D - C - B7"
+            },
+            {
+              "acordes": " Em                                               B",
+              "letra": "//No puede estar triste un corazón que alaba a Cristo,"
+            },
+            {
+              "acordes": "",
+              "letra": "                                               Em     2da vez E/G#"
+            },
+            {
+              "acordes": "",
+              "letra": "No puede estar triste un corazón que alaba a Dios//"
+            },
+            {
+              "acordes": "                 Am7        D          G",
+              "letra": "//Yo canto con gozo, yo alabo a mi Cristo"
+            },
+            {
+              "acordes": "C                   Am      B7                Em",
+              "letra": "No pueda estar triste un corazón que alaba a Dios//"
+            },
+            {
+              "acordes": "              C           B                               Em",
+              "letra": "Y que hizo Dios hizo maravillas, Y que hizo Dios hizo maravillas"
+            },
+            {
+              "acordes": "   E/G#                     Am7                Em    B7    Em",
+              "letra": "Y que hizo Dios hizo maravillas, Cantad a Jehová, cantad a Jehová"
+            },
+            {
+              "acordes": "Em                                      B",
+              "letra": "//Para ti oh Jehová, para ti quiero cantar"
+            },
+            {
+              "acordes": "",
+              "letra": "                                          Em  2da vez E/G#"
+            },
+            {
+              "acordes": "",
+              "letra": "Siento gozo en mi alma cuando canto para ti//"
+            },
+            {
+              "acordes": "             Am7   D  G           C     Am    B",
+              "letra": "//Por tu grande amor y tu fidelidad, mi alma se goza"
+            },
+            {
+              "acordes": "                  Em",
+              "letra": "Cuando canto para ti//"
+            },
+            {
+              "acordes": "Em                       C       B    Em                  B    Bb7",
+              "letra": "Grandes y maravillosas son tus obras, Señor, Dios todopoderoso"
+            },
+            {
+              "acordes": "C                               D",
+              "letra": "Justos y verdaderos son tus caminos"
+            },
+            {
+              "acordes": "                C                   B               Em",
+              "letra": "Rey de los santos, Rey de los santos, Rey de los santos"
+            },
+            {
+              "acordes": "",
+              "letra": "MISMA SECUENCIA DE ACORDES"
+            },
+            {
+              "acordes": "",
+              "letra": "¿Quién no te temerá, Señor?, Y glorificará tu nombre"
+            },
+            {
+              "acordes": "",
+              "letra": "Pues solo tú eres santo Y por lo cual todas las naciones"
+            },
+            {
+              "acordes": "",
+              "letra": "Vendrán y te adoraran, Y te adoraran"
+            },
+            {
+              "acordes": "          B               Em",
+              "letra": "Aleluya, amén, Aleluya, amén"
+            },
+            {
+              "acordes": "          B               Em",
+              "letra": "Aleluya, amén, Aleluya, amén"
+            },
+            {
+              "acordes": "",
+              "letra": "Temed a Dios y dadle gloria, Porque su juicio ha llegado"
+            },
+            {
+              "acordes": "",
+              "letra": "Y adorad a aquel que hizo, Los cielos y la tierra"
+            },
+            {
+              "acordes": "",
+              "letra": "Y el mar, Y las fuentes de las aguas"
+            },
+            {
+              "acordes": "              B            Em",
+              "letra": "//Aleluya, amén, Aleluya, amén"
+            },
+            {
+              "acordes": "              B              Em",
+              "letra": "Aleluya, amén, Aleluya, amén//"
+            }
+          ]
+        },
+        {
+          "tipo": "final",
+          "titulo": "Final",
+          "lineas": [
+            {
+              "acordes": "              B             C  D  C  D  B  Em",
+              "letra": "Aleluya, amén, Aleluya, amén"
             }
           ]
         }
