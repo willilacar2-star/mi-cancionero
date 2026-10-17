@@ -496,7 +496,7 @@
       if (!Array.isArray(arr)) throw new Error('formato');
       var lista = arr.map(normSong).filter(Boolean);
       if (!lista.length) throw new Error('vacío');
-      return { ver: (d && d.version) || 1, lista: lista };
+      return { ver: (d && d.version) || 1, lista: lista, listas: (d && Array.isArray(d.listas)) ? d.listas : [] };
     });
   }
 
@@ -514,12 +514,48 @@
     return { add: add, upd: upd };
   }
 
+  // Mezcla listas que vienen del repositorio o de un archivo.
+  // Cada canción se busca por título + artista, porque los id cambian de un teléfono a otro.
+  // reemplazar = true: una lista con el mismo nombre toma el contenido de la que llega.
+  // Las listas que solo existen en este teléfono no se tocan.
+  function fusionarListas(remotas, reemplazar) {
+    var add = 0, upd = 0, faltan = 0, porClave = {};
+    songs.forEach(function (s) { if (!porClave[songKey(s)]) porClave[songKey(s)] = s.id; });
+    (remotas || []).forEach(function (R) {
+      if (!R || typeof R.nombre !== 'string' || !R.nombre.trim()) return;
+      var items = [];
+      (Array.isArray(R.canciones) ? R.canciones : []).forEach(function (c) {
+        var id = c && porClave[norm(c.titulo) + '|' + norm(c.artista)];
+        if (id) items.push(id); else faltan++;
+      });
+      var ex = null;
+      for (var i = 0; i < listas.length; i++) if (norm(listas[i].nombre) === norm(R.nombre)) { ex = listas[i]; break; }
+      if (ex) {
+        if (reemplazar && JSON.stringify(ex.items) !== JSON.stringify(items)) { ex.items = items; upd++; }
+      } else {
+        var id = listas.reduce(function (m, l) { return Math.max(m, l.id); }, 0) + 1;
+        listas.push({ id: id, nombre: R.nombre.trim(), items: items });
+        add++;
+      }
+    });
+    if (add || upd) saveListas();
+    return { add: add, upd: upd, faltan: faltan };
+  }
+  function textoListas(y) {
+    var p = [];
+    if (y.add) p.push(y.add + (y.add === 1 ? ' lista nueva' : ' listas nuevas'));
+    if (y.upd) p.push(y.upd + (y.upd === 1 ? ' lista actualizada' : ' listas actualizadas'));
+    return p.length ? ' · ' + p.join(', ') : '';
+  }
+
   $('mAct').addEventListener('click', function () {
     descargarRepo().then(function (r) {
       if (!confirm('El repositorio tiene ' + r.lista.length + ' canciones. Las que ya tienes con el mismo título y artista se reemplazan por la versión del repositorio (se pierden tus ediciones locales de esas). ¿Continuar?')) return;
       var x = fusionar(r.lista, true);
-      store.set('cc_ver', r.ver); saveSongs(); renderList();
-      toast(x.add + ' nuevas, ' + x.upd + ' actualizadas');
+      saveSongs();
+      var y = fusionarListas(r.listas, true);
+      store.set('cc_ver', r.ver); renderList();
+      toast(x.add + ' nuevas, ' + x.upd + ' actualizadas' + textoListas(y));
     }).catch(function () {
       toast('No se pudo leer canciones.json. Revisa la conexión y que la página esté publicada.');
     });
@@ -533,14 +569,17 @@
     rd.onload = function () {
       try {
         var data = JSON.parse(rd.result);
+        var lsImp = (data && !Array.isArray(data) && Array.isArray(data.listas)) ? data.listas : [];
         if (data && !Array.isArray(data) && Array.isArray(data.canciones)) data = data.canciones;
         if (!Array.isArray(data)) throw new Error('formato');
         var nuevas = data.map(normSong).filter(Boolean);
         if (!nuevas.length) throw new Error('vacío');
         if (!confirm('Se importarán ' + nuevas.length + ' canciones. Si ya tienes una con el mismo título y artista, se reemplaza. ¿Continuar?')) return;
         var x = fusionar(nuevas, true), add = x.add, upd = x.upd;
-        saveSongs(); renderList();
-        toast(add + ' nuevas, ' + upd + ' actualizadas');
+        saveSongs();
+        var y = fusionarListas(lsImp, true);
+        renderList();
+        toast(add + ' nuevas, ' + upd + ' actualizadas' + textoListas(y));
       } catch (err) {
         toast('El archivo no es un JSON de canciones válido.');
       }
@@ -552,7 +591,13 @@
   // El mismo formato que canciones.json del repositorio (sin los id internos).
   function jsonCanciones(version) {
     var limpio = songs.map(function (x) { var c = Object.assign({}, x); delete c.id; return c; });
-    return JSON.stringify({ version: version, canciones: limpio }, null, 2);
+    var ls = listas.map(function (L) {
+      return {
+        nombre: L.nombre,
+        canciones: L.items.map(findSong).filter(Boolean).map(function (s) { return { titulo: s.titulo, artista: s.artista || '' }; })
+      };
+    });
+    return JSON.stringify({ version: version, canciones: limpio, listas: ls }, null, 2);
   }
 
   $('mExp').addEventListener('click', function () {
@@ -688,8 +733,9 @@
     var claves = listas.map(function (L) {
       return L.items.map(function (id) { var s = findSong(id); return s ? songKey(s) : ''; });
     });
+    var lsRepo = [];
     descargarRepo().then(function (r) {
-      songs = []; fusionar(r.lista, false); store.set('cc_ver', r.ver);
+      songs = []; fusionar(r.lista, false); store.set('cc_ver', r.ver); lsRepo = r.listas;
     }).catch(function () {
       songs = iniciales();
     }).then(function () {
@@ -698,7 +744,9 @@
       listas.forEach(function (L, i) {
         L.items = claves[i].map(function (k) { return porClave[k]; }).filter(Boolean);
       });
-      saveSongs(); saveListas(); renderList(); toast('Lista restaurada');
+      saveSongs(); saveListas();
+      fusionarListas(lsRepo, true);
+      renderList(); toast('Lista restaurada');
     });
   });
 
@@ -1152,6 +1200,7 @@
       // Primera vez: se baja canciones.json; si no hay conexión, se usa la lista incluida en la app.
       descargarRepo().then(function (r) {
         fusionar(r.lista, false); store.set('cc_ver', r.ver);
+        fusionarListas(r.listas, false);
       }).catch(function () {
         songs = iniciales();
       }).then(function () { saveSongs(); route(); });
@@ -1161,8 +1210,13 @@
       descargarRepo().then(function (r) {
         if (r.ver > store.get('cc_ver', 0)) {
           var x = fusionar(r.lista, false);
+          if (x.add) saveSongs();
+          var y = fusionarListas(r.listas, false);
           store.set('cc_ver', r.ver);
-          if (x.add) { saveSongs(); renderList(); toast(x.add + ' canciones nuevas del repositorio'); }
+          if (x.add || y.add) {
+            renderList();
+            toast((x.add ? x.add + ' canciones nuevas del repositorio' : 'Del repositorio') + textoListas(y));
+          }
         }
       }).catch(function () {});
     }
