@@ -1,5 +1,5 @@
 {
-  "version": 11,
+  "version": 12,
   "canciones": [
     {
       "titulo": "Bienvenido Espíritu Santo",
@@ -543,48 +543,158 @@
       "titulo": "Remolineando",
       "artista": "",
       "tono": "C#m",
-      "categoria": "Alabanza",
-      "seccion": "General",
+      "categoria": "Medley",
+      "seccion": "Medley Jubilo",
       "contenido": [
         {
-          "tipo": "verso",
-          "titulo": "Verso 1",
+          "tipo": "intro",
+          "titulo": "Intro",
           "lineas": [
             {
-              "acordes": "C#m                                             B       C#m",
-              "letra": "//Hay muchas formas de alabar tu nombre, y de exaltarte Jehová"
+              "acordes": "C#m - B - C#m - B",
+              "letra": ""
             },
             {
-              "acordes": "              A   B       C#m             B             C#m",
-              "letra": "hay muchas formas de magnificarte, pero ahora lo haré así.//"
+              "acordes": "G#m - C#m",
+              "letra": ""
+            },
+            {
+              "acordes": "A - G#m",
+              "letra": ""
+            },
+            {
+              "acordes": "C#m - F#m - A - G#m",
+              "letra": ""
+            },
+            {
+              "acordes": "F#m - G#m - A - B",
+              "letra": ""
             }
           ]
         },
         {
           "tipo": "verso",
-          "titulo": "Verso 2",
+          "titulo": "Verso",
           "lineas": [
             {
-              "acordes": "C#m                                 B               C#m",
-              "letra": "Saco mi vida del anonimato, me dio corona y vestido real"
+              "acordes": "          C#m",
+              "letra": "//hay muchas formas de alabar tu nombre"
             },
             {
-              "acordes": " B       A           B        C#m",
-              "letra": "así es Jehová que exalta al pequeño"
+              "acordes": "     B                C#m",
+              "letra": "y de exaltarte oh Jehová"
             },
             {
-              "acordes": "             G#  A     B        C#m",
-              "letra": "por causa de él, yo me haré más vil"
+              "acordes": "          A        B          C#m",
+              "letra": "hay muchas formas de magnificarte"
+            },
+            {
+              "acordes": "     A        B        C#m-B",
+              "letra": "pero ahora lo are así//"
+            },
+            {
+              "acordes": "       C#m",
+              "letra": "saco mi vida del anonimato, me dio corona"
+            },
+            {
+              "acordes": "     B          C#m      A          B          C#m",
+              "letra": "y vestido real, así es Jehová que exalta al pequeño"
+            },
+            {
+              "acordes": "          B        G#",
+              "letra": "///por causa de el yo me hare más vil///"
+            },
+            {
+              "acordes": "",
+              "letra": "[Corte] F#m - G#m - A - B"
+            },
+            {
+              "acordes": "        C#m                          B           C#m",
+              "letra": "///lala lalalalalaila lalalalalaila lalalala///"
             }
           ]
         },
         {
-          "tipo": "puente",
-          "titulo": "Puente",
+          "tipo": "verso",
+          "titulo": "Verso",
           "lineas": [
             {
-              "acordes": "   C#m                             B          C#m",
-              "letra": "//LARA, LARA LARA LARA, LARA LARA LARA, LARA LALA//"
+              "acordes": "          C#m",
+              "letra": "//hay muchas formas de alabar tu nombre"
+            },
+            {
+              "acordes": "     B                C#m",
+              "letra": "y de exaltarte oh Jehová"
+            },
+            {
+              "acordes": "          A        B          C#m",
+              "letra": "hay muchas formas de magnificarte"
+            },
+            {
+              "acordes": "     A        B        C#m-B",
+              "letra": "pero ahora lo are así//"
+            },
+            {
+              "acordes": "       C#m",
+              "letra": "saco mi vida del anonimato, me dio corona"
+            },
+            {
+              "acordes": "     B          C#m      A          B          C#m",
+              "letra": "y vestido real, así es Jehová que exalta al pequeño"
+            },
+            {
+              "acordes": "          B        G#",
+              "letra": "///por causa de el yo me hare más vil///"
+            },
+            {
+              "acordes": "",
+              "letra": "[Corte] F#m - G#m - A - B"
+            },
+            {
+              "acordes": "        C#m                          B           C#m",
+              "letra": "///lala lalalalalaila lalalalalaila lalalala///"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "          C#m",
+              "letra": "//hay muchas formas de alabar tu nombre"
+            },
+            {
+              "acordes": "     B                C#m",
+              "letra": "y de exaltarte oh Jehová"
+            },
+            {
+              "acordes": "          A        B          C#m",
+              "letra": "hay muchas formas de magnificarte"
+            },
+            {
+              "acordes": "     A        B        C#m-B",
+              "letra": "pero ahora lo are así//"
+            },
+            {
+              "acordes": "       C#m",
+              "letra": "saco mi vida del anonimato, me dio corona"
+            },
+            {
+              "acordes": "     B          C#m      A          B          C#m",
+              "letra": "y vestido real, así es Jehová que exalta al pequeño"
+            },
+            {
+              "acordes": "          B        G#",
+              "letra": "///por causa de el yo me hare más vil///"
+            },
+            {
+              "acordes": "",
+              "letra": "[Corte] F#m - G#m - A - B"
+            },
+            {
+              "acordes": "        C#m                          B           C#m",
+              "letra": "///lala lalalalalaila lalalalalaila lalalala///"
             }
           ]
         },
@@ -593,16 +703,48 @@
           "titulo": "Coro",
           "lineas": [
             {
-              "acordes": "     C#m      A   B   C#m       B         C#m",
-              "letra": "Remolineando, remolineando, celebraré a Jehová"
+              "acordes": "          C#m                          B           C#m",
+              "letra": "remolineando, remolineando, celebrare a Jehová"
             },
             {
-              "acordes": "     C#m      A     B    C#m",
+              "acordes": "     C#m",
               "letra": "remolineando, remolineando"
             },
             {
-              "acordes": "             G#      A    B    C#m",
-              "letra": "Me haré más vil por causa de Jehová"
+              "acordes": "     B          G#          C#m",
+              "letra": "me hare más vil por causa de Jehová"
+            },
+            {
+              "acordes": "          C#m                          B           C#m",
+              "letra": "remolineando, remolineando, celebrare a Jehová"
+            },
+            {
+              "acordes": "     C#m",
+              "letra": "remolineando, remolineando"
+            },
+            {
+              "acordes": "          B          G#          C#m",
+              "letra": "///me hare más vil por causa de Jehová///"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Corte",
+          "lineas": [
+            {
+              "acordes": "F#m - G#m - A - B",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "C#m - B",
+              "letra": ""
             }
           ]
         }
@@ -3424,23 +3566,19 @@
       ]
     },
     {
-      "titulo": "Cristo Vive",
+      "titulo": "CRISTO VIVE",
       "artista": "",
       "tono": "Em",
-      "categoria": "Medley",
-      "seccion": "Medley Juan Carlos Alvarado",
+      "categoria": "Alabanza",
+      "seccion": "General",
       "contenido": [
         {
-          "tipo": "verso",
-          "titulo": "Verso",
+          "tipo": "intro",
+          "titulo": "Intro",
           "lineas": [
             {
-              "acordes": "Em                      Cmaj7",
-              "letra": "Mi Salvador no está muerto, Él no está en una tumba"
-            },
-            {
-              "acordes": "Em/A                         Fmaj7    Bsus  B7",
-              "letra": "Mi Salvador no está muerto pues Él resucitó (2x)"
+              "acordes": "Em - C x4",
+              "letra": ""
             }
           ]
         },
@@ -3449,11 +3587,87 @@
           "titulo": "Coro",
           "lineas": [
             {
-              "acordes": "Em7                        Cmaj7",
+              "acordes": "Em7                   C",
               "letra": "Cristo Vive, Cristo Vive, Cristo Vive"
             },
             {
-              "acordes": "Em7                        Cmaj7",
+              "acordes": "Em7                   C",
+              "letra": "Cristo Vive, Cristo Vive, Cristo Vive"
+            },
+            {
+              "acordes": "Em7                   C",
+              "letra": "Cristo Vive, Cristo Vive, Cristo Vive"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "Em                    C",
+              "letra": "//Mi Salvador no está muerto, Él no está en una tumba"
+            },
+            {
+              "acordes": "Em/A                  Fmaj7    Bsus  B7",
+              "letra": "Mi Salvador no está muerto pues Él resucitó//"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "Em7                   C",
+              "letra": "Cristo Vive, Cristo Vive, Cristo Vive"
+            },
+            {
+              "acordes": "Em7                   C",
+              "letra": "Cristo Vive, Cristo Vive, Cristo Vive"
+            },
+            {
+              "acordes": "Em7                   C",
+              "letra": "Cristo Vive, Cristo Vive, Cristo Vive"
+            },
+            {
+              "acordes": "Em7                   C",
+              "letra": "Cristo Vive, Cristo Vive, Cristo Vive"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "Em                    C",
+              "letra": "//Mi Salvador no está muerto, Él no está en una tumba"
+            },
+            {
+              "acordes": "Em/A                  Fmaj7    Bsus  B7",
+              "letra": "Mi Salvador no está muerto pues Él resucitó//"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "Em7                   C",
+              "letra": "Cristo Vive, Cristo Vive, Cristo Vive"
+            },
+            {
+              "acordes": "Em7                   C",
+              "letra": "Cristo Vive, Cristo Vive, Cristo Vive"
+            },
+            {
+              "acordes": "Em7                   C",
+              "letra": "Cristo Vive, Cristo Vive, Cristo Vive"
+            },
+            {
+              "acordes": "Em7                   C",
               "letra": "Cristo Vive, Cristo Vive, Cristo Vive"
             }
           ]
@@ -6198,6 +6412,375 @@
             {
               "acordes": "          E",
               "letra": "en su presencia//"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Cuan gloriosa será la mañana",
+      "artista": "",
+      "tono": "D",
+      "categoria": "Himnos",
+      "seccion": "General",
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "Estrofa I",
+          "lineas": [
+            {
+              "acordes": "         D      G        D    D7",
+              "letra": "Cuán gloriosa será la mañana"
+            },
+            {
+              "acordes": "        G      A            D   D7",
+              "letra": "cuando venga Jesús el Salvador:"
+            },
+            {
+              "acordes": "        G      A            F#m  Bm",
+              "letra": "las naciones unidas como herma-a-nas,"
+            },
+            {
+              "acordes": "      Em      A          D   G - D",
+              "letra": "bienvenida daremos al Señor."
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "       A",
+              "letra": "No habrá necesidad"
+            },
+            {
+              "acordes": "       D",
+              "letra": "de la luz ni el resplandor,"
+            },
+            {
+              "acordes": "      A",
+              "letra": "ni el sol dará su luz,"
+            },
+            {
+              "acordes": "       D",
+              "letra": "ni tampoco su calor."
+            },
+            {
+              "acordes": "      A",
+              "letra": "Allí llanto no habrá,"
+            },
+            {
+              "acordes": "        D            D7",
+              "letra": "ni tristezas, ni dolor;"
+            },
+            {
+              "acordes": "          G        A              F#m Bm",
+              "letra": "porque entonces Jesús el Rey de glo-o-ria"
+            },
+            {
+              "acordes": "       Em     A              D",
+              "letra": "para siempre será el Consolador."
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Estrofa 2",
+          "lineas": [
+            {
+              "acordes": "         D      G        D    D7",
+              "letra": "Esperamos la mañana gloriosa"
+            },
+            {
+              "acordes": "        G      A            D   D7",
+              "letra": "para dar la bienvenida al Dios de amor."
+            },
+            {
+              "acordes": "        G      A            F#m  Bm",
+              "letra": "Donde todo será color de ro-o-sa"
+            },
+            {
+              "acordes": "      Em      A          D   G - D",
+              "letra": "en la santa presencia del Señor."
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Estrofa 3",
+          "lineas": [
+            {
+              "acordes": "         D      G        D    D7",
+              "letra": "El cristiano fiel y verdadero,"
+            },
+            {
+              "acordes": "        G      A            D   D7",
+              "letra": "y también el obrero de valor;"
+            },
+            {
+              "acordes": "        G      A            F#m  Bm",
+              "letra": "y la Iglesia, esposa del Corde-e-ro"
+            },
+            {
+              "acordes": "      Em      A          D   G - D",
+              "letra": "estarán en los brazos del Señor."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "En La Nueva Jerusalén",
+      "artista": "",
+      "tono": "A",
+      "categoria": "Himnos",
+      "seccion": "General",
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "Estrofa 1",
+          "lineas": [
+            {
+              "acordes": "A",
+              "letra": "Cuando cesen los conflictos"
+            },
+            {
+              "acordes": "",
+              "letra": "De la vida terrenal,"
+            },
+            {
+              "acordes": "                              E",
+              "letra": "Y dejemos este mundo de aflicción,"
+            },
+            {
+              "acordes": "    A",
+              "letra": "Entraremos por las puertas"
+            },
+            {
+              "acordes": "      D          A",
+              "letra": "De la patria celestial"
+            },
+            {
+              "acordes": "            E     A",
+              "letra": "En la nueva Jerusalén."
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "D",
+              "letra": "Cantaremos con los Santos"
+            },
+            {
+              "acordes": "       A",
+              "letra": "La canción de redención,"
+            },
+            {
+              "acordes": "   E                   A",
+              "letra": "En Jerusalén, en Jerusalén;"
+            },
+            {
+              "acordes": "    D",
+              "letra": "Con acento de alegría"
+            },
+            {
+              "acordes": "    A",
+              "letra": "Alabando al salvador,"
+            },
+            {
+              "acordes": "       E         A",
+              "letra": "En la gran Jerusalén."
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Estrofa 2",
+          "lineas": [
+            {
+              "acordes": "A",
+              "letra": "Aunque el mar embravecido"
+            },
+            {
+              "acordes": "",
+              "letra": "Y las olas del turbión"
+            },
+            {
+              "acordes": "                                   E",
+              "letra": "Siempre agiten nuestra pobre embarcación,"
+            },
+            {
+              "acordes": "          A",
+              "letra": "Fiando en Cristo, llegaremos"
+            },
+            {
+              "acordes": "     D          A",
+              "letra": "A la patria celestial"
+            },
+            {
+              "acordes": "            E     A",
+              "letra": "de la nueva Jerusalén."
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Estrofa 3",
+          "lineas": [
+            {
+              "acordes": "A",
+              "letra": "Consagremos nuestras vidas"
+            },
+            {
+              "acordes": "",
+              "letra": "Al servicio del Señor,"
+            },
+            {
+              "acordes": "                                E",
+              "letra": "Siempre hablemos de su grande salvación;"
+            },
+            {
+              "acordes": "    A",
+              "letra": "Si en su viña trabajamos"
+            },
+            {
+              "acordes": "      D          A",
+              "letra": "Nos espera galardón"
+            },
+            {
+              "acordes": "            E     A",
+              "letra": "En la nueva Jerusalén."
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Estrofa 4",
+          "lineas": [
+            {
+              "acordes": "A",
+              "letra": "En aquel país hermoso,"
+            },
+            {
+              "acordes": "",
+              "letra": "Do jamás se dice “adiós”"
+            },
+            {
+              "acordes": "                                 E",
+              "letra": "Gozaremos del descanso sin afán;"
+            },
+            {
+              "acordes": "    A",
+              "letra": "Cara a cara allá veremos"
+            },
+            {
+              "acordes": "      D          A",
+              "letra": "A Jesús que nos salvó:"
+            },
+            {
+              "acordes": "            E     A",
+              "letra": "En la nueva Jerusalén."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Oye Jehova",
+      "artista": "",
+      "tono": "D",
+      "categoria": "Himnos",
+      "seccion": "General",
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "Verso 1",
+          "lineas": [
+            {
+              "acordes": "D                            A",
+              "letra": "Oye Jehová de mi alma este cantar"
+            },
+            {
+              "acordes": "                             D",
+              "letra": "Quiero Señor tu nombre alabar"
+            },
+            {
+              "acordes": "                             G",
+              "letra": "Y proclamar tu reino celestial"
+            },
+            {
+              "acordes": "              D        A            D",
+              "letra": "Y así cantar alegre un cántico triunfal"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "                                  A",
+              "letra": "Ahora vivo alegre cantándole al Señor"
+            },
+            {
+              "acordes": "                                   D",
+              "letra": "Ahora vivo alegre sirviéndole al Señor"
+            },
+            {
+              "acordes": "                                 G",
+              "letra": "Mi vida peregrina muy pronto pasará"
+            },
+            {
+              "acordes": "                 D          A         D",
+              "letra": "Y alegre con los ángeles mi alma cantará"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso 2",
+          "lineas": [
+            {
+              "acordes": "                           A",
+              "letra": "Oye Jehová mi alma te alabará"
+            },
+            {
+              "acordes": "                                D",
+              "letra": "Quiero ensalzar tu nombre sin igual"
+            },
+            {
+              "acordes": "                         G",
+              "letra": "Tu gran poder anhelo anunciar"
+            },
+            {
+              "acordes": "              D        A            D",
+              "letra": "Y así cantar alegre un cántico triunfal"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso 3",
+          "lineas": [
+            {
+              "acordes": "                    A",
+              "letra": "Oye Señor a ti daré loor"
+            },
+            {
+              "acordes": "                               D",
+              "letra": "canción de amor a ti quiero elevar"
+            },
+            {
+              "acordes": "                           G",
+              "letra": "Y contemplar tu trono celestial"
+            },
+            {
+              "acordes": "              D        A            D",
+              "letra": "Y así cantar alegre un coro celestial"
             }
           ]
         }
