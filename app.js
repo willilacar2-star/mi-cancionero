@@ -174,7 +174,7 @@
     var arr = songs.filter(function (s) {
       if (f === 'favoritos' && favs.indexOf(s.id) < 0) return false;
       if (f === 'medleys' && !isMedley(s)) return false;
-      if ((f === 'Alabanza' || f === 'Adoración') && s.categoria !== f) return false;
+      if (f !== 'todas' && f !== 'favoritos' && f !== 'medleys' && f !== 'listas' && s.categoria !== f) return false;
       if (q) {
         var hay = norm([s.titulo, s.artista, s.tono, s.categoria, s.seccion].concat((s.contenido || []).map(function (c) { return c.titulo; })).join(' '));
         return q.split(/\s+/).every(function (w) { return hay.indexOf(w) > -1; });
@@ -1052,7 +1052,7 @@
 
   /* ---------- Editor ---------- */
   function fillCats(sel) {
-    var base = ['Alabanza', 'Adoración', 'Medley', 'Otra'];
+    var base = ['Alabanza', 'Adoración', 'Himnos', 'Medley', 'Otra'];
     if (sel && base.indexOf(sel) < 0) base.push(sel);
     $('eCat').innerHTML = base.map(function (c) { return '<option' + (c === sel ? ' selected' : '') + '>' + esc(c) + '</option>'; }).join('');
   }
