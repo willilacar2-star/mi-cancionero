@@ -1,5 +1,5 @@
 {
-  "version": 13,
+  "version": 14,
   "canciones": [
     {
       "titulo": "Bienvenido Espíritu Santo",
@@ -6463,6 +6463,37 @@
               "letra": "Y así cantar alegre un coro celestial"
             }
           ]
+        }
+      ]
+    }
+  ],
+  "listas": [
+    {
+      "nombre": "Listado culto 18 octubre 10 am",
+      "canciones": [
+        {
+          "titulo": "Levantate",
+          "artista": "Miel San Marcos"
+        },
+        {
+          "titulo": "Vino celestial",
+          "artista": "Miel San Marcos"
+        },
+        {
+          "titulo": "Me gozaré",
+          "artista": ""
+        },
+        {
+          "titulo": "Grande y fuerte",
+          "artista": ""
+        },
+        {
+          "titulo": "Viene Ya",
+          "artista": "Miel San Marcos"
+        },
+        {
+          "titulo": "Abba",
+          "artista": ""
         }
       ]
     }
