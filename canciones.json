@@ -1,5 +1,5 @@
 {
-  "version": 10,
+  "version": 11,
   "canciones": [
     {
       "titulo": "Bienvenido Espíritu Santo",
@@ -5949,6 +5949,255 @@
             {
               "acordes": "              B             C  D  C  D  B  Em",
               "letra": "Aleluya, amén, Aleluya, amén"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Levantate",
+      "artista": "Miel San Marcos",
+      "tono": "Am",
+      "categoria": "Medley",
+      "seccion": "Medley Levantate",
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "Am - G - F",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "F      C       G        Am",
+              "letra": "Levántate, levántate Señor"
+            },
+            {
+              "acordes": "F             C    E             Am",
+              "letra": "que tus enemigos huyan delante de ti"
+            },
+            {
+              "acordes": "Am-G-F      C       G        Am",
+              "letra": "Levántate, levántate Señor"
+            },
+            {
+              "acordes": "F             C    E             Am",
+              "letra": "que tus enemigos huyan delante de ti."
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "F                   C",
+              "letra": "Mas los justos se alegrarán"
+            },
+            {
+              "acordes": "G                    Am",
+              "letra": "cantarán con regocijo"
+            },
+            {
+              "acordes": "F                C",
+              "letra": "el Señor se ha levantado"
+            },
+            {
+              "acordes": "E7                   Am",
+              "letra": "ha triunfado con poder"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Vino celestial",
+      "artista": "Miel San Marcos",
+      "tono": "Am",
+      "categoria": "Medley",
+      "seccion": "Medley Levantate",
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "Am - F - G - Am",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "F                     G",
+              "letra": "El ha cambiado mi lamento"
+            },
+            {
+              "acordes": "",
+              "letra": "       Am Am  /A /G /E /G 2x G"
+            },
+            {
+              "acordes": "",
+              "letra": "En alabanza,"
+            },
+            {
+              "acordes": "F               G",
+              "letra": "Ha ceñido mi vida"
+            },
+            {
+              "acordes": "",
+              "letra": "                Am  Am /A /G /E /G 2x G"
+            },
+            {
+              "acordes": "",
+              "letra": "Con su Santo Espíritu."
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Pre-Coro",
+          "lineas": [
+            {
+              "acordes": "F                    G",
+              "letra": "Ha transformado el agua en vino,"
+            },
+            {
+              "acordes": "F                   G",
+              "letra": "Ha derramado su fresca unción,"
+            },
+            {
+              "acordes": "Dm7                         E",
+              "letra": "Y su Espíritu ministra vino celestial."
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "     Am",
+              "letra": "Hay vino celestial,"
+            },
+            {
+              "acordes": "     F",
+              "letra": "Hay vino celestial,"
+            },
+            {
+              "acordes": "     G          E",
+              "letra": "Hay vino celestial,"
+            },
+            {
+              "acordes": "     Am         Dm Em F G",
+              "letra": "Hay vino celestial."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Me gozaré",
+      "artista": "",
+      "tono": "Am",
+      "categoria": "Medley",
+      "seccion": "Medley Levantate",
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "Verso 1",
+          "lineas": [
+            {
+              "acordes": "Am",
+              "letra": "//Cuando el Señor hiciere volver"
+            },
+            {
+              "acordes": "             G",
+              "letra": "De la cautividad"
+            },
+            {
+              "acordes": "        Dm              E",
+              "letra": "seremos como los que sueñan//"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso 2",
+          "lineas": [
+            {
+              "acordes": "  Am",
+              "letra": "//Mi boca llenará de risa,"
+            },
+            {
+              "acordes": "    G",
+              "letra": "mis labios de alabanza,"
+            },
+            {
+              "acordes": "  Dm",
+              "letra": "Entonces dirán las naciones:"
+            },
+            {
+              "acordes": "           E",
+              "letra": "Grandes cosas ha hecho el Señor//"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "          Am",
+              "letra": "//Me gozaré, me gozaré,"
+            },
+            {
+              "acordes": "",
+              "letra": "me gozaré,"
+            },
+            {
+              "acordes": "                 G",
+              "letra": "me gozaré en Jehová."
+            },
+            {
+              "acordes": "          Dm",
+              "letra": "Pues ha llevado todo mi dolor,"
+            },
+            {
+              "acordes": "             E",
+              "letra": " me ha hecho libre//"
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "Puente",
+          "lineas": [
+            {
+              "acordes": "  Am",
+              "letra": "//Así como David cantaba,"
+            },
+            {
+              "acordes": " G",
+              "letra": "así como David danzaba,"
+            },
+            {
+              "acordes": "Dm",
+              "letra": "así como David fluía"
+            },
+            {
+              "acordes": "          E",
+              "letra": "en su presencia//"
             }
           ]
         }
