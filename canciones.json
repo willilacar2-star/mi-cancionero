@@ -1,5 +1,5 @@
 {
-  "version": 14,
+  "version": 15,
   "canciones": [
     {
       "titulo": "Bienvenido Espíritu Santo",
@@ -6465,6 +6465,331 @@
           ]
         }
       ]
+    },
+    {
+      "titulo": "Alguien esta aquí",
+      "artista": "Coritos",
+      "tono": "D",
+      "categoria": "Medley",
+      "seccion": "Cadena coros 1",
+      "contenido": [
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "D                                  A",
+              "letra": "Alguien está aquí y yo sé que es Cristo,"
+            },
+            {
+              "acordes": "                                   D",
+              "letra": "alguien está aquí y yo sé que es el Señor"
+            },
+            {
+              "acordes": "                                   A",
+              "letra": "me puede bautizar y yo sé que es Cristo,"
+            },
+            {
+              "acordes": "                                   D",
+              "letra": "me puede bautizar y yo sé que es el Señor"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "                 D                    A",
+              "letra": "Yo siento en mi ser a un Cristo de poder,"
+            },
+            {
+              "acordes": "                                 D",
+              "letra": "yo siento en mi ser al Espíritu Santo,"
+            },
+            {
+              "acordes": "                 D                    G",
+              "letra": "yo siento en mi ser que ángeles del cielo,"
+            },
+            {
+              "acordes": "              D          A",
+              "letra": "acampan a mi lado y me ayudan a"
+            },
+            {
+              "acordes": "    D",
+              "letra": "vencer //"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Te alabaran oh Jehová",
+      "artista": "Coritos",
+      "tono": "D",
+      "categoria": "Medley",
+      "seccion": "Cadena coros 1",
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "Verso 1",
+          "lineas": [
+            {
+              "acordes": "D",
+              "letra": "//Te alabarán, oh Jehová todos los reyes"
+            },
+            {
+              "acordes": "                         A7",
+              "letra": "Todos los reyes de la tierra"
+            },
+            {
+              "acordes": "         Em7                         A7",
+              "letra": "Porque han oído los dichos de tu boca"
+            },
+            {
+              "acordes": "        Em7              A7        D",
+              "letra": "Y cantarán de los caminos de Jehová//"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso 2",
+          "lineas": [
+            {
+              "acordes": "                  G",
+              "letra": "//Porque la gloria de Jehová es grande"
+            },
+            {
+              "acordes": "                                    D",
+              "letra": "Porque Jehová es excelso en sus caminos"
+            },
+            {
+              "acordes": "         Bm                  Em7",
+              "letra": "Porque Jehová atiende al humilde"
+            },
+            {
+              "acordes": "        A7                 D",
+              "letra": "Mas mira de lejos al altivo//"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Ven ven espíritu divino",
+      "artista": "Coritos",
+      "tono": "D",
+      "categoria": "Medley",
+      "seccion": "Cadena coros 1",
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "D                         A",
+              "letra": "/Ven, ven, ven. Espíritu Divino,"
+            },
+            {
+              "acordes": "                             D",
+              "letra": "ven, ven, ven, apodérate de mí./"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "                    A",
+              "letra": "/Apodérate, apodérate,"
+            },
+            {
+              "acordes": "                      D",
+              "letra": "apodérate de todo mi ser./"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Alabad a Jehová",
+      "artista": "Coritos",
+      "tono": "D",
+      "categoria": "Medley",
+      "seccion": "Cadena coros 1",
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "D                                                              A7",
+              "letra": " naciones todas, pueblos todos alabadle"
+            },
+            {
+              "acordes": "                              D",
+              "letra": "Porque ha engrandecido sobre nosotros su misericordia"
+            },
+            {
+              "acordes": "                              D7                 G",
+              "letra": "Y la verdad de Jehová es para siempre aleluya, amén"
+            },
+            {
+              "acordes": "                 D                 A7                 D",
+              "letra": "Y la verdad de Jehová es para siempre aleluya, amén"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Jehová está en su templo",
+      "artista": "Coritos",
+      "tono": "D",
+      "categoria": "Medley",
+      "seccion": "Cadena coros 1",
+      "contenido": [
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "D                         G-A7       D",
+              "letra": "// Jehová está en su templo, alabadle al que vive //"
+            },
+            {
+              "acordes": "    G      D      A7           D",
+              "letra": "// Alabaré, alabaré, alabaré al que vive //"
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "Puente",
+          "lineas": [
+            {
+              "acordes": "                 A7                    D",
+              "letra": "-Quién es el que vive- Cristo es el que vive"
+            },
+            {
+              "acordes": "                 A7                    D",
+              "letra": "-Quién es el que salva- Cristo es el que salva"
+            },
+            {
+              "acordes": "                 A7                    D",
+              "letra": "-Quién es el que viene- Cristo es el que viene"
+            },
+            {
+              "acordes": "                 A7                    D",
+              "letra": "-Quién es el que sana- Cristo es el que sana"
+            },
+            {
+              "acordes": "                 A7                    D",
+              "letra": "-Quién es el que vive- Cristo es el que vive"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "En el cielo se oye",
+      "artista": "Coritos",
+      "tono": "D",
+      "categoria": "Medley",
+      "seccion": "Cadena coros 1",
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "D                     A7                             D",
+              "letra": "// En el cielo se oye lo que en la tierra se canta. //"
+            },
+            {
+              "acordes": "Bm7                     Em                     A7          D",
+              "letra": "// Vamos todos a alabar al Señor con panderos y danza. //"
+            },
+            {
+              "acordes": "   A       A7                    D",
+              "letra": "// Así, así, así se alaba a Dios: //"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "                    A7",
+              "letra": "Con mucha alegría y gozo;"
+            },
+            {
+              "acordes": "                    D",
+              "letra": "Con mucha alegría y gozo;"
+            },
+            {
+              "acordes": "                    A7",
+              "letra": "Con mucha alegría y gozo;"
+            },
+            {
+              "acordes": "                         D",
+              "letra": "Así se alaba a Dios."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Este es el pueblo de Dios",
+      "artista": "Coritos",
+      "tono": "D",
+      "categoria": "Medley",
+      "seccion": "Cadena coros 1",
+      "contenido": [
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "D                 A",
+              "letra": "//Este es el pueblo de Dios,"
+            },
+            {
+              "acordes": "D",
+              "letra": "Que le alaba con poder //"
+            },
+            {
+              "acordes": "A                 D",
+              "letra": "//El poder de Dios, ya está aquí,"
+            },
+            {
+              "acordes": "A                 D",
+              "letra": "El poder de Dios, ya está aquí//"
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "Puente",
+          "lineas": [
+            {
+              "acordes": "",
+              "letra": "Que te llene, que te llene"
+            },
+            {
+              "acordes": "A",
+              "letra": "Que te llene a ti, que te llene,"
+            },
+            {
+              "acordes": "D",
+              "letra": "Que te llene, que te llene a ti"
+            }
+          ]
+        }
+      ]
     }
   ],
   "listas": [
@@ -6493,6 +6818,55 @@
         },
         {
           "titulo": "Abba",
+          "artista": ""
+        }
+      ]
+    },
+    {
+      "nombre": "Listado culto 18 octubre 7 am",
+      "canciones": [
+        {
+          "titulo": "Cuan gloriosa será la mañana",
+          "artista": ""
+        },
+        {
+          "titulo": "En La Nueva Jerusalén",
+          "artista": ""
+        },
+        {
+          "titulo": "Oye Jehova",
+          "artista": ""
+        },
+        {
+          "titulo": "Alguien esta aquí",
+          "artista": "Coritos"
+        },
+        {
+          "titulo": "Ven ven espíritu divino",
+          "artista": "Coritos"
+        },
+        {
+          "titulo": "Te alabaran oh Jehová",
+          "artista": "Coritos"
+        },
+        {
+          "titulo": "Alabad a Jehová",
+          "artista": "Coritos"
+        },
+        {
+          "titulo": "Jehová está en su templo",
+          "artista": "Coritos"
+        },
+        {
+          "titulo": "En el cielo se oye",
+          "artista": "Coritos"
+        },
+        {
+          "titulo": "Este es el pueblo de Dios",
+          "artista": "Coritos"
+        },
+        {
+          "titulo": "Aquí Estás / Way Maker",
           "artista": ""
         }
       ]
