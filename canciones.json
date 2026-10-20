@@ -1,5 +1,5 @@
 {
-  "version": 15,
+  "version": 16,
   "canciones": [
     {
       "titulo": "Bienvenido Espíritu Santo",
@@ -6789,6 +6789,244 @@
             }
           ]
         }
+      ]
+    },
+    {
+      "titulo": "Hermoso Nombre",
+      "artista": "Hillsong (Evangelina Cover)",
+      "tono": "D",
+      "categoria": "Adoración",
+      "seccion": "General",
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "( G  A  Bm  F#m )",
+              "letra": ""
+            },
+            {
+              "acordes": "( G  A  Bm  F#m )",
+              "letra": ""
+            },
+            {
+              "acordes": "( G  A  Bm  F#m )",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "Puente",
+          "lineas": [
+            {
+              "acordes": "G",
+              "letra": "La muerte venciste"
+            },
+            {
+              "acordes": "            A",
+              "letra": "El velo partiste"
+            },
+            {
+              "acordes": "            Bm          D/F#",
+              "letra": "La tumba vacía ahora está"
+            },
+            {
+              "acordes": "               G",
+              "letra": "Los cielos declaran"
+            },
+            {
+              "acordes": "               A",
+              "letra": "Tu gloria proclaman"
+            },
+            {
+              "acordes": "       Bm            A",
+              "letra": "Resucitaste en majestad"
+            },
+            {
+              "acordes": "       G",
+              "letra": "Inigualable"
+            },
+            {
+              "acordes": "        A",
+              "letra": "Incomparable"
+            },
+            {
+              "acordes": "            Bm          D/F#",
+              "letra": "Hoy y por siempre reinarás"
+            },
+            {
+              "acordes": "",
+              "letra": "(subir intensidad)"
+            },
+            {
+              "acordes": "G",
+              "letra": "Tuyo es el reino"
+            },
+            {
+              "acordes": "             A",
+              "letra": "Tuya es la gloria"
+            },
+            {
+              "acordes": "           Bm          F#",
+              "letra": "Tuyo el poder y autoridad"
+            },
+            {
+              "acordes": "G",
+              "letra": "La muerte venciste"
+            },
+            {
+              "acordes": "            A",
+              "letra": "El velo partiste"
+            },
+            {
+              "acordes": "            Bm          D/F#",
+              "letra": "La tumba vacía ahora está"
+            },
+            {
+              "acordes": "               G",
+              "letra": "Los cielos declaran"
+            },
+            {
+              "acordes": "               A",
+              "letra": "Tu gloria proclaman"
+            },
+            {
+              "acordes": "       Bm            A",
+              "letra": "Resucitaste en majestad"
+            },
+            {
+              "acordes": "       G",
+              "letra": "Inigualable"
+            },
+            {
+              "acordes": "        A",
+              "letra": "Incomparable"
+            },
+            {
+              "acordes": "            Bm          D/F#",
+              "letra": "Hoy y por siempre reinarás"
+            },
+            {
+              "acordes": "G",
+              "letra": "Tuyo es el reino"
+            },
+            {
+              "acordes": "             A",
+              "letra": "Tuya es la gloria"
+            },
+            {
+              "acordes": "           Bm          A",
+              "letra": "Tuyo el poder y autoridad"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Estribillo",
+          "lineas": [
+            {
+              "acordes": "                   D",
+              "letra": "Poderoso su nombre es"
+            },
+            {
+              "acordes": "                   A",
+              "letra": "Poderoso su nombre es"
+            },
+            {
+              "acordes": "           Bm   A       G",
+              "letra": "El nombre de Jesús, mi Rey"
+            },
+            {
+              "acordes": "                   D/F#",
+              "letra": "Poderoso su nombre es"
+            },
+            {
+              "acordes": "                A",
+              "letra": "Incomparable es Él"
+            },
+            {
+              "acordes": "                   Bm",
+              "letra": "Poderoso su nombre es"
+            },
+            {
+              "acordes": "       A     G",
+              "letra": "No hay otro nombre"
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "Puente",
+          "lineas": [
+            {
+              "acordes": "G",
+              "letra": "La muerte venciste"
+            },
+            {
+              "acordes": "            A",
+              "letra": "El velo partiste"
+            },
+            {
+              "acordes": "            Bm          D/F#",
+              "letra": "La tumba vacía ahora está"
+            },
+            {
+              "acordes": "               G",
+              "letra": "Los cielos declaran"
+            },
+            {
+              "acordes": "               A",
+              "letra": "Tu gloria proclaman"
+            },
+            {
+              "acordes": "       Bm            A",
+              "letra": "Resucitaste en majestad"
+            },
+            {
+              "acordes": "       G",
+              "letra": "Inigualable"
+            },
+            {
+              "acordes": "        A",
+              "letra": "Incomparable"
+            },
+            {
+              "acordes": "            Bm          D/F#",
+              "letra": "Hoy y por siempre reinarás"
+            },
+            {
+              "acordes": "G",
+              "letra": "Tuyo es el reino"
+            },
+            {
+              "acordes": "             A",
+              "letra": "Tuya es la gloria"
+            },
+            {
+              "acordes": "           Bm          F#",
+              "letra": "Tuyo el poder y autoridad"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Instrumental",
+          "lineas": [
+            {
+              "acordes": "////G - A - Bm - F#////",
+              "letra": ""
+            }
+          ]
+        }
+      ],
+      "estructura": [
+        "Intro",
+        "Puente",
+        "Estribillo",
+        "Puente",
+        "Instrumental"
       ]
     }
   ],
