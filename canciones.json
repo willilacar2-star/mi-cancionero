@@ -1,5 +1,5 @@
 {
-  "version": 16,
+  "version": 17,
   "canciones": [
     {
       "titulo": "Bienvenido Espíritu Santo",
@@ -6821,7 +6821,7 @@
           "titulo": "Puente",
           "lineas": [
             {
-              "acordes": "G",
+              "acordes": "                G",
               "letra": "La muerte venciste"
             },
             {
@@ -6841,7 +6841,7 @@
               "letra": "Tu gloria proclaman"
             },
             {
-              "acordes": "       Bm            A",
+              "acordes": "       Bm            F#",
               "letra": "Resucitaste en majestad"
             },
             {
@@ -6861,7 +6861,7 @@
               "letra": "(subir intensidad)"
             },
             {
-              "acordes": "G",
+              "acordes": "             G",
               "letra": "Tuyo es el reino"
             },
             {
@@ -6873,7 +6873,7 @@
               "letra": "Tuyo el poder y autoridad"
             },
             {
-              "acordes": "G",
+              "acordes": "               G",
               "letra": "La muerte venciste"
             },
             {
@@ -6893,7 +6893,7 @@
               "letra": "Tu gloria proclaman"
             },
             {
-              "acordes": "       Bm            A",
+              "acordes": "       Bm            F#",
               "letra": "Resucitaste en majestad"
             },
             {
@@ -6961,7 +6961,7 @@
           "titulo": "Puente",
           "lineas": [
             {
-              "acordes": "G",
+              "acordes": "               G",
               "letra": "La muerte venciste"
             },
             {
@@ -6981,7 +6981,7 @@
               "letra": "Tu gloria proclaman"
             },
             {
-              "acordes": "       Bm            A",
+              "acordes": "       Bm            F#",
               "letra": "Resucitaste en majestad"
             },
             {
