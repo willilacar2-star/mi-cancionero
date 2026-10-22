@@ -1,5 +1,5 @@
 {
-  "version": 18,
+  "version": 19,
   "canciones": [
     {
       "titulo": "Bienvenido Espíritu Santo",
@@ -6934,6 +6934,245 @@
         "Coro",
         "Puente",
         "Instrumental"
+      ]
+    },
+    {
+      "titulo": "Cadenas romper",
+      "artista": "",
+      "tono": "Bm",
+      "categoria": "Adoración",
+      "seccion": "General",
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "Bm   G   D   A",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "         Bm        G          D    A",
+              "letra": "///Hay poder en el nombre de Cristo///"
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "Puente 1",
+          "lineas": [
+            {
+              "acordes": "  A               Bm              G",
+              "letra": "//Para cadenas romper, cadenas romper,"
+            },
+            {
+              "acordes": "                              D    A",
+              "letra": "                    cadenas romper//"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "      Bm          G    D    A",
+              "letra": "///Se levanta un ejército///"
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "Puente 1",
+          "lineas": [
+            {
+              "acordes": "  A               Bm              G",
+              "letra": "//Para cadenas romper, cadenas romper,"
+            },
+            {
+              "acordes": "                              D    A",
+              "letra": "                    cadenas romper//"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Instrumental",
+          "lineas": [
+            {
+              "acordes": "////Bm  G    D    A ////",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Outro",
+          "lineas": [
+            {
+              "acordes": "     Bm      G     D    A",
+              "letra": "////Oigo cadenas caer////"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Tu mano me sostiene",
+      "artista": "",
+      "tono": "G",
+      "categoria": "Alabanza",
+      "seccion": "General",
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "G Am7 D G Am7",
+              "letra": ""
+            },
+            {
+              "acordes": "G Am7 D G",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "                G",
+              "letra": "Tu mano me sostiene,"
+            },
+            {
+              "acordes": "                 Am7",
+              "letra": "Tu espíritu me alienta,"
+            },
+            {
+              "acordes": "",
+              "letra": "                D*"
+            },
+            {
+              "acordes": "",
+              "letra": "y siempre en victoria"
+            },
+            {
+              "acordes": "         G - Am7",
+              "letra": "Tú me llevarás."
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "        Dm                  Am",
+              "letra": "Vivo solo para Cristo y nadie más,"
+            },
+            {
+              "acordes": "          C                  D",
+              "letra": "solo en Jesús yo encontré la paz."
+            },
+            {
+              "acordes": "       Dm                      Am",
+              "letra": "Él me llena de su espíritu de amor,"
+            },
+            {
+              "acordes": "             C                   D",
+              "letra": "siempre cantaré: soy más que vencedor."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Queremos ver",
+      "artista": "",
+      "tono": "G",
+      "categoria": "Alabanza",
+      "seccion": "General",
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "G D Em C",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro 1",
+          "lineas": [
+            {
+              "acordes": "  G            D          Em",
+              "letra": "//Queremos a Cristo proclamar"
+            },
+            {
+              "acordes": "              C          G",
+              "letra": "Como un estandarte levantar"
+            },
+            {
+              "acordes": "             D           Em",
+              "letra": "Que toda la gente pueda ver"
+            },
+            {
+              "acordes": "                C            G",
+              "letra": "Que Él es el camino al Cielo//"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro 2",
+          "lineas": [
+            {
+              "acordes": "              D              Em",
+              "letra": "//Queremos ver, queremos ver"
+            },
+            {
+              "acordes": "       C           G",
+              "letra": "A Jesucristo como Rey//"
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "Puente",
+          "lineas": [
+            {
+              "acordes": "        D             Em",
+              "letra": "Paso a paso hacia el frente"
+            },
+            {
+              "acordes": "        D       Em",
+              "letra": "Poco a poco a ganar"
+            },
+            {
+              "acordes": "        D            Em",
+              "letra": "La oración las fortalezas"
+            },
+            {
+              "acordes": "       C          D",
+              "letra": "Todas caen, todas caen y caen y caen"
+            },
+            {
+              "acordes": "         G",
+              "letra": "Y caen"
+            }
+          ]
+        }
       ]
     }
   ],
