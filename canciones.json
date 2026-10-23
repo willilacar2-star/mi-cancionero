@@ -1,5 +1,5 @@
 {
-  "version": 19,
+  "version": 20,
   "canciones": [
     {
       "titulo": "Bienvenido Espíritu Santo",
@@ -7170,6 +7170,111 @@
             {
               "acordes": "         G",
               "letra": "Y caen"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Hay Poder",
+      "artista": "",
+      "tono": "D",
+      "categoria": "Adoración",
+      "seccion": "General",
+      "contenido": [
+        {
+          "tipo": "verso",
+          "titulo": "Verso 1",
+          "lineas": [
+            {
+              "acordes": "      Bm        G            D    A",
+              "letra": "//Hay poder, en el nombre de Cristo"
+            },
+            {
+              "acordes": "    Bm        G            D    A",
+              "letra": "Hay poder, en el nombre de Cristo"
+            },
+            {
+              "acordes": "    Bm        G            D    A",
+              "letra": "Hay poder, en el nombre de Cristo"
+            },
+            {
+              "acordes": "             Bm              G               D     A",
+              "letra": "para cadenas romper, cadenas romper, cadenas romper//"
+            }
+          ]
+        },
+        {
+          "tipo": "puente",
+          "titulo": "Puente",
+          "lineas": [
+            {
+              "acordes": " Bm    G     D     A",
+              "letra": "Oigo cadenas caeeer"
+            },
+            {
+              "acordes": " Bm    G     D     A",
+              "letra": "Oigo cadenas caeeer"
+            },
+            {
+              "acordes": " Bm    G     D     A",
+              "letra": "Oigo cadenas caeeer"
+            },
+            {
+              "acordes": " Bm    G     D     A",
+              "letra": "Oigo cadenas caeeer"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "instrumental",
+          "lineas": [
+            {
+              "acordes": "",
+              "letra": "(solo Bateria)"
+            },
+            {
+              "acordes": "",
+              "letra": "Hay poder, en el nombre de Cristo"
+            },
+            {
+              "acordes": "",
+              "letra": "hay poder, en el nombre de Cristo"
+            },
+            {
+              "acordes": "",
+              "letra": "hay poder, en el nombre de Cristo"
+            },
+            {
+              "acordes": "             Bm              G               D     A",
+              "letra": "para cadenas romper, cadenas romper, cadenas romper  (entra la banda) x7"
+            },
+            {
+              "acordes": "",
+              "letra": "Instrumental (podemos bajar y luego subir con intensidad)"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso 2",
+          "lineas": [
+            {
+              "acordes": "",
+              "letra": "Hay poder, en el nombre de Cristo"
+            },
+            {
+              "acordes": "",
+              "letra": "hay poder, en el nombre de Cristo"
+            },
+            {
+              "acordes": "",
+              "letra": "hay poder, en el nombre de Cristo"
+            },
+            {
+              "acordes": "             Bm              G              D     A",
+              "letra": "para cadenas romper, cadenas romper, cadenas romper"
             }
           ]
         }
