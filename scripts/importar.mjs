@@ -6,6 +6,8 @@
 //
 // .env debe tener SUPABASE_URL y SUPABASE_SERVICE_ROLE_KEY. Nunca subas .env a GitHub.
 // Si las tablas ya tienen canciones, el script se detiene para no duplicarlas.
+// canciones.json ya no está en el repositorio: usa un respaldo de 📤 Exportar JSON
+// (o recupéralo del historial: git show 942644b:canciones.json > canciones.json).
 
 import { readFileSync } from 'node:fs';
 
