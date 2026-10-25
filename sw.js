@@ -2,7 +2,7 @@
 // Si cambias index.html, styles.css, app.js, music.js o config.js, sube el número de VERSION
 // para que los teléfonos descarguen la versión nueva.
 // Las canciones ya no se cachean aquí: vienen de Supabase y la app las guarda en localStorage.
-var VERSION = 'cancionero-v12';
+var VERSION = 'cancionero-v13';
 // La misma dirección (con versión fija) que está en index.html.
 var LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 var APP = [
@@ -14,9 +14,11 @@ var APP = [
 self.addEventListener('install', function (e) {
   // Cada archivo por separado: si alguno falta, los demás se guardan igual
   // (con addAll, un solo archivo faltante hacía fallar toda la instalación).
+  // cache: 'reload' pide cada archivo al servidor y no a la caché del navegador:
+  // así no se mezcla un index.html nuevo con un app.js viejo.
   e.waitUntil(caches.open(VERSION).then(function (c) {
     return Promise.all(APP.map(function (url) {
-      return c.add(url).catch(function (err) {
+      return c.add(new Request(url, { cache: 'reload' })).catch(function (err) {
         console.warn('[sw] No se pudo guardar ' + url, err);
       });
     }));
@@ -38,16 +40,24 @@ self.addEventListener('fetch', function (e) {
   if (req.method !== 'GET') return;
   if (new URL(req.url).origin !== location.origin && req.url !== LIB) return;
 
-  // Primero lo guardado, y si no está, la red.
+  // supabase-js tiene versión fija: lo guardado no cambia nunca.
+  if (req.url === LIB) {
+    e.respondWith(caches.match(req).then(function (hit) { return hit || fetch(req); }));
+    return;
+  }
+
+  // Archivos de la app: se muestra lo guardado (rápido y sin conexión) y, al mismo tiempo,
+  // se pide la copia nueva para la próxima vez. Si alguna vez quedó algo viejo, se corrige solo.
+  // Con req.url y no con req: la página principal (navegación) no acepta opciones nuevas.
+  var nueva = fetch(req.url, { cache: 'no-cache', credentials: 'same-origin' }).then(function (res) {
+    if (!res.ok) return res;
+    var copia = res.clone();
+    return caches.open(VERSION).then(function (c) { return c.put(req, copia); }).then(function () { return res; });
+  });
+  e.waitUntil(nueva.catch(function () {}));
   e.respondWith(
     caches.match(req, { ignoreSearch: true }).then(function (hit) {
-      return hit || fetch(req).then(function (res) {
-        if (res.ok) {
-          var copia = res.clone();
-          caches.open(VERSION).then(function (c) { c.put(req, copia); });
-        }
-        return res;
-      });
+      return hit || nueva;
     })
   );
 });
