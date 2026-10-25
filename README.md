@@ -71,10 +71,14 @@ Formato de cada canción:
 - Para un medley, pon en `seccion` algo como `"Medley Dante Gebel"`. El orden de las canciones dentro del medley es el orden de la columna `orden`.
 - En la app, filtro **Medleys → ✎ Orden** permite reordenar, **✎ Renombrar medley** y **Eliminar medley** (sus canciones no se borran: pasan a `General`).
 
-## Listas (para tocar en orden)
+## Listas (agenda para tocar en orden)
 
-- Filtro **📋 Listas** → **▶ Tocar** abre la primera canción; **Siguiente ›** pasa a la que sigue, y arriba se ve cuál viene y en qué tono.
-- Los editores crean listas (**➕ Nueva lista**), cambian el orden con ↑ ↓ y quitan canciones con ✕. Una canción puede estar en varias listas o repetirse.
+- Filtro **📋 Listas** muestra la agenda: cada lista tiene un **encabezado** y la **fecha del evento**.
+- Arriba se elige el rango: **Próximas** (de hoy en adelante), **Este mes**, **Pasadas**, **Todas**, o fechas **Desde / Hasta**. El filtro se recuerda en cada teléfono.
+- Las listas salen ordenadas por fecha. Las que no tienen fecha van al final y solo se ven en Próximas y Todas.
+- Toca una lista para ver sus canciones en orden. **▶ Tocar** abre la primera; **Siguiente ›** pasa a la que sigue, y arriba se ve cuál viene y en qué tono. **← Volver** regresa a esa lista.
+- Los editores crean listas (**➕ Nueva lista**, con la fecha de hoy), y en **✎ Editar** cambian el encabezado, la fecha, el orden (↑ ↓) y quitan canciones (✕). Una canción puede estar en varias listas o repetirse.
+- **📋 Agregar a lista** (desde una canción) ofrece las listas de hoy en adelante.
 - Las listas son compartidas: todos los teléfonos ven las mismas.
 
 ## Probar en la computadora

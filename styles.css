@@ -24,6 +24,7 @@
     --on-accent: #06201d;
     --chord: #f5c451;
     --danger: #ff8f8f;
+    color-scheme: dark;  /* calendario de los campos de fecha en oscuro */
   }
   * { box-sizing: border-box; }
   [hidden] { display: none !important; }
@@ -140,6 +141,25 @@
   .item.plres { width: 100%; text-align: left; border: 0; border-bottom: 1px solid var(--line); background: transparent; }
   .item.plres .plus { flex: none; font-size: 1.3rem; color: var(--accent); width: 1.4em; text-align: center; }
   .plbtn { margin-top: 8px; }
+  /* Agenda de listas: rango de fechas, ficha con el día y encabezado de la lista abierta */
+  .agenda .chips { padding-bottom: 6px; }
+  .agrango { display: flex; gap: 8px; }
+  .agrango label { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; font-size: .85rem; color: var(--muted); }
+  .agrango input {
+    width: 100%; min-height: 44px; padding: 0 8px; font-size: 16px; color: var(--ink);
+    border: 1px solid var(--line); border-radius: 8px; background: var(--panel);
+  }
+  .fechatile {
+    flex: none; width: 52px; text-align: center; line-height: 1.1;
+    color: var(--accent); border: 2px solid var(--accent); border-radius: 6px; padding: 4px 2px;
+  }
+  .fechatile b { display: block; font-family: var(--mono); font-size: 1.25rem; }
+  .fechatile small { display: block; font-size: .75rem; text-transform: uppercase; }
+  .fechatile.empty { color: var(--muted); border-color: var(--line); }
+  .item .chev { flex: none; font-size: 1.5rem; color: var(--muted); }
+  .lhead { margin: 14px 0 4px; }
+  .lhead h2 { font-family: var(--serif); font-size: 1.4rem; margin: 0 0 2px; overflow-wrap: anywhere; }
+  .lhead .muted { color: var(--muted); }
   .mednav .btn.pri { color: var(--on-accent); }
 
   /* ---------- Vista de canción ---------- */
