@@ -1,5 +1,5 @@
 {
-  "version": 20,
+  "version": 21,
   "canciones": [
     {
       "titulo": "Bienvenido Espíritu Santo",
@@ -7279,83 +7279,303 @@
           ]
         }
       ]
-    }
-  ],
-  "listas": [
+    },
     {
-      "nombre": "Listado culto 18 octubre 10 am",
-      "canciones": [
+      "titulo": "Vamos a cantar",
+      "artista": "",
+      "tono": "D",
+      "categoria": "Alabanza",
+      "seccion": "General",
+      "contenido": [
         {
-          "titulo": "Levantate",
-          "artista": "Miel San Marcos"
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "D",
+              "letra": ""
+            }
+          ]
         },
         {
-          "titulo": "Vino celestial",
-          "artista": "Miel San Marcos"
+          "tipo": "coro",
+          "titulo": "Coro 1",
+          "lineas": [
+            {
+              "acordes": "      D",
+              "letra": "//Vamos a cantar con la música del cielo"
+            },
+            {
+              "acordes": "       Bm",
+              "letra": "Vamos a cantar alegres porque escuchas"
+            },
+            {
+              "acordes": "        A           G                 D",
+              "letra": "Cuando cantamos para exaltar tu nombre//"
+            }
+          ]
         },
         {
-          "titulo": "Me gozaré",
-          "artista": ""
+          "tipo": "verso",
+          "titulo": "Verso 1",
+          "lineas": [
+            {
+              "acordes": "D                                         Bm",
+              "letra": "Amamos todo de ti, cielo y tierra te adoran"
+            },
+            {
+              "acordes": "Bm",
+              "letra": "Los reinos se rinden, Hijo de Dios"
+            },
+            {
+              "acordes": "              A                  G",
+              "letra": "Tú eres por quien, Tú eres por quien"
+            },
+            {
+              "acordes": "         D",
+              "letra": "Vivimos hoy"
+            }
+          ]
         },
         {
-          "titulo": "Grande y fuerte",
-          "artista": ""
+          "tipo": "verso",
+          "titulo": "Verso 2",
+          "lineas": [
+            {
+              "acordes": "D                                                Bm",
+              "letra": "Tú eres quien nos liberta, Tú eres la luz que guía"
+            },
+            {
+              "acordes": "Bm",
+              "letra": "Como un fuego ardiente, Hijo de Dios"
+            },
+            {
+              "acordes": "            A                   G",
+              "letra": "Tú eres por quien, Tú eres por quien"
+            },
+            {
+              "acordes": "         D",
+              "letra": "Vivimos hoy"
+            }
+          ]
         },
         {
-          "titulo": "Viene Ya",
-          "artista": "Miel San Marcos"
+          "tipo": "verso",
+          "titulo": "Riff de Guitarra",
+          "lineas": [
+            {
+              "acordes": "D  G  F#m",
+              "letra": ""
+            }
+          ]
         },
         {
-          "titulo": "Abba",
-          "artista": ""
+          "tipo": "verso",
+          "titulo": "Intermedio",
+          "lineas": [
+            {
+              "acordes": "D  C  Bm D  - D",
+              "letra": ""
+            }
+          ]
         }
       ]
     },
     {
-      "nombre": "Listado culto 18 octubre 7 am",
+      "titulo": "La casa de Dios",
+      "artista": "",
+      "tono": "D",
+      "categoria": "Alabanza",
+      "seccion": "General",
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "D - E - F# - G",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso 1",
+          "lineas": [
+            {
+              "acordes": "  D         A        Bm        G",
+              "letra": "Mejor es un día en la casa de Dios"
+            },
+            {
+              "acordes": "     D        A       Bm    G",
+              "letra": "Que mil años lejos de Él"
+            },
+            {
+              "acordes": "     D          A        Bm       G",
+              "letra": "Prefiero un rincón en la casa de Dios"
+            },
+            {
+              "acordes": "     D        A           G",
+              "letra": "Que todo el palacio de un rey"
+            },
+            {
+              "acordes": "    D         A           G",
+              "letra": "Que todo el palacio de un rey"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "        D                A",
+              "letra": "Ven conmigo a la casa de Dios"
+            },
+            {
+              "acordes": "       Bm                G",
+              "letra": "Celebraremos juntos su amor"
+            },
+            {
+              "acordes": "          D                   A           G",
+              "letra": "Haremos fiesta en honor de aquel que nos amó"
+            },
+            {
+              "acordes": "           D               A",
+              "letra": "Estando aquí en la casa de Dios"
+            },
+            {
+              "acordes": "      Bm            G",
+              "letra": "Alegraremos su corazón"
+            },
+            {
+              "acordes": "         D                 A              G",
+              "letra": "Le brindaremos ofrendas de obediencia y amor"
+            },
+            {
+              "acordes": "                 D",
+              "letra": "¡En la casa de Dios!"
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso 2",
+          "lineas": [
+            {
+              "acordes": "D       A     Bm        G",
+              "letra": "Arde mi alma, arde de amor"
+            },
+            {
+              "acordes": "D             A         Bm G",
+              "letra": "Por aquel que me dio la vida"
+            },
+            {
+              "acordes": "    D        A    Bm       G",
+              "letra": "Por eso le anhela mi corazón"
+            },
+            {
+              "acordes": "  D        A       G",
+              "letra": "Anhela de su compañía"
+            },
+            {
+              "acordes": "  D        A       G",
+              "letra": "Anhela de su compañía"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Agnus Dei",
+      "artista": "",
+      "tono": "A",
+      "categoria": "Alabanza",
+      "seccion": "General",
+      "contenido": [
+        {
+          "tipo": "intro",
+          "titulo": "Intro",
+          "lineas": [
+            {
+              "acordes": "A  D  A",
+              "letra": ""
+            }
+          ]
+        },
+        {
+          "tipo": "verso",
+          "titulo": "Verso",
+          "lineas": [
+            {
+              "acordes": "  A                       D",
+              "letra": "//Aleluya, Aleluya"
+            },
+            {
+              "acordes": "                     A",
+              "letra": "Reinas Tú, poderoso Dios//"
+            },
+            {
+              "acordes": "A         D",
+              "letra": "Aleluya"
+            }
+          ]
+        },
+        {
+          "tipo": "coro",
+          "titulo": "Coro",
+          "lineas": [
+            {
+              "acordes": "A",
+              "letra": "Santo, Santo"
+            },
+            {
+              "acordes": "     D   A     F#m    E",
+              "letra": "El Señor Dios poderoso"
+            },
+            {
+              "acordes": "           D  A D          A D",
+              "letra": "Digno eres tú, digno eres tú"
+            },
+            {
+              "acordes": "         A",
+              "letra": "Tú eres Santo, Santo"
+            },
+            {
+              "acordes": "     D   A    F#m    E",
+              "letra": "El Señor Dios poderoso"
+            },
+            {
+              "acordes": "           D  A D          A D     A",
+              "letra": "Digno eres tú, digno eres tú, aa - mén"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "listas": [
+    {
+      "nombre": "Lista Domingo 25 Culto 10 am",
       "canciones": [
         {
-          "titulo": "Cuan gloriosa será la mañana",
+          "titulo": "Hermoso Nombre",
+          "artista": "Hillsong (Evangelina Cover)"
+        },
+        {
+          "titulo": "Hay Poder",
           "artista": ""
         },
         {
-          "titulo": "En La Nueva Jerusalén",
+          "titulo": "La casa de Dios",
           "artista": ""
         },
         {
-          "titulo": "Oye Jehova",
+          "titulo": "Vamos a cantar",
           "artista": ""
         },
         {
-          "titulo": "Alguien esta aquí",
-          "artista": "Coritos"
-        },
-        {
-          "titulo": "Ven ven espíritu divino",
-          "artista": "Coritos"
-        },
-        {
-          "titulo": "Te alabaran oh Jehová",
-          "artista": "Coritos"
-        },
-        {
-          "titulo": "Alabad a Jehová",
-          "artista": "Coritos"
-        },
-        {
-          "titulo": "Jehová está en su templo",
-          "artista": "Coritos"
-        },
-        {
-          "titulo": "En el cielo se oye",
-          "artista": "Coritos"
-        },
-        {
-          "titulo": "Este es el pueblo de Dios",
-          "artista": "Coritos"
-        },
-        {
-          "titulo": "Aquí Estás / Way Maker",
+          "titulo": "Agnus Dei",
           "artista": ""
         }
       ]
