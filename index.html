@@ -23,13 +23,11 @@
       <button class="btn icon" id="bMenu" aria-label="Más opciones" aria-expanded="false">⋯</button>
     </div>
     <div class="menu" id="menu" hidden>
-      <a href="#/nueva">➕ Nueva canción</a>
-      <button id="mImp">📥 Importar JSON</button>
-      <button id="mAct">🔄 Actualizar desde GitHub</button>
-      <button id="mPub">☁️ Publicar en GitHub</button>
-      <button id="mTok">🔑 Conexión con GitHub</button>
+      <a href="#/nueva" class="solo-editor">➕ Nueva canción</a>
+      <button id="mImp" class="solo-editor">📥 Importar JSON</button>
+      <button id="mRec">🔄 Recargar datos</button>
       <button id="mExp">📤 Exportar JSON</button>
-      <button id="mRes">↺ Restaurar lista del repositorio</button>
+      <button id="mSes">🔐 Iniciar sesión</button>
     </div>
     <input type="file" id="fileImp" accept="application/json,.json">
   </header>
@@ -59,7 +57,7 @@
       <a class="btn" href="#/" id="bVolver">← Volver</a>
       <div class="grow"></div>
       <button class="btn fav" id="bFav" aria-pressed="false">☆ Favorito</button>
-      <button class="btn icon" id="bEditar" aria-label="Editar canción">✎</button>
+      <button class="btn icon solo-editor" id="bEditar" aria-label="Editar canción">✎</button>
       <button class="btn icon js-theme" aria-label="Cambiar tema"></button>
     </div>
   </header>
@@ -69,7 +67,7 @@
         <h1 id="sTitulo"></h1>
         <div class="muted" id="sArtista"></div>
         <div class="muted" id="sSeccion"></div>
-        <button class="btn mini plbtn" id="bLista" aria-expanded="false">📋 Agregar a lista</button>
+        <button class="btn mini plbtn solo-editor" id="bLista" aria-expanded="false">📋 Agregar a lista</button>
       </div>
       <div class="keybig"><small>Tono original</small><b id="sTono">–</b></div>
     </div>
@@ -103,7 +101,7 @@
 
     <div class="struct" id="struct" hidden>
       <div class="stchips" id="stChips" role="group" aria-label="Estructura de la canción"></div>
-      <button class="btn" id="stEdit" aria-expanded="false">✎ Orden</button>
+      <button class="btn solo-editor" id="stEdit" aria-expanded="false">✎ Orden</button>
     </div>
     <div class="stpanel" id="stPanel" hidden></div>
 
@@ -165,38 +163,38 @@
   </div>
 </section>
 
-<!-- ====================== CONEXIÓN CON GITHUB ====================== -->
-<dialog id="ghDlg" aria-labelledby="ghTit">
-  <form method="dialog" class="ghform" id="ghForm">
-    <h2 id="ghTit">🔑 Conexión con GitHub</h2>
-    <p class="help">Con un token, <b>☁️ Publicar en GitHub</b> sube tus canciones a <code id="ghRepoTxt"></code> sin salir de la app. El token se guarda solo en este teléfono.</p>
-    <details>
-      <summary>Cómo crear el token</summary>
-      <ol class="help">
-        <li>Abre <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com → Fine-grained token nuevo</a>.</li>
-        <li><b>Token name</b>: Cancionero. <b>Expiration</b>: la que prefieras (por ejemplo, 1 año).</li>
-        <li><b>Repository access</b> → <i>Only select repositories</i> → elige <b>mi-cancionero</b>.</li>
-        <li><b>Permissions</b> → <i>Repository permissions</i> → <b>Contents</b>: <i>Read and write</i>. Nada más.</li>
-        <li><b>Generate token</b>, cópialo (empieza con <code>github_pat_</code>) y pégalo aquí.</li>
-      </ol>
-      <p class="help">Si pierdes el teléfono, bórralo en github.com → Settings → Developer settings → Personal access tokens.</p>
-    </details>
-    <label for="ghTok">Token</label>
-    <input id="ghTok" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="github_pat_…">
-    <label for="ghRepo">Repositorio</label>
-    <input id="ghRepo" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="usuario/mi-cancionero">
-    <div class="ghestado" id="ghEstado" role="status"></div>
-    <div class="ghacts">
-      <button type="button" class="btn danger" id="ghBorrar">Borrar token</button>
-      <button type="button" class="btn" id="ghProbar">Probar</button>
-      <button type="button" class="btn pri" id="ghGuardar">Guardar</button>
+<!-- ====================== SESIÓN DE EDITOR ====================== -->
+<dialog id="loginDlg" aria-labelledby="lgTit">
+  <form method="dialog" class="dlgform">
+    <h2 id="lgTit">🔐 Sesión de editor</h2>
+    <div id="lgFuera">
+      <p class="help">Todos pueden ver las canciones. Para agregar, cambiar u ordenar canciones y listas, entra con tu correo de editor.</p>
+      <label for="lgCorreo">Correo</label>
+      <input id="lgCorreo" type="email" autocomplete="email" autocapitalize="off" spellcheck="false" placeholder="tu@correo.com">
+      <div class="dlgacts"><button type="button" class="btn pri" id="lgEnviar">Enviar enlace</button></div>
+      <div id="lgCodigoBox" hidden>
+        <p class="help">Revisa tu correo y toca el enlace. Si usas la app instalada en la pantalla de inicio, escribe aquí el código que viene en el correo.</p>
+        <label for="lgCodigo">Código del correo</label>
+        <input id="lgCodigo" inputmode="numeric" autocomplete="one-time-code" maxlength="10" placeholder="123456">
+        <div class="dlgacts"><button type="button" class="btn pri" id="lgVerificar">Entrar con el código</button></div>
+      </div>
     </div>
-    <button type="submit" class="btn ghcerrar" value="cancel">Cerrar</button>
+    <div id="lgDentro" hidden>
+      <p class="help">Sesión iniciada como <b id="lgEmail"></b>.</p>
+      <p class="help" id="lgRol"></p>
+      <div class="dlgacts"><button type="button" class="btn danger" id="lgSalir">Cerrar sesión</button></div>
+    </div>
+    <div class="dlgestado" id="lgEstado" role="status"></div>
+    <button type="submit" class="btn dlgcerrar" value="cancel">Cerrar</button>
   </form>
 </dialog>
 
 <div id="toast" hidden role="status"></div>
 
+<!-- supabase-js con versión fija. Si cambias la versión, cámbiala también en sw.js y actualiza integrity. -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js"
+        integrity="sha384-BWcjm9OdFth9TbhCxZPdm+gAOUMAzQy9nmTs12ioXdCcbVnJaPMn+fMUoQCLt60R" crossorigin="anonymous"></script>
+<script src="config.js"></script>
 <script src="music.js"></script>
 <script src="app.js"></script>
 </body>

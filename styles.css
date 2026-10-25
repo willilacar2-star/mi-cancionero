@@ -236,32 +236,28 @@
   @media (min-width: 700px) {
     .item { padding: 12px 8px; }
   }
-  /* ---------- Conexión con GitHub ---------- */
-  #ghDlg {
+  /* ---------- Sesión de editor ---------- */
+  #loginDlg {
     width: min(520px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); overflow: auto;
     padding: 0; border: 1px solid var(--line); border-radius: 12px;
     background: var(--panel); color: var(--ink);
   }
-  #ghDlg::backdrop { background: rgba(0,0,0,.45); }
-  .ghform { padding: 16px; }
-  .ghform h2 { font-family: var(--serif); margin: 0 0 6px; font-size: 1.3rem; }
-  .ghform label { display: block; font-size: .85rem; color: var(--muted); margin: 14px 0 4px; }
-  .ghform input {
+  #loginDlg::backdrop { background: rgba(0,0,0,.45); }
+  .dlgform { padding: 16px; }
+  .dlgform h2 { font-family: var(--serif); margin: 0 0 6px; font-size: 1.3rem; }
+  .dlgform label { display: block; font-size: .85rem; color: var(--muted); margin: 14px 0 4px; }
+  .dlgform input {
     width: 100%; min-height: 46px; padding: 0 12px; font-size: 16px;
     border: 1px solid var(--line); border-radius: 8px; background: var(--bg);
   }
-  .ghform details { margin-top: 10px; }
-  .ghform summary { cursor: pointer; color: var(--accent); font-weight: 600; min-height: 32px; }
-  .ghform ol { padding-left: 20px; }
-  .ghform li { margin: 4px 0; }
-  .ghform a { color: var(--accent); text-decoration: underline; }
-  .ghform code { font-family: var(--mono); font-size: .9em; overflow-wrap: anywhere; }
-  .ghestado { min-height: 1.4em; margin-top: 10px; font-size: .9rem; color: var(--muted); }
-  .ghestado.ok { color: var(--accent); }
-  .ghestado.mal { color: var(--danger); }
-  .ghacts { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
-  .ghacts .btn { flex: 1; }
-  .ghcerrar { width: 100%; margin-top: 8px; }
+  .dlgestado { min-height: 1.4em; margin-top: 10px; font-size: .9rem; color: var(--muted); }
+  .dlgestado.ok { color: var(--accent); }
+  .dlgestado.mal { color: var(--danger); }
+  .dlgacts { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+  .dlgacts .btn { flex: 1; }
+  .dlgcerrar { width: 100%; margin-top: 8px; }
+  /* Sin sesión de editor se ocultan los botones para editar. */
+  body:not(.editor) .solo-editor { display: none !important; }
 
   /* ---------- Celular en horizontal: la canción, las partes y un auto-scroll pequeño abajo ---------- */
   @media (orientation: landscape) and (max-height: 520px) {

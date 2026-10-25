@@ -1,46 +1,55 @@
 # Mi Cancionero
 
-Cancionero con acordes, transposición y estructura de cada canción. Funciona en el celular, sin base de datos, y sin conexión después de la primera vez.
+Cancionero con acordes, transposición y estructura de cada canción. Funciona en el celular, y sin conexión con los datos guardados de la última vez.
 
-## Archivos (todos en la raíz del repositorio)
+Las canciones y las listas viven en **Supabase**. Todos pueden leerlas; solo los **editores** (con sesión iniciada) pueden cambiarlas. Favoritos, transposición y preferencias se guardan solo en cada teléfono.
+
+## Archivos
 
 | Archivo | Para qué sirve |
 |---|---|
 | `index.html` | Pantallas de la app |
 | `styles.css` | Diseño y modo oscuro |
-| `app.js` | Lógica de la app |
+| `app.js` | Lógica de la app (lee y guarda en Supabase, caché local) |
 | `music.js` | Acordes, transposición y lectura de letras |
-| `canciones.json` | **Tus canciones** (el archivo que más vas a editar) |
+| `config.js` | Dirección de Supabase y la *anon key* (públicas) |
 | `manifest.json` | Datos para instalarla como app |
 | `sw.js` | Hace que funcione sin conexión |
-| `icon-192.png`, `icon-512.png`, `icon-maskable-512.png`, `apple-touch-icon.png` | Iconos |
+| `supabase/migrations/` | SQL de las tablas, permisos (RLS) y funciones |
+| `scripts/importar.mjs` | Importa un `canciones.json` a Supabase (una sola vez) |
+| `icon-*.png`, `apple-touch-icon.png` | Iconos |
 
-## Publicar en GitHub Pages
+## Seguridad
 
-1. Crea un repositorio público llamado `mi-cancionero`.
-2. **Add file → Upload files** y sube todos los archivos de arriba (no hace falta carpeta).
-3. **Commit changes**.
-4. **Settings → Pages → Build and deployment → Deploy from a branch**, rama `main`, carpeta `/ (root)`, **Save**.
-5. Espera uno o dos minutos. Tu dirección será `https://TU-USUARIO.github.io/mi-cancionero/`.
-6. Ábrela en el celular. Chrome (Android): menú ⋮ → **Instalar app** o **Agregar a pantalla de inicio**. Safari (iPhone): Compartir → **Agregar a pantalla de inicio**.
+- `config.js` tiene la *anon key*: es pública por diseño. Lo que protege los datos son las políticas RLS.
+- La **service_role key** solo va en `.env` (que no se sube: está en `.gitignore`). Nunca la pongas en `config.js` ni en otro archivo del repositorio.
+- Solo pueden escribir los correos que estén en la tabla `editores` **y** tengan usuario en Supabase Auth.
 
-## Cómo agregar o cambiar canciones
+## Editores
 
-**Opción recomendada: publicar desde la app**
-1. Una sola vez: menú ⋯ → **🔑 Conexión con GitHub** y sigue los pasos para crear un *fine-grained token* (solo el repositorio `mi-cancionero`, permiso **Contents: Read and write**). Pégalo, **Guardar** y **Probar**.
-2. Agrega o edita canciones en la app.
-3. Menú ⋯ → **☁️ Publicar en GitHub**. La app sube `canciones.json`, aumenta `"version"` sola y hace el commit. GitHub Pages lo publica en 1–2 minutos.
-4. Si GitHub tiene canciones que tu teléfono no tiene, la app te avisa antes de publicar; usa primero **🔄 Actualizar desde GitHub** para no perderlas.
+- Menú ⋯ → **🔐 Iniciar sesión** → escribe tu correo → **Enviar enlace**.
+- Abre el correo y toca el enlace. Si usas la app instalada en la pantalla de inicio (sobre todo en iPhone), escribe el **código** del correo en la app.
+- Con sesión aparecen ➕ Nueva canción, ✎ Editar, ✎ Orden, 📋 Agregar a lista, Nueva lista / ✎ Editar e Importar JSON.
+- Los cambios se guardan directo en Supabase. **Sin conexión no se puede editar**: la app avisa y no cambia nada.
 
-El token se guarda solo en ese navegador. Si pierdes el teléfono, bórralo en github.com → Settings → Developer settings → Personal access tokens.
+Para agregar un editor (en Supabase): **Authentication → Users → Add user** con su correo, y en **SQL Editor**:
 
-**Opción A: exportar a mano**
-1. Agrega y edita canciones con ➕ y ✎.
-2. Menú ⋯ → **📤 Exportar JSON**. Se descarga `canciones.json`.
-3. En GitHub abre `canciones.json` → ✎ editar (o **Add file → Upload files** y súbelo con el mismo nombre) → **Commit changes**.
+```sql
+insert into public.editores (email) values ('correo@ejemplo.com');
+```
 
-**Opción B: editando el JSON en GitHub**
-Abre `canciones.json`, edita y confirma el cambio. Cada canción tiene esta forma:
+## Cómo llegan los cambios al teléfono
+
+- Al abrir, la app muestra lo guardado en el teléfono y enseguida trae lo nuevo de Supabase.
+- Menú ⋯ → **🔄 Recargar datos** lo trae a mano.
+- Sin conexión se usa lo último que se descargó.
+
+## Respaldo
+
+- Menú ⋯ → **📤 Exportar JSON** descarga todas las canciones y listas (mismo formato de siempre).
+- Menú ⋯ → **📥 Importar JSON** (solo editores) sube un archivo así a Supabase. Una canción con el mismo título y artista se reemplaza; una lista con el mismo nombre toma las canciones del archivo.
+
+Formato de cada canción:
 
 ```json
 {
@@ -59,32 +68,29 @@ Abre `canciones.json`, edita y confirma el cambio. Cada canción tiene esta form
 
 - `titulo` es lo único obligatorio. `estructura` es opcional.
 - En `estructura` puedes repetir partes y agregar notas entre paréntesis: `"Coro (x4)"`, `"Verso (voz de hombre)"`. Un nombre que no existe en `contenido` (por ejemplo `"Instrumental"`) se muestra como parte sin letra.
-- No pongas `id`: la app lo asigna.
-- Para un medley, pon en `seccion` algo como `"Medley Dante Gebel"`.
+- Para un medley, pon en `seccion` algo como `"Medley Dante Gebel"`. El orden de las canciones dentro del medley es el orden de la columna `orden`.
 - En la app, filtro **Medleys → ✎ Orden** permite reordenar, **✎ Renombrar medley** y **Eliminar medley** (sus canciones no se borran: pasan a `General`).
-- Los espacios dentro de `acordes` alinean cada acorde con la letra.
-
-**Siempre que cambies `canciones.json`, sube el número de `"version"`** (de 1 a 2, etc.). Así los teléfonos se enteran de que hay cambios.
 
 ## Listas (para tocar en orden)
 
-- Toca el filtro **📋 Listas** → **➕ Nueva lista**, ponle nombre y busca las canciones para agregarlas.
-- Cambia el orden con ↑ ↓ y quita canciones con ✕. Una canción puede estar en varias listas o repetirse.
-- También puedes agregar desde una canción abierta con **📋 Agregar a lista**.
-- **▶ Tocar** abre la primera canción; **Siguiente ›** pasa a la que sigue, como en un medley, y arriba se ve cuál viene y en qué tono.
-- Las listas se guardan solo en el teléfono (no van en `canciones.json`).
+- Filtro **📋 Listas** → **▶ Tocar** abre la primera canción; **Siguiente ›** pasa a la que sigue, y arriba se ve cuál viene y en qué tono.
+- Los editores crean listas (**➕ Nueva lista**), cambian el orden con ↑ ↓ y quitan canciones con ✕. Una canción puede estar en varias listas o repetirse.
+- Las listas son compartidas: todos los teléfonos ven las mismas.
 
-## Cómo llegan los cambios al teléfono
+## Probar en la computadora
 
-- **Primera vez:** la app baja `canciones.json` y lo guarda en el teléfono.
-- **Después:** si `version` es mayor que la que ya tiene el teléfono, agrega **solo las canciones nuevas**. No pisa lo que editaste en el teléfono.
-- **Menú ⋯ → 🔄 Actualizar desde GitHub:** además reemplaza las canciones que tengan el mismo título y artista por la versión del repositorio. Hazlo cuando quieras que el repositorio mande.
-- **Menú ⋯ → ↺ Restaurar lista del repositorio:** borra todo lo local y vuelve a la lista del repositorio.
+```bash
+python -m http.server 8000
+```
+
+Abre `http://localhost:8000`. Para iniciar sesión en local, agrega `http://localhost:8000/**` en Supabase → Authentication → URL Configuration → Redirect URLs.
 
 ## Cuando cambies el código
 
-Si cambias `index.html`, `styles.css`, `app.js` o `music.js`, sube el número de `VERSION` en `sw.js` (por ejemplo `cancionero-v2`). Si no, los teléfonos seguirán usando la copia vieja guardada.
+Si cambias `index.html`, `styles.css`, `app.js`, `music.js` o `config.js`, sube el número de `VERSION` en `sw.js` (por ejemplo `cancionero-v13`). Si no, los teléfonos seguirán usando la copia vieja guardada.
+
+Si cambias la versión de supabase-js, cámbiala en `index.html` (con su `integrity`) y en `sw.js`.
 
 ## Nota sobre derechos de autor
 
-`canciones.json` viene solo con título, artista y tono. Agrega letras y acordes de canciones que tengas derecho a usar, o tus propios arreglos, sobre todo si el repositorio es público.
+Agrega letras y acordes de canciones que tengas derecho a usar, o tus propios arreglos. Los datos de Supabase son de lectura pública.
