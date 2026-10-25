@@ -1,0 +1,6 @@
+# Claves secretas: nunca subirlas
+.env
+.env.*
+!.env.example
+
+node_modules/

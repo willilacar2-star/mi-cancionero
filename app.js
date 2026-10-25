@@ -26,87 +26,24 @@
         if (!warned) { warned = true; toast('Este navegador no deja guardar datos. Exporta un respaldo seguido.'); }
         return false;
       }
-    }
+    },
+    del: function (k) { try { localStorage.removeItem(k); } catch (e) {} delete mem[k]; }
   };
-
-  /* ---------- Canciones iniciales (sin letras: las agregas tú) ---------- */
-  var DEMO = [
-    '[Intro]', 'C   G   Am   F', '',
-    '[Verso 1]', 'C              G', 'Esta es una línea de ejemplo',
-    'Am               F', 'para ver cómo se alinean los acordes', '',
-    '[Coro]', 'F          C', 'Escribe aquí tu propia letra',
-    'G            Am', 'y toca Editar para cambiarla'
-  ].join('\n');
-
-  var IND = [
-    ['Bienvenido Espíritu Santo', 'Miel San Marcos', 'C', 'Adoración'],
-    ['Antorcha Encendida', 'Lema retiro', 'G', 'Adoración'],
-    ['Quiero Arder por Ti', 'Franco Figueroa', 'A', 'Adoración'],
-    ['Jeshua', 'Generación 12', 'A', 'Adoración'],
-    ['Nuestro Dios', 'Generación 12', 'A', 'Alabanza'],
-    ['Tú Eres Rey', 'Barak', 'Bm', 'Alabanza'],
-    ['Remolineando', '', 'C#m', 'Alabanza'],
-    ['Tus Cuerdas de Amor', '', 'Dm', 'Adoración'],
-    ['Cantaré de Tu Amor', '', 'C', 'Adoración'],
-    ['Con Mis Manos Levantadas', '', 'G', 'Alabanza'],
-    ['Libre Soy', 'David Scarpeta', 'D', 'Alabanza'],
-    ['Mi Plenitud', 'Marcos Brunet', 'A', 'Adoración'],
-    ['Unción en el Aire', 'Cales Louima', 'Cm', 'Adoración'],
-    ['Espíritu Santo Ven', 'Barak', 'C#m', 'Adoración'],
-    ['Yo Navegaré', 'Dahaira', 'C#m', 'Alabanza'],
-    ['Aquí Estás / Way Maker', '', 'A', 'Adoración'],
-    ['Cuando Pienso en lo Mucho', 'Miel San Marcos', 'Cm', 'Adoración'],
-    ['Creo en Ti', '', 'Bm', 'Adoración'],
-    ['A Tus Pies', "Christine D'Clario", 'A', 'Adoración'],
-    ['Digno', 'Marcos Brunet', 'A', 'Adoración'],
-    ['Espíritu Santo Te Necesito', '', 'G', 'Adoración'],
-    ['Hay una Unción', '', 'G', 'Adoración'],
-    ['Algo Está Cayendo Aquí', '', 'G', 'Adoración'],
-    ['Ven Espíritu Ven', 'Marcos Barrientos', 'G', 'Adoración']
-  ];
-  var MED = {
-    'Medley Dante Gebel': [
-      ['Los Enemigos de Jehová', 'Dm'], ['Libre Yo Soy Libre', 'A'], ['Resplandece', 'D'],
-      ['Fiesta', 'Cm'], ['Viene Ya', 'Am'], ['Fiesta en el Desierto', 'C#m']
-    ],
-    'Medley Juan Carlos Alvarado': [
-      ['Pues Tú Glorioso', 'Gm'], ['Cristo Vive', 'Em'], ['Cristo No Está Muerto', 'C'],
-      ['La Tengo', 'C'], ['Danza Hija de Sión', 'C']
-    ]
-  };
-
-  function iniciales() {
-    var out = [], id = 0;
-    IND.forEach(function (r) {
-      out.push({ id: ++id, titulo: r[0], artista: r[1], tono: r[2], categoria: r[3], seccion: 'General', contenido: [] });
-    });
-    Object.keys(MED).forEach(function (sec) {
-      MED[sec].forEach(function (r) {
-        out.push({ id: ++id, titulo: r[0], artista: '', tono: r[1], categoria: 'Medley', seccion: sec, contenido: [] });
-      });
-    });
-    out.push({
-      id: ++id, titulo: 'Canción de ejemplo', artista: 'Bórrala o edítala', tono: 'C',
-      categoria: 'Alabanza', seccion: 'General', contenido: Music.parseTexto(DEMO),
-      estructura: ['Intro', 'Verso 1', 'Coro', 'Instrumental', 'Coro']
-    });
-    return out;
-  }
 
   /* ---------- Estado ---------- */
-  var songs = store.get('cc_songs', null);
-  var necesitaSemilla = !Array.isArray(songs) || !songs.length;
-  if (necesitaSemilla) songs = [];
+  // cc_songs y cc_listas son la caché local de lo que hay en Supabase (para usar sin conexión).
+  // Favoritos, transposición y preferencias son solo de este teléfono.
+  var songs = store.get('cc_songs', []);
+  if (!Array.isArray(songs)) songs = [];
   var favs = store.get('cc_favs', []);
   var shifts = store.get('cc_shifts', {});
   var prefs = store.get('cc_prefs', {});
   prefs.fs = prefs.fs || 15;
   prefs.modo = prefs.modo || 'ambos';
   prefs.vel = prefs.vel || 4;
-  songs.forEach(function (x) {
-    if (x.titulo === 'Canción de ejemplo' && x.artista === 'Bórrala o edítala' && !x.estructura) x.estructura = ['Intro', 'Verso 1', 'Coro', 'Instrumental', 'Coro'];
-  });
   if (!prefs.theme) prefs.theme = (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  // Restos de la versión que publicaba en GitHub.
+  store.del('cc_ver'); store.del('cc_gh');
 
   // Listas para tocar en orden: [{ id, nombre, items: [idCanción, …] }]
   var listas = store.get('cc_listas', []);
@@ -118,11 +55,86 @@
 
   function saveSongs() { store.set('cc_songs', songs); }
   function savePrefs() { store.set('cc_prefs', prefs); }
-  function findSong(id) { for (var i = 0; i < songs.length; i++) if (songs[i].id === id) return songs[i]; return null; }
-  function nextId() { return songs.reduce(function (m, s) { return Math.max(m, s.id); }, 0) + 1; }
+  // Los id son uuid de Supabase (texto); se comparan como texto.
+  function findSong(id) { for (var i = 0; i < songs.length; i++) if (String(songs[i].id) === String(id)) return songs[i]; return null; }
   function saveListas() { store.set('cc_listas', listas); }
-  function findLista(id) { for (var i = 0; i < listas.length; i++) if (listas[i].id === id) return listas[i]; return null; }
+  function findLista(id) { for (var i = 0; i < listas.length; i++) if (String(listas[i].id) === String(id)) return listas[i]; return null; }
   function songKey(s) { return norm(s.titulo) + '|' + norm(s.artista); }
+  function maxOrden(arr) { return arr.reduce(function (m, x) { return Math.max(m, x.orden || 0); }, 0); }
+
+  /* ---------- Supabase ---------- */
+  var CFG = window.CANCIONERO_CONFIG || {};
+  var sb = null;
+  try {
+    // Sin conexión y sin supabase-js guardado, la app funciona igual con la caché.
+    if (window.supabase && CFG.SUPABASE_URL && CFG.SUPABASE_ANON_KEY) {
+      sb = window.supabase.createClient(CFG.SUPABASE_URL, CFG.SUPABASE_ANON_KEY, {
+        // implicit: el enlace del correo funciona aunque se abra en otro navegador.
+        auth: { flowType: 'implicit', persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
+      });
+    }
+  } catch (e) { sb = null; }
+
+  var COLS = 'id,titulo,artista,tono,categoria,seccion,orden,estructura,contenido';
+  function filaACancion(r) {
+    var s = {
+      id: r.id, titulo: r.titulo, artista: r.artista || '', tono: r.tono || '',
+      categoria: r.categoria || 'Alabanza', seccion: r.seccion || 'General', orden: r.orden || 0,
+      contenido: Array.isArray(r.contenido) ? r.contenido : []
+    };
+    if (Array.isArray(r.estructura) && r.estructura.length) s.estructura = r.estructura;
+    return s;
+  }
+  function cancionAFila(s) {
+    return {
+      titulo: s.titulo, artista: s.artista || '', tono: s.tono || '',
+      categoria: s.categoria || 'Alabanza', seccion: s.seccion || 'General',
+      estructura: s.estructura && s.estructura.length ? s.estructura : null,
+      contenido: s.contenido || []
+    };
+  }
+
+  // Revisa la respuesta de supabase-js (o varias) y lanza el error si lo hay.
+  function chk(r) {
+    (Array.isArray(r) ? r : [r]).forEach(function (x) { if (x && x.error) throw x.error; });
+    return Array.isArray(r) ? r.map(function (x) { return x && x.data; }) : r && r.data;
+  }
+  // Con RLS, un cambio no permitido no da error: simplemente no cambia ninguna fila.
+  // Para update/delete se pide .select('id') y aquí se revisa que haya cambiado algo.
+  function afecta(p) {
+    return p.then(function (r) {
+      if (r && !r.error && Array.isArray(r.data) && !r.data.length) r.error = { code: 'SIN_FILAS', message: '' };
+      return r;
+    });
+  }
+  function sinRed(e) {
+    return navigator.onLine === false || (e && /fetch|network|load failed/i.test(e.message || ''));
+  }
+  function msgError(e) {
+    if (sinRed(e)) return 'Sin conexión: no se guardó. Inténtalo cuando tengas internet.';
+    if (e && (e.code === '42501' || e.status === 401 || e.status === 403)) return 'No tienes permiso para editar. Revisa tu sesión (menú ⋯ → 🔐).';
+    if (e && e.code === 'SIN_FILAS') return 'No se guardó: no se encontró en Supabase o no tienes permiso. Toca menú ⋯ → 🔄 Recargar datos.';
+    return 'No se pudo guardar: ' + ((e && e.message) || 'error desconocido');
+  }
+
+  // Todo cambio va primero a Supabase; la caché local cambia solo si Supabase lo confirma.
+  var ocupado = false;
+  function guardar(enviar, alConfirmar) {
+    if (!sb || !puedeEditar) { toast('Inicia sesión como editor para guardar cambios (menú ⋯ → 🔐).'); return Promise.resolve(false); }
+    if (sinRed()) { toast(msgError()); return Promise.resolve(false); }
+    if (ocupado) return Promise.resolve(false);
+    ocupado = true;
+    return Promise.resolve().then(enviar).then(function (r) {
+      var datos = chk(r);
+      if (alConfirmar) alConfirmar(datos);
+      return true;
+    }).catch(function (e) {
+      toast(msgError(e)); return false;
+    }).then(function (ok) { ocupado = false; return ok; });
+  }
+
+  /* ---------- Sesión de editor ---------- */
+  var sesion = null, puedeEditar = false;
 
   /* ---------- Toast ---------- */
   var toastT;
@@ -185,6 +197,7 @@
 
     if (!arr.length) {
       $('lista').innerHTML = '<div class="empty-msg">' + (
+        !songs.length ? (cargando ? 'Cargando canciones…' : 'No hay canciones guardadas en este teléfono. Conéctate a internet y toca menú ⋯ → 🔄 Recargar datos.') :
         f === 'favoritos' && !q ? 'Aún no tienes favoritos. Abre una canción y toca “☆ Favorito”.' : 'No hay canciones con esa búsqueda o filtro.'
       ) + '</div>';
       return;
@@ -197,7 +210,7 @@
         if (!mapa[s.seccion]) { mapa[s.seccion] = []; grupos.push(s.seccion); }
         mapa[s.seccion].push(s);
       });
-      var puedeOrdenar = !q;
+      var puedeOrdenar = !q && puedeEditar;
       if (!puedeOrdenar) ordenMed = null;
       grupos.forEach(function (g, gi) {
         var editando = ordenMed === g;
@@ -238,23 +251,36 @@
     songs.forEach(function (s) { if (isMedley(s) && gs.indexOf(s.seccion) < 0) gs.push(s.seccion); });
     return gs;
   }
-  // Mueve una canción dentro de su medley (intercambia su lugar con la vecina).
-  function moverCancion(id, d) {
-    var s = findSong(id); if (!s) return;
-    var g = grupoDe(s.seccion), i = g.indexOf(s), o = g[i + d];
-    if (!o) return;
-    var a = songs.indexOf(s), b = songs.indexOf(o);
-    songs[a] = o; songs[b] = s;
+  // Guarda en Supabase el orden de todas las canciones (columna orden = 1, 2, 3…).
+  function guardarOrden(nuevo) {
+    if (!nuevo) return;
+    guardar(function () {
+      return sb.rpc('reordenar_canciones', { ids: nuevo.map(function (s) { return s.id; }) });
+    }, function () {
+      songs = nuevo;
+      songs.forEach(function (s, i) { s.orden = i + 1; });
+      saveSongs(); renderList();
+    });
   }
-  // Mueve un medley completo antes o después del medley vecino.
+  // Mueve una canción dentro de su medley (intercambia su lugar con la vecina). Devuelve el orden nuevo.
+  function moverCancion(id, d) {
+    var s = findSong(id); if (!s) return null;
+    var g = grupoDe(s.seccion), i = g.indexOf(s), o = g[i + d];
+    if (!o) return null;
+    var arr = songs.slice(), a = arr.indexOf(s), b = arr.indexOf(o);
+    arr[a] = o; arr[b] = s;
+    return arr;
+  }
+  // Mueve un medley completo antes o después del medley vecino. Devuelve el orden nuevo.
   function moverGrupo(g, d) {
     var gs = gruposMedley(), i = gs.indexOf(g), otro = gs[i + d];
-    if (!otro) return;
+    if (!otro) return null;
     var bloque = grupoDe(g);
-    songs = songs.filter(function (s) { return bloque.indexOf(s) < 0; });
+    var arr = songs.filter(function (s) { return bloque.indexOf(s) < 0; });
     var ref = grupoDe(otro);
-    var pos = d < 0 ? songs.indexOf(ref[0]) : songs.indexOf(ref[ref.length - 1]) + 1;
-    Array.prototype.splice.apply(songs, [pos, 0].concat(bloque));
+    var pos = d < 0 ? arr.indexOf(ref[0]) : arr.indexOf(ref[ref.length - 1]) + 1;
+    Array.prototype.splice.apply(arr, [pos, 0].concat(bloque));
+    return arr;
   }
   // Cambia el nombre de un medley en todas sus canciones (siempre empieza con "Medley").
   function renombrarMedley(g) {
@@ -266,19 +292,27 @@
     if (v === g) return;
     if (gruposMedley().indexOf(v) > -1 &&
         !confirm('Ya existe “' + v + '”. Las canciones de “' + g + '” se unirán a ese medley. ¿Continuar?')) return;
-    var n = 0;
-    songs.forEach(function (s) { if (isMedley(s) && s.seccion === g) { s.seccion = v; n++; } });
-    ordenMed = v; saveSongs(); renderList();
-    toast('Medley renombrado (' + n + (n === 1 ? ' canción' : ' canciones') + ')');
+    guardar(function () {
+      return afecta(sb.from('canciones').update({ seccion: v }).eq('seccion', g).select('id'));
+    }, function () {
+      var n = 0;
+      songs.forEach(function (s) { if (isMedley(s) && s.seccion === g) { s.seccion = v; n++; } });
+      ordenMed = v; saveSongs(); renderList();
+      toast('Medley renombrado (' + n + (n === 1 ? ' canción' : ' canciones') + ')');
+    });
   }
   // Deshace el medley: sus canciones quedan en el cancionero, en la sección General.
   function eliminarMedley(g) {
     var n = grupoDe(g).length;
     if (!confirm('¿Eliminar el medley “' + g + '”?\n\nSus ' + n + (n === 1 ? ' canción no se borra: pasa' : ' canciones no se borran: pasan') +
         ' a la sección General y las sigues encontrando en Todas.')) return;
-    songs.forEach(function (s) { if (isMedley(s) && s.seccion === g) s.seccion = 'General'; });
-    ordenMed = null; saveSongs(); renderList();
-    toast('Medley eliminado');
+    guardar(function () {
+      return afecta(sb.from('canciones').update({ seccion: 'General' }).eq('seccion', g).select('id'));
+    }, function () {
+      songs.forEach(function (s) { if (isMedley(s) && s.seccion === g) s.seccion = 'General'; });
+      ordenMed = null; saveSongs(); renderList();
+      toast('Medley eliminado');
+    });
   }
 
   $('lista').addEventListener('click', function (e) {
@@ -286,8 +320,8 @@
     if (!b || b.disabled) return;
     if (b.hasAttribute('data-mo')) { ordenMed = b.getAttribute('data-mo'); }
     else if (b.hasAttribute('data-mlisto')) { ordenMed = null; }
-    else if (b.hasAttribute('data-mv')) { moverCancion(+b.getAttribute('data-id'), +b.getAttribute('data-mv')); saveSongs(); }
-    else if (b.hasAttribute('data-gmv')) { moverGrupo(b.getAttribute('data-g'), +b.getAttribute('data-gmv')); saveSongs(); }
+    else if (b.hasAttribute('data-mv')) { e.preventDefault(); guardarOrden(moverCancion(b.getAttribute('data-id'), +b.getAttribute('data-mv'))); return; }
+    else if (b.hasAttribute('data-gmv')) { e.preventDefault(); guardarOrden(moverGrupo(b.getAttribute('data-g'), +b.getAttribute('data-gmv'))); return; }
     else if (b.hasAttribute('data-mren')) { e.preventDefault(); renombrarMedley(b.getAttribute('data-mren')); return; }
     else if (b.hasAttribute('data-mdel')) { e.preventDefault(); eliminarMedley(b.getAttribute('data-mdel')); return; }
     else return;
@@ -339,17 +373,20 @@
 
   function renderListas() {
     listas.forEach(limpiarLista);
+    if (!puedeEditar) plEdit = null;
     $('count').textContent = listas.length + (listas.length === 1 ? ' lista' : ' listas');
-    var html = '<div class="mactions"><button class="btn pri" data-pl="nueva">➕ Nueva lista</button></div>';
-    if (!listas.length) html += '<div class="empty-msg">Aún no tienes listas. Crea una, agrega canciones en el orden en que las vas a tocar y toca ▶ Tocar para irlas pasando una tras otra.</div>';
+    var html = puedeEditar ? '<div class="mactions"><button class="btn pri" data-pl="nueva">➕ Nueva lista</button></div>' : '';
+    if (!listas.length) html += '<div class="empty-msg">' + (puedeEditar
+      ? 'Aún no hay listas. Crea una, agrega canciones en el orden en que las vas a tocar y toca ▶ Tocar para irlas pasando una tras otra.'
+      : 'Aún no hay listas. Un editor puede crearlas después de iniciar sesión (menú ⋯ → 🔐).') + '</div>';
 
     listas.forEach(function (L, li) {
-      if (plEdit !== L.id) {
+      if (String(plEdit) !== String(L.id)) {
         html += '<div class="mhead"><span class="mtit">📋 ' + esc(L.nombre) + '</span>' +
           (L.items.length ? '<a class="btn mini pri" href="#/l/' + L.id + '/0">▶ Tocar</a>' : '') +
-          '<button class="btn mini" data-pl="edit" data-l="' + L.id + '">✎ Editar</button></div>';
+          (puedeEditar ? '<button class="btn mini" data-pl="edit" data-l="' + L.id + '">✎ Editar</button>' : '') + '</div>';
         cancionesDe(L).forEach(function (s, i) { html += itemHTML(s, i + 1, '#/l/' + L.id + '/' + i); });
-        if (!L.items.length) html += '<p class="help">Lista vacía. Toca ✎ Editar para agregar canciones.</p>';
+        if (!L.items.length) html += '<p class="help">Lista vacía.' + (puedeEditar ? ' Toca ✎ Editar para agregar canciones.' : '') + '</p>';
         return;
       }
       html += '<div class="mhead"><span class="mtit">✎ Editando lista</span></div>' +
@@ -369,41 +406,90 @@
     $('lista').innerHTML = html;
   }
 
+  // Crea una lista vacía en Supabase y la agrega al final.
+  function crearLista(alCrear) {
+    return guardar(function () {
+      return sb.from('listas').insert({ nombre: 'Lista ' + (listas.length + 1), orden: maxOrden(listas) + 1 })
+        .select('id,nombre,orden').single();
+    }, function (r) {
+      var L = { id: r.id, nombre: r.nombre, orden: r.orden, items: [] };
+      listas.push(L); saveListas();
+      if (alCrear) alCrear(L);
+    });
+  }
+  // Guarda en Supabase las canciones de una lista en el orden nuevo.
+  function guardarItems(L, items, alConfirmar) {
+    return guardar(function () {
+      return sb.rpc('guardar_lista', { p_lista: L.id, p_canciones: items });
+    }, function () {
+      L.items = items; saveListas();
+      if (alConfirmar) alConfirmar();
+    });
+  }
+
+  // El nombre se guarda mientras se escribe, un momento después de la última tecla.
+  var nombreT = 0, nombrePend = null;
+  function guardarNombre() {
+    clearTimeout(nombreT);
+    var p = nombrePend; nombrePend = null;
+    if (!p || !sb || !puedeEditar) return;
+    afecta(sb.from('listas').update({ nombre: p.nombre }).eq('id', p.L.id).select('id'))
+      .then(chk).catch(function (e) { toast(msgError(e)); });
+  }
+
   function plAccion(act, b) {
     var L = findLista(plEdit), i = +b.getAttribute('data-i'), x;
     if (act === 'nueva') {
-      var id = listas.reduce(function (m, l) { return Math.max(m, l.id); }, 0) + 1;
-      listas.push({ id: id, nombre: 'Lista ' + id, items: [] });
-      plEdit = id; plQuery = ''; saveListas(); renderList();
-      var inp = $('plNombre'); if (inp) { inp.focus(); inp.select(); }
+      crearLista(function (N) {
+        plEdit = N.id; plQuery = ''; renderList();
+        var inp = $('plNombre'); if (inp) { inp.focus(); inp.select(); }
+      });
       return;
     }
-    if (act === 'edit') { plEdit = +b.getAttribute('data-l'); plQuery = ''; renderList(); return; }
+    if (act === 'edit') { plEdit = b.getAttribute('data-l'); plQuery = ''; renderList(); return; }
     if (!L) return;
-    if (act === 'listo') { plEdit = null; renderList(); return; }
+    if (act === 'listo') { guardarNombre(); plEdit = null; renderList(); return; }
     if (act === 'borrar') {
       if (!confirm('¿Eliminar la lista “' + L.nombre + '”? Las canciones no se borran.')) return;
-      listas = listas.filter(function (l) { return l !== L; });
-      plEdit = null; saveListas(); renderList(); toast('Lista eliminada'); return;
+      nombrePend = null;
+      guardar(function () {
+        return afecta(sb.from('listas').delete().eq('id', L.id).select('id'));
+      }, function () {
+        listas = listas.filter(function (l) { return l !== L; });
+        plEdit = null; saveListas(); renderList(); toast('Lista eliminada');
+      });
+      return;
     }
     if (act === 'lup' || act === 'ldown') {
       var li = listas.indexOf(L), lj = li + (act === 'lup' ? -1 : 1);
       if (!listas[lj]) return;
-      listas[li] = listas[lj]; listas[lj] = L;
-      saveListas(); renderList(); return;
+      var orden = listas.slice();
+      orden[li] = listas[lj]; orden[lj] = L;
+      guardar(function () {
+        return sb.rpc('reordenar_listas', { ids: orden.map(function (l) { return l.id; }) });
+      }, function () {
+        listas = orden;
+        listas.forEach(function (l, k) { l.orden = k + 1; });
+        saveListas(); renderList();
+      });
+      return;
     }
-    if (act === 'up' && i > 0) { x = L.items[i - 1]; L.items[i - 1] = L.items[i]; L.items[i] = x; }
-    else if (act === 'down' && i < L.items.length - 1) { x = L.items[i + 1]; L.items[i + 1] = L.items[i]; L.items[i] = x; }
-    else if (act === 'del') { L.items.splice(i, 1); }
+    var items = L.items.slice(), msg = '';
+    if (act === 'up' && i > 0) { x = items[i - 1]; items[i - 1] = items[i]; items[i] = x; }
+    else if (act === 'down' && i < items.length - 1) { x = items[i + 1]; items[i + 1] = items[i]; items[i] = x; }
+    else if (act === 'del') { items.splice(i, 1); }
     else if (act === 'add') {
-      var s = findSong(+b.getAttribute('data-id'));
+      var s = findSong(b.getAttribute('data-id'));
       if (!s) return;
-      L.items.push(s.id); toast('“' + s.titulo + '” agregada (' + L.items.length + ')');
+      items.push(s.id); msg = '“' + s.titulo + '” agregada (' + items.length + ')';
     } else return;
-    saveListas();
-    // Solo se redibuja el orden y los resultados, para no cerrar el teclado.
-    $('plRows').innerHTML = plRowsHTML(L);
-    $('plRes').innerHTML = plResHTML(L);
+    guardarItems(L, items, function () {
+      if (msg) toast(msg);
+      // Solo se redibuja el orden y los resultados, para no cerrar el teclado.
+      if (String(plEdit) !== String(L.id) || !$('plRows')) return;
+      $('plRows').innerHTML = plRowsHTML(L);
+      $('plRes').innerHTML = plResHTML(L);
+    });
   }
 
   $('lista').addEventListener('click', function (e) {
@@ -416,7 +502,11 @@
     var L = findLista(plEdit);
     if (!L) return;
     if (e.target.id === 'plBuscar') { plQuery = e.target.value; $('plRes').innerHTML = plResHTML(L); }
-    else if (e.target.id === 'plNombre') { L.nombre = e.target.value.trim() || 'Sin nombre'; saveListas(); }
+    else if (e.target.id === 'plNombre') {
+      L.nombre = e.target.value.trim() || 'Sin nombre'; saveListas();
+      nombrePend = { L: L, nombre: L.nombre };
+      clearTimeout(nombreT); nombreT = setTimeout(guardarNombre, 800);
+    }
   });
 
   /* Agregar la canción abierta a una lista */
@@ -439,17 +529,22 @@
   $('plAdd').addEventListener('click', function (e) {
     var b = e.target.closest('[data-pa]');
     if (!b || !cur) return;
-    var v = b.getAttribute('data-pa'), L;
+    var v = b.getAttribute('data-pa'), s = cur;
+    function agregar(L) {
+      return guardarItems(L, L.items.concat([s.id]), function () {
+        $('plAdd').hidden = true; $('bLista').setAttribute('aria-expanded', 'false');
+        toast('Agregada a “' + L.nombre + '” (' + L.items.length + ')');
+      });
+    }
     if (v === 'nueva') {
-      var id = listas.reduce(function (m, l) { return Math.max(m, l.id); }, 0) + 1;
-      L = { id: id, nombre: 'Lista ' + id, items: [] };
-      listas.push(L);
-    } else L = findLista(+v);
+      // La lista se crea primero; agregar la canción es otro paso, por eso se libera "ocupado" antes.
+      crearLista(function (N) { setTimeout(function () { agregar(N); }, 0); });
+      return;
+    }
+    var L = findLista(v);
     if (!L) return;
-    if (L.items.indexOf(cur.id) > -1 && !confirm('“' + cur.titulo + '” ya está en “' + L.nombre + '”. ¿Agregarla otra vez?')) return;
-    L.items.push(cur.id); saveListas();
-    $('plAdd').hidden = true; $('bLista').setAttribute('aria-expanded', 'false');
-    toast('Agregada a “' + L.nombre + '” (' + L.items.length + ')');
+    if (L.items.indexOf(s.id) > -1 && !confirm('“' + s.titulo + '” ya está en “' + L.nombre + '”. ¿Agregarla otra vez?')) return;
+    agregar(L);
   });
 
   /* ---------- Menú ---------- */
@@ -486,268 +581,266 @@
     return o;
   }
 
-  /* ---------- Repositorio: canciones.json publicado junto a la app ---------- */
-  function descargarRepo() {
-    return fetch('canciones.json', { cache: 'no-cache' }).then(function (r) {
-      if (!r.ok) throw new Error('http ' + r.status);
-      return r.json();
-    }).then(function (d) {
-      var arr = Array.isArray(d) ? d : (d && d.canciones);
-      if (!Array.isArray(arr)) throw new Error('formato');
-      var lista = arr.map(normSong).filter(Boolean);
-      if (!lista.length) throw new Error('vacío');
-      return { ver: (d && d.version) || 1, lista: lista, listas: (d && Array.isArray(d.listas)) ? d.listas : [] };
-    });
-  }
-
-  // Mezcla una lista con las canciones locales (clave: título + artista).
-  function fusionar(lista, reemplazar) {
-    var add = 0, upd = 0;
-    lista.forEach(function (n) {
-      var k = norm(n.titulo) + '|' + norm(n.artista), ex = null;
-      for (var i = 0; i < songs.length; i++) {
-        if (norm(songs[i].titulo) + '|' + norm(songs[i].artista) === k) { ex = songs[i]; break; }
-      }
-      if (ex) { if (reemplazar) { n.id = ex.id; Object.assign(ex, n); upd++; } }
-      else { n.id = nextId(); songs.push(n); add++; }
-    });
-    return { add: add, upd: upd };
-  }
-
-  // Mezcla listas que vienen del repositorio o de un archivo.
-  // Cada canción se busca por título + artista, porque los id cambian de un teléfono a otro.
-  // reemplazar = true: una lista con el mismo nombre toma el contenido de la que llega.
-  // Las listas que solo existen en este teléfono no se tocan.
-  function fusionarListas(remotas, reemplazar) {
-    var add = 0, upd = 0, faltan = 0, porClave = {};
-    songs.forEach(function (s) { if (!porClave[songKey(s)]) porClave[songKey(s)] = s.id; });
-    (remotas || []).forEach(function (R) {
-      if (!R || typeof R.nombre !== 'string' || !R.nombre.trim()) return;
-      var items = [];
-      (Array.isArray(R.canciones) ? R.canciones : []).forEach(function (c) {
-        var id = c && porClave[norm(c.titulo) + '|' + norm(c.artista)];
-        if (id) items.push(id); else faltan++;
+  /* ---------- Datos desde Supabase ---------- */
+  // Trae canciones y listas y actualiza la caché. Si falla (sin conexión), la app sigue con la caché.
+  var cargando = null;
+  function cargarRemoto(avisar) {
+    if (!sb) {
+      if (avisar) toast('Sin conexión con Supabase. Se usan los datos guardados en este teléfono.');
+      return Promise.resolve(false);
+    }
+    if (cargando) return cargando;
+    // Si el teléfono ya sabe que no tiene red, no se espera a los reintentos de supabase-js.
+    if (sinRed()) {
+      if (avisar) toast('Sin conexión. Se usan los datos guardados en este teléfono.');
+      return Promise.resolve(false);
+    }
+    cargando = Promise.all([
+      sb.from('canciones').select(COLS).order('orden').order('titulo'),
+      sb.from('listas').select('id,nombre,orden,lista_canciones(cancion_id,posicion)').order('orden').order('nombre')
+    ]).then(function (r) {
+      cargando = null;
+      var d = chk(r);
+      var nuevas = d[0].map(filaACancion);
+      var nuevasListas = d[1].map(function (l) {
+        var it = (l.lista_canciones || []).slice().sort(function (a, b) { return a.posicion - b.posicion; });
+        return { id: l.id, nombre: l.nombre, orden: l.orden, items: it.map(function (x) { return x.cancion_id; }) };
       });
-      var ex = null;
-      for (var i = 0; i < listas.length; i++) if (norm(listas[i].nombre) === norm(R.nombre)) { ex = listas[i]; break; }
-      if (ex) {
-        if (reemplazar && JSON.stringify(ex.items) !== JSON.stringify(items)) { ex.items = items; upd++; }
-      } else {
-        var id = listas.reduce(function (m, l) { return Math.max(m, l.id); }, 0) + 1;
-        listas.push({ id: id, nombre: R.nombre.trim(), items: items });
-        add++;
+      migrarIds(songs, nuevas);
+      var cambio = JSON.stringify(nuevas) !== JSON.stringify(songs) || JSON.stringify(nuevasListas) !== JSON.stringify(listas);
+      songs = nuevas; listas = nuevasListas;
+      saveSongs(); saveListas();
+      if (cambio || !songs.length) refrescarVista();  // sin canciones, también quita el "Cargando…"
+      if (avisar) toast('Datos al día: ' + songs.length + ' canciones, ' + listas.length + (listas.length === 1 ? ' lista' : ' listas'));
+      return true;
+    }).catch(function (e) {
+      cargando = null;
+      var red = sinRed(e) || !(e && e.code);
+      if (avisar || !red) {
+        toast(red ? 'Sin conexión. Se usan los datos guardados en este teléfono.' : 'No se pudieron leer las canciones: ' + ((e && e.message) || 'error'));
       }
+      if (!songs.length) refrescarVista();  // quita el "Cargando…"
+      return false;
     });
-    if (add || upd) saveListas();
-    return { add: add, upd: upd, faltan: faltan };
-  }
-  function textoListas(y) {
-    var p = [];
-    if (y.add) p.push(y.add + (y.add === 1 ? ' lista nueva' : ' listas nuevas'));
-    if (y.upd) p.push(y.upd + (y.upd === 1 ? ' lista actualizada' : ' listas actualizadas'));
-    return p.length ? ' · ' + p.join(', ') : '';
+    return cargando;
   }
 
-  $('mAct').addEventListener('click', function () {
-    descargarRepo().then(function (r) {
-      if (!confirm('El repositorio tiene ' + r.lista.length + ' canciones. Las que ya tienes con el mismo título y artista se reemplazan por la versión del repositorio (se pierden tus ediciones locales de esas). ¿Continuar?')) return;
-      var x = fusionar(r.lista, true);
-      saveSongs();
-      var y = fusionarListas(r.listas, true);
-      store.set('cc_ver', r.ver); renderList();
-      toast(x.add + ' nuevas, ' + x.upd + ' actualizadas' + textoListas(y));
-    }).catch(function () {
-      toast('No se pudo leer canciones.json. Revisa la conexión y que la página esté publicada.');
-    });
+  // La versión anterior usaba números como id. Pasa favoritos y transposición a los id nuevos (por título + artista).
+  function migrarIds(viejas, nuevas) {
+    var porId = {}, porClave = {}, hay = false;
+    viejas.forEach(function (s) { if (typeof s.id === 'number') { porId[s.id] = songKey(s); hay = true; } });
+    if (!hay) return;
+    nuevas.forEach(function (s) { if (!porClave[songKey(s)]) porClave[songKey(s)] = s.id; });
+    function nuevo(id) { return /^\d+$/.test(String(id)) ? porClave[porId[+id]] : id; }
+    favs = favs.map(nuevo).filter(Boolean);
+    var sh = {};
+    Object.keys(shifts).forEach(function (k) { var n = nuevo(k); if (n) sh[n] = shifts[k]; });
+    shifts = sh;
+    store.set('cc_favs', favs); store.set('cc_shifts', shifts);
+  }
+
+  // Vuelve a dibujar la pantalla con los datos nuevos, sin tocar lo que se está editando.
+  function refrescarVista() {
+    if (!$('vEditor').hidden) return;
+    if (!$('vLista').hidden) { if (!plEdit && !ordenMed) renderList(); return; }
+    if (!$('vCancion').hidden && cur) {
+      if (auto.on || stOpen) return;
+      var s = findSong(cur.id), ctx = null;
+      if (!s) { location.hash = '#/'; return; }
+      if (plCtx) {
+        ctx = { lista: findLista(plCtx.lista.id), i: plCtx.i };
+        if (!ctx.lista || String(ctx.lista.items[ctx.i]) !== String(s.id)) { location.hash = '#/'; return; }
+      }
+      var y = window.scrollY;
+      showSong(s.id, ctx); window.scrollTo(0, y);
+    }
+  }
+
+  $('mRec').addEventListener('click', function () { cargarRemoto(true); });
+  window.addEventListener('online', function () { cargarRemoto(); });
+
+  /* ---------- Importar (a Supabase) ---------- */
+  $('mImp').addEventListener('click', function () {
+    if (!puedeEditar) { toast('Inicia sesión como editor para importar (menú ⋯ → 🔐).'); return; }
+    $('fileImp').click();
   });
-
-  $('mImp').addEventListener('click', function () { $('fileImp').click(); });
   $('fileImp').addEventListener('change', function () {
     var file = this.files[0], input = this;
     if (!file) return;
     var rd = new FileReader();
     rd.onload = function () {
+      var nuevas, lsImp;
       try {
         var data = JSON.parse(rd.result);
-        var lsImp = (data && !Array.isArray(data) && Array.isArray(data.listas)) ? data.listas : [];
+        lsImp = (data && !Array.isArray(data) && Array.isArray(data.listas)) ? data.listas : [];
         if (data && !Array.isArray(data) && Array.isArray(data.canciones)) data = data.canciones;
         if (!Array.isArray(data)) throw new Error('formato');
-        var nuevas = data.map(normSong).filter(Boolean);
+        nuevas = data.map(normSong).filter(Boolean);
         if (!nuevas.length) throw new Error('vacío');
-        if (!confirm('Se importarán ' + nuevas.length + ' canciones. Si ya tienes una con el mismo título y artista, se reemplaza. ¿Continuar?')) return;
-        var x = fusionar(nuevas, true), add = x.add, upd = x.upd;
-        saveSongs();
-        var y = fusionarListas(lsImp, true);
-        renderList();
-        toast(add + ' nuevas, ' + upd + ' actualizadas' + textoListas(y));
       } catch (err) {
         toast('El archivo no es un JSON de canciones válido.');
+        return;
       }
+      if (!confirm('Se importarán ' + nuevas.length + ' canciones a Supabase. Si ya existe una con el mismo título y artista, se reemplaza. ¿Continuar?')) return;
+      importar(nuevas, lsImp);
     };
     rd.readAsText(file);
     input.value = '';
   });
 
-  // El mismo formato que canciones.json del repositorio (sin los id internos).
-  function jsonCanciones(version) {
-    var limpio = songs.map(function (x) { var c = Object.assign({}, x); delete c.id; return c; });
+  // Canciones: misma clave título + artista se reemplaza, las demás se agregan al final.
+  // Listas: una con el mismo nombre toma las canciones del archivo; las demás se crean.
+  function importar(nuevas, lsImp) {
+    var porClave = {}, filas = {}, claves = [], orden = maxOrden(songs), add = 0, upd = 0, nLis = 0, faltan = 0;
+    songs.forEach(function (s) { if (!porClave[songKey(s)]) porClave[songKey(s)] = s; });
+    nuevas.forEach(function (n) {
+      var k = songKey(n), f = cancionAFila(n);
+      if (filas[k]) { f.id = filas[k].id; f.orden = filas[k].orden; filas[k] = f; return; }  // repetida en el archivo: vale la última
+      var ex = porClave[k];
+      if (ex) { f.id = ex.id; f.orden = ex.orden; upd++; }
+      else { f.id = crypto.randomUUID(); f.orden = ++orden; add++; }
+      filas[k] = f; claves.push(k);
+    });
+    guardar(function () {
+      return sb.from('canciones').upsert(claves.map(function (k) { return filas[k]; }), { onConflict: 'id' }).then(function (r) {
+        var cadena = Promise.resolve(r), ordenL = maxOrden(listas);
+        (lsImp || []).forEach(function (R) {
+          if (!R || typeof R.nombre !== 'string' || !R.nombre.trim()) return;
+          var items = [], ex = null;
+          (Array.isArray(R.canciones) ? R.canciones : []).forEach(function (c) {
+            var f = c && (filas[songKey(c)] || porClave[songKey(c)]);
+            if (f) items.push(f.id); else faltan++;
+          });
+          listas.forEach(function (L) { if (!ex && norm(L.nombre) === norm(R.nombre)) ex = L; });
+          var id = ex ? ex.id : crypto.randomUUID();
+          cadena = cadena.then(function (prev) {
+            if (prev && prev.error) return prev;
+            var crear = ex ? Promise.resolve({}) : sb.from('listas').insert({ id: id, nombre: R.nombre.trim(), orden: ++ordenL });
+            return crear.then(function (c) {
+              if (c.error) return c;
+              nLis++;
+              return sb.rpc('guardar_lista', { p_lista: id, p_canciones: items });
+            });
+          });
+        });
+        return cadena;
+      });
+    }, function () {
+      cargarRemoto().then(function () {
+        toast(add + ' nuevas, ' + upd + ' actualizadas' + (nLis ? ' · ' + nLis + (nLis === 1 ? ' lista' : ' listas') : '') +
+          (faltan ? ' · ' + faltan + ' canciones de listas no se encontraron' : ''));
+      });
+    });
+  }
+
+  /* ---------- Exportar (respaldo) ---------- */
+  // El mismo formato que usaba canciones.json (sin id ni orden internos). Se puede volver a cargar con Importar JSON.
+  function jsonCanciones() {
+    var limpio = songs.map(function (x) { var c = Object.assign({}, x); delete c.id; delete c.orden; return c; });
     var ls = listas.map(function (L) {
       return {
         nombre: L.nombre,
         canciones: L.items.map(findSong).filter(Boolean).map(function (s) { return { titulo: s.titulo, artista: s.artista || '' }; })
       };
     });
-    return JSON.stringify({ version: version, canciones: limpio, listas: ls }, null, 2);
+    return JSON.stringify({ canciones: limpio, listas: ls }, null, 2);
   }
 
   $('mExp').addEventListener('click', function () {
-    var blob = new Blob([jsonCanciones(store.get('cc_ver', 0) + 1)], { type: 'application/json' });
+    var blob = new Blob([jsonCanciones()], { type: 'application/json' });
     var url = URL.createObjectURL(blob);
     var a = document.createElement('a');
-    a.href = url; a.download = 'canciones.json';
+    a.href = url; a.download = 'canciones-' + new Date().toISOString().slice(0, 10) + '.json';
     document.body.appendChild(a); a.click();
     setTimeout(function () { URL.revokeObjectURL(url); a.remove(); }, 600);
-    toast('canciones.json exportado');
+    toast('Respaldo exportado');
   });
 
-  /* ---------- Publicar en GitHub (API de contenidos con un token fine-grained) ---------- */
-  // Repositorio por defecto: el de la página publicada (usuario.github.io/repo).
-  function repoPorDefecto() {
-    var h = location.hostname.match(/^([^.]+)\.github\.io$/i), p = location.pathname.split('/')[1];
-    return h && p ? h[1] + '/' + p : 'willilacar2-star/mi-cancionero';
+  /* ---------- Sesión de editor (enlace o código del correo) ---------- */
+  function lgEstado(txt, cls) { var el = $('lgEstado'); el.textContent = txt || ''; el.className = 'dlgestado' + (cls ? ' ' + cls : ''); }
+  function pintarSesion() {
+    var email = sesion && sesion.user && sesion.user.email;
+    document.body.classList.toggle('editor', puedeEditar);
+    $('mSes').textContent = email ? '🔐 Sesión: ' + email : '🔐 Iniciar sesión';
+    $('lgFuera').hidden = !!email; $('lgDentro').hidden = !email;
+    $('lgEmail').textContent = email || '';
+    $('lgRol').textContent = puedeEditar ? '✓ Puedes editar canciones y listas.' : 'Este correo no está autorizado como editor.';
   }
-  function ghConf() {
-    var c = store.get('cc_gh', {}) || {};
-    return { token: c.token || '', repo: c.repo || repoPorDefecto() };
+  // Con sesión, se pregunta a Supabase si el correo está en editores.
+  function aplicarSesion(s) {
+    sesion = s || null;
+    var antes = puedeEditar;
+    function fin(v) {
+      puedeEditar = v; store.set('cc_editor', v); pintarSesion();
+      if (antes === v) return;
+      if (!v) { stOpen = false; plEdit = null; ordenMed = null; }
+      if (!v && !$('vEditor').hidden) location.hash = '#/'; else refrescarVista();
+    }
+    if (!sesion) { fin(false); return; }
+    sb.rpc('es_editor').then(function (r) { fin(!!chk(r)); })
+      .catch(function () { fin(!!store.get('cc_editor', false)); });  // sin conexión: lo último que se supo
   }
-  function b64aTexto(b) { return decodeURIComponent(escape(atob(b.replace(/\s/g, '')))); }
-  function textoAb64(t) { return btoa(unescape(encodeURIComponent(t))); }
 
-  function ghApi(conf, metodo, ruta, cuerpo) {
-    return fetch('https://api.github.com/repos/' + conf.repo + ruta, {
-      method: metodo,
-      cache: 'no-store',
-      headers: {
-        'Authorization': 'Bearer ' + conf.token,
-        'Accept': 'application/vnd.github+json',
-        'X-GitHub-Api-Version': '2022-11-28',
-        'Content-Type': 'application/json'
-      },
-      body: cuerpo ? JSON.stringify(cuerpo) : undefined
-    }).then(function (r) {
-      return r.json().catch(function () { return {}; }).then(function (d) {
-        if (r.ok) return d;
-        var e = new Error(d.message || ('http ' + r.status)); e.status = r.status; throw e;
-      });
+  // Al volver del enlace del correo, la dirección trae #access_token=… (o #error=…).
+  var hashAuth = /(^|[#&])(access_token|error_description)=/.test(location.hash) ? location.hash : '';
+  if (sb) {
+    sb.auth.onAuthStateChange(function (ev, s) {
+      // supabase-js pide no llamar a Supabase dentro de este aviso: se hace justo después.
+      setTimeout(function () {
+        if (hashAuth) {
+          var err = /error_description=([^&]*)/.exec(hashAuth);
+          hashAuth = '';
+          history.replaceState(null, '', location.pathname + location.search + '#/');
+          if (err) toast('No se pudo iniciar sesión: ' + decodeURIComponent(err[1].replace(/\+/g, ' ')) + '. Pide un enlace nuevo.');
+          else if (s) toast('Sesión iniciada: ' + s.user.email);
+        }
+        if (ev === 'TOKEN_REFRESHED') { sesion = s; return; }
+        aplicarSesion(s);
+      }, 0);
     });
   }
-  function ghMsgError(e) {
-    if (e.status === 401) return 'El token no es válido o ya venció. Revisa 🔑 Conexión con GitHub.';
-    if (e.status === 403) return 'El token no tiene permiso de escritura (Contents: Read and write) en este repositorio.';
-    if (e.status === 404) return 'No se encontró el repositorio o el token no tiene acceso a él.';
-    if (e.status === 409 || e.status === 422) return 'El archivo cambió en GitHub mientras publicabas. Vuelve a intentarlo.';
-    if (!e.status) return 'Sin conexión con GitHub. Revisa internet e inténtalo de nuevo.';
-    return 'GitHub respondió: ' + e.message;
-  }
 
-  /* Ventana de conexión */
-  function ghEstado(txt, cls) { var el = $('ghEstado'); el.textContent = txt; el.className = 'ghestado' + (cls ? ' ' + cls : ''); }
-  function ghLeerForm() {
-    return { token: $('ghTok').value.trim(), repo: $('ghRepo').value.trim().replace(/^https?:\/\/github\.com\//i, '').replace(/\/+$/, '') || repoPorDefecto() };
-  }
-  function abrirGh() {
-    var c = ghConf();
-    $('ghTok').value = c.token; $('ghRepo').value = c.repo;
-    $('ghRepoTxt').textContent = c.repo;
-    ghEstado(c.token ? 'Hay un token guardado en este teléfono.' : 'Aún no hay token guardado.');
-    var d = $('ghDlg');
+  function abrirLogin() {
+    lgEstado(''); pintarSesion();
+    var d = $('loginDlg');
     if (d.showModal) d.showModal(); else d.setAttribute('open', '');
   }
-  $('mTok').addEventListener('click', abrirGh);
-  $('ghRepo').addEventListener('input', function () { $('ghRepoTxt').textContent = ghLeerForm().repo; });
-  $('ghGuardar').addEventListener('click', function () {
-    var c = ghLeerForm();
-    if (!c.token) { ghEstado('Pega el token primero.', 'mal'); $('ghTok').focus(); return; }
-    if (!/^[\w.-]+\/[\w.-]+$/.test(c.repo)) { ghEstado('El repositorio debe verse así: usuario/mi-cancionero', 'mal'); return; }
-    store.set('cc_gh', c);
-    ghEstado('Guardado. Toca Probar para revisar que funcione.', 'ok');
+  $('mSes').addEventListener('click', function () {
+    if (!sb) { toast('Sin conexión con Supabase. Inténtalo cuando tengas internet.'); return; }
+    abrirLogin();
   });
-  $('ghProbar').addEventListener('click', function () {
-    var c = ghLeerForm();
-    if (!c.token) { ghEstado('Pega el token primero.', 'mal'); return; }
-    ghEstado('Probando…');
-    ghApi(c, 'GET', '').then(function (d) {
-      if (d.permissions && !d.permissions.push) throw Object.assign(new Error('sin escritura'), { status: 403 });
-      return ghApi(c, 'GET', '/contents/canciones.json');
-    }).then(function () {
-      ghEstado('✓ Conectado a ' + c.repo + '. Ya puedes publicar.', 'ok');
-    }).catch(function (e) { ghEstado(ghMsgError(e), 'mal'); });
-  });
-  $('ghBorrar').addEventListener('click', function () {
-    if (!confirm('¿Borrar el token de este teléfono? (Para anularlo del todo, bórralo también en GitHub.)')) return;
-    store.set('cc_gh', { repo: ghLeerForm().repo });
-    $('ghTok').value = '';
-    ghEstado('Token borrado de este teléfono.');
-  });
-
-  /* Publicar */
-  var publicando = false;
-  $('mPub').addEventListener('click', function () {
-    var c = ghConf();
-    if (!c.token) { toast('Primero conecta tu cuenta en 🔑 Conexión con GitHub'); abrirGh(); return; }
-    if (publicando) return;
-    publicando = true;
-    toast('Revisando GitHub…');
-    ghApi(c, 'GET', '/contents/canciones.json').then(function (f) {
-      var remoto = {};
-      try { remoto = JSON.parse(b64aTexto(f.content || '')); } catch (e) {}
-      var lista = Array.isArray(remoto) ? remoto : (remoto.canciones || []);
-      var ver = Math.max(+remoto.version || 0, store.get('cc_ver', 0)) + 1;
-      // Avisar si en GitHub hay canciones que este teléfono no tiene (se perderían).
-      var mias = {};
-      songs.forEach(function (s) { mias[songKey(s)] = 1; });
-      var faltan = lista.filter(function (s) { return s && s.titulo && !mias[songKey(s)]; }).map(function (s) { return s.titulo; });
-      var msg = 'Se publicarán ' + songs.length + ' canciones en GitHub como versión ' + ver + '.';
-      if (faltan.length) {
-        msg += '\n\n⚠️ GitHub tiene ' + faltan.length + (faltan.length === 1 ? ' canción que no está' : ' canciones que no están') +
-          ' en este teléfono y se quitarían:\n• ' + faltan.slice(0, 8).join('\n• ') + (faltan.length > 8 ? '\n• …' : '') +
-          '\n\nSi no quieres perderlas, cancela y usa primero 🔄 Actualizar desde GitHub.';
-      }
-      if (!confirm(msg + '\n\n¿Publicar?')) return null;
-      toast('Publicando…');
-      return ghApi(c, 'PUT', '/contents/canciones.json', {
-        message: 'Actualizar canciones desde la app (versión ' + ver + ')',
-        content: textoAb64(jsonCanciones(ver)),
-        sha: f.sha
-      }).then(function () {
-        store.set('cc_ver', ver);
-        toast('✓ Publicado (versión ' + ver + '). GitHub Pages lo actualiza en 1–2 minutos.');
+  $('lgEnviar').addEventListener('click', function () {
+    var email = $('lgCorreo').value.trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { lgEstado('Escribe un correo válido.', 'mal'); $('lgCorreo').focus(); return; }
+    lgEstado('Enviando…');
+    // shouldCreateUser: false → solo entran los usuarios que ya creaste en Supabase.
+    sb.auth.signInWithOtp({ email: email, options: { shouldCreateUser: false, emailRedirectTo: location.origin + location.pathname } })
+      .then(function (r) {
+        if (r.error) throw r.error;
+        $('lgCodigoBox').hidden = false;
+        lgEstado('✓ Te enviamos un correo a ' + email + '.', 'ok');
+      }).catch(function (e) {
+        var m = (e && e.message) || '';
+        lgEstado(sinRed(e) ? 'Sin conexión. Inténtalo cuando tengas internet.'
+          : /signup|not allowed|not found/i.test(m) ? 'Ese correo no está registrado como editor.'
+          : /rate|seconds|security purposes/i.test(m) ? 'Espera un momento antes de pedir otro correo.'
+          : 'No se pudo enviar: ' + m, 'mal');
       });
-    }).catch(function (e) { toast(ghMsgError(e)); })
-      .then(function () { publicando = false; });
   });
-
-  $('mRes').addEventListener('click', function () {
-    if (!confirm('Se borrarán todas tus canciones y ediciones y se volverá a la lista del repositorio. ¿Continuar?')) return;
-    // Las listas guardan ids; se recuerdan por título + artista para volver a enlazarlas.
-    var claves = listas.map(function (L) {
-      return L.items.map(function (id) { var s = findSong(id); return s ? songKey(s) : ''; });
+  $('lgVerificar').addEventListener('click', function () {
+    var email = $('lgCorreo').value.trim().toLowerCase(), code = $('lgCodigo').value.replace(/\s/g, '');
+    if (!code) { lgEstado('Escribe el código del correo.', 'mal'); $('lgCodigo').focus(); return; }
+    lgEstado('Revisando…');
+    sb.auth.verifyOtp({ email: email, token: code, type: 'email' }).then(function (r) {
+      if (r.error) throw r.error;
+      $('lgCodigo').value = ''; $('lgCodigoBox').hidden = true;
+      lgEstado('✓ Sesión iniciada.', 'ok');
+    }).catch(function (e) {
+      lgEstado(sinRed(e) ? 'Sin conexión. Inténtalo cuando tengas internet.' : 'El código no es válido o ya venció. Pide otro correo.', 'mal');
     });
-    var lsRepo = [];
-    descargarRepo().then(function (r) {
-      songs = []; fusionar(r.lista, false); store.set('cc_ver', r.ver); lsRepo = r.listas;
-    }).catch(function () {
-      songs = iniciales();
-    }).then(function () {
-      var porClave = {};
-      songs.forEach(function (s) { if (!porClave[songKey(s)]) porClave[songKey(s)] = s.id; });
-      listas.forEach(function (L, i) {
-        L.items = claves[i].map(function (k) { return porClave[k]; }).filter(Boolean);
-      });
-      saveSongs(); saveListas();
-      fusionarListas(lsRepo, true);
-      renderList(); toast('Lista restaurada');
-    });
+  });
+  $('lgSalir').addEventListener('click', function () {
+    sb.auth.signOut({ scope: 'local' }).then(function () { lgEstado('Sesión cerrada.'); });
   });
 
   /* ---------- Canción ---------- */
@@ -879,7 +972,8 @@
     if (!out) {
       out = (s.contenido && s.contenido.length)
         ? '<div class="noletra">No hay ' + (modo === 'acordes' ? 'acordes' : 'letra') + ' escritos para esta canción.</div>'
-        : '<div class="noletra">Esta canción aún no tiene letra ni acordes.<br><br><a class="btn pri" href="#/e/' + s.id + '">✎ Agregar letra y acordes</a></div>';
+        : '<div class="noletra">Esta canción aún no tiene letra ni acordes.' +
+          (puedeEditar ? '<br><br><a class="btn pri" href="#/e/' + s.id + '">✎ Agregar letra y acordes</a>' : '') + '</div>';
     }
     var body = $('songBody');
     body.className = 'song m-' + modo;
@@ -933,10 +1027,23 @@
     p.innerHTML = h;
   }
 
+  // Guarda la estructura de la canción abierta en Supabase (null = orden original).
+  function guardarEstructura(arr, msg) {
+    var s = cur;
+    guardar(function () {
+      return afecta(sb.from('canciones').update({ estructura: arr && arr.length ? arr : null }).eq('id', s.id).select('id'));
+    }, function () {
+      if (arr && arr.length) s.estructura = arr; else delete s.estructura;
+      saveSongs();
+      if (cur === s) renderSong();
+      if (msg) toast(msg);
+    });
+  }
+
   function stAccion(act, i, t) {
     var arr = estructuraDe(cur).slice();
     if (act === 'close') { stOpen = false; renderSong(); return; }
-    if (act === 'reset') { delete cur.estructura; saveSongs(); renderSong(); toast('Se usa el orden original'); return; }
+    if (act === 'reset') { guardarEstructura(null, 'Se usa el orden original'); return; }
     if (act === 'up' && i > 0) { var a = arr[i - 1]; arr[i - 1] = arr[i]; arr[i] = a; }
     else if (act === 'down' && i < arr.length - 1) { var b = arr[i + 1]; arr[i + 1] = arr[i]; arr[i] = b; }
     else if (act === 'del') { arr.splice(i, 1); }
@@ -946,11 +1053,10 @@
       if (!v) { $('stCustom').focus(); return; }
       arr.push(v);
     } else return;
-    if (arr.length) cur.estructura = arr; else delete cur.estructura;
-    saveSongs(); renderSong();
+    guardarEstructura(arr);
   }
 
-  $('stEdit').addEventListener('click', function () { stOpen = !stOpen; renderStruct(); });
+  $('stEdit').addEventListener('click', function () { if (puedeEditar) { stOpen = !stOpen; renderStruct(); } });
   $('stPanel').addEventListener('click', function (e) {
     var b = e.target.closest('[data-act]');
     if (!b || b.disabled) return;
@@ -1111,6 +1217,10 @@
   function showEditor(id) {
     var s = id ? findSong(id) : null;
     if (id && !s) { location.hash = '#/'; return; }
+    if (!puedeEditar) {
+      toast('Inicia sesión como editor para editar (menú ⋯ → 🔐).');
+      location.hash = s ? '#/c/' + s.id : '#/'; return;
+    }
     editingId = s ? s.id : null;
     $('eHead').textContent = s ? 'Editar canción' : 'Nueva canción';
     $('eTitulo').value = s ? s.titulo : '';
@@ -1138,30 +1248,38 @@
       contenido: Music.parseTexto($('eTexto').value)
     };
     var est = $('eEst').value.split(/[,;\n→>]+/).map(function (x) { return x.trim(); }).filter(Boolean);
-    if (editingId) {
-      var ex = findSong(editingId);
-      Object.assign(ex, obj);
-      if (est.length) ex.estructura = est; else delete ex.estructura;
-    } else {
-      obj.id = nextId();
-      if (est.length) obj.estructura = est;
-      songs.push(obj); editingId = obj.id;
-    }
-    saveSongs();
-    toast('Canción guardada');
-    location.hash = volverA(editingId);
+    if (est.length) obj.estructura = est;
+    var id = editingId, fila = cancionAFila(obj);
+    guardar(function () {
+      if (id) return afecta(sb.from('canciones').update(fila).eq('id', id).select(COLS));
+      fila.orden = maxOrden(songs) + 1;  // una canción nueva va al final
+      return sb.from('canciones').insert(fila).select(COLS);
+    }, function (filas) {
+      var s = filaACancion(filas[0]), ex = findSong(s.id);
+      if (ex) { delete ex.estructura; Object.assign(ex, s); }
+      else songs.push(s);
+      editingId = s.id;
+      saveSongs();
+      toast('Canción guardada');
+      location.hash = volverA(s.id);
+    });
   });
 
   $('eBorrar').addEventListener('click', function () {
     var s = findSong(editingId);
     if (!s || !confirm('¿Eliminar “' + s.titulo + '”? No se puede deshacer.')) return;
-    songs = songs.filter(function (x) { return x.id !== s.id; });
-    favs = favs.filter(function (x) { return x !== s.id; });
-    delete shifts[s.id];
-    listas.forEach(function (L) { L.items = L.items.filter(function (x) { return x !== s.id; }); });
-    saveSongs(); store.set('cc_favs', favs); store.set('cc_shifts', shifts); saveListas();
-    toast('Canción eliminada');
-    location.hash = '#/';
+    // En Supabase también se quita de las listas (ON DELETE CASCADE).
+    guardar(function () {
+      return afecta(sb.from('canciones').delete().eq('id', s.id).select('id'));
+    }, function () {
+      songs = songs.filter(function (x) { return x.id !== s.id; });
+      favs = favs.filter(function (x) { return x !== s.id; });
+      delete shifts[s.id];
+      listas.forEach(function (L) { L.items = L.items.filter(function (x) { return x !== s.id; }); });
+      saveSongs(); store.set('cc_favs', favs); store.set('cc_shifts', shifts); saveListas();
+      toast('Canción eliminada');
+      location.hash = '#/';
+    });
   });
 
   /* ---------- Rutas ---------- */
@@ -1176,53 +1294,34 @@
     if (!$('vLista').hidden) listY = window.scrollY;
     stopAuto();
     if (!/^#\/(c|l)\//.test(h)) wakeOff();
-    m = h.match(/^#\/c\/(\d+)$/);
+    // Los id son uuid (letras, números y guiones).
+    m = h.match(/^#\/c\/([\w-]+)$/);
 
-    if (!m && (m = h.match(/^#\/l\/(\d+)\/(\d+)$/))) {
+    if (!m && (m = h.match(/^#\/l\/([\w-]+)\/(\d+)$/))) {
       // Canción dentro de una lista: se navega con Anterior / Siguiente como en un medley.
-      var L = findLista(+m[1]), k = +m[2];
+      var L = findLista(m[1]), k = +m[2];
       if (L) limpiarLista(L);
       if (!L || k >= L.items.length) { state.filtro = 'listas'; location.hash = '#/'; return; }
       state.filtro = 'listas'; plEdit = null; curHash = h;
       view('cancion'); showSong(L.items[k], { lista: L, i: k }); window.scrollTo(0, 0);
       return;
     }
-    if (m) { curHash = h; view('cancion'); showSong(+m[1]); window.scrollTo(0, 0); }
+    if (m) { curHash = h; view('cancion'); showSong(m[1]); window.scrollTo(0, 0); }
     else if (h === '#/nueva') { view('editor'); showEditor(null); window.scrollTo(0, 0); }
-    else if ((m = h.match(/^#\/e\/(\d+)$/))) { view('editor'); showEditor(+m[1]); window.scrollTo(0, 0); }
+    else if ((m = h.match(/^#\/e\/([\w-]+)$/))) { view('editor'); showEditor(m[1]); window.scrollTo(0, 0); }
     else { view('lista'); renderList(); window.scrollTo(0, listY); }
   }
   window.addEventListener('hashchange', route);
 
   /* ---------- Arranque ---------- */
+  // Primero se muestra la caché del teléfono y después se traen los datos de Supabase.
   function iniciar() {
-    if (necesitaSemilla) {
-      // Primera vez: se baja canciones.json; si no hay conexión, se usa la lista incluida en la app.
-      descargarRepo().then(function (r) {
-        fusionar(r.lista, false); store.set('cc_ver', r.ver);
-        fusionarListas(r.listas, false);
-      }).catch(function () {
-        songs = iniciales();
-      }).then(function () { saveSongs(); route(); });
-    } else {
-      route();
-      // Si el repositorio tiene una versión más nueva, agrega solo las canciones que no tengas.
-      descargarRepo().then(function (r) {
-        if (r.ver > store.get('cc_ver', 0)) {
-          var x = fusionar(r.lista, false);
-          if (x.add) saveSongs();
-          var y = fusionarListas(r.listas, false);
-          store.set('cc_ver', r.ver);
-          if (x.add || y.add) {
-            renderList();
-            toast((x.add ? x.add + ' canciones nuevas del repositorio' : 'Del repositorio') + textoListas(y));
-          }
-        }
-      }).catch(function () {});
-    }
+    cargarRemoto();  // empieza la descarga (la lista vacía muestra "Cargando…" mientras tanto)
+    route();
   }
 
   applyTheme();
+  pintarSesion();
   iniciar();
 
   if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
