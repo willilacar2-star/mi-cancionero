@@ -610,7 +610,7 @@
       var cambio = JSON.stringify(nuevas) !== JSON.stringify(songs) || JSON.stringify(nuevasListas) !== JSON.stringify(listas);
       songs = nuevas; listas = nuevasListas;
       saveSongs(); saveListas();
-      if (cambio) refrescarVista();
+      if (cambio || !songs.length) refrescarVista();  // sin canciones, también quita el "Cargando…"
       if (avisar) toast('Datos al día: ' + songs.length + ' canciones, ' + listas.length + (listas.length === 1 ? ' lista' : ' listas'));
       return true;
     }).catch(function (e) {

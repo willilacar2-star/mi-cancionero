@@ -3,6 +3,6 @@
 // NUNCA pongas aquí la service_role key.
 // Si cambias este archivo, sube VERSION en sw.js.
 window.CANCIONERO_CONFIG = {
-  SUPABASE_URL: '',
-  SUPABASE_ANON_KEY: ''
+  SUPABASE_URL: 'https://kxqptokpuzswkcsiuauh.supabase.co',
+  SUPABASE_ANON_KEY: 'sb_publishable_GczACUS4ko9eykwWetdEtQ_orobJySF'
 };
