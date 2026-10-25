@@ -2,7 +2,7 @@
 // Si cambias index.html, styles.css, app.js, music.js o config.js, sube el número de VERSION
 // para que los teléfonos descarguen la versión nueva.
 // Las canciones ya no se cachean aquí: vienen de Supabase y la app las guarda en localStorage.
-var VERSION = 'cancionero-v13';
+var VERSION = 'cancionero-v14';
 // La misma dirección (con versión fija) que está en index.html.
 var LIB = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js';
 var APP = [

@@ -332,11 +332,52 @@
   $('chips').addEventListener('click', function (e) {
     var f = e.target.getAttribute('data-f');
     if (!f) return;
-    state.filtro = f; renderList();
+    state.filtro = f;
+    if (plAbierta) { plAbierta = null; plEdit = null; history.replaceState(null, '', '#/'); }
+    renderList();
   });
 
+  /* ---------- Fechas de las listas (agenda) ---------- */
+  // Las fechas se guardan como texto 'AAAA-MM-DD' (columna date de Supabase), sin hora ni zona horaria.
+  var DIAS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+  var MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  function dos(n) { return (n < 10 ? '0' : '') + n; }
+  function iso(d) { return d.getFullYear() + '-' + dos(d.getMonth() + 1) + '-' + dos(d.getDate()); }
+  function hoyISO() { return iso(new Date()); }
+  function fechaValida(s) { return /^\d{4}-\d{2}-\d{2}$/.test(String(s || '')) ? String(s) : null; }
+  function aFecha(s) { var p = String(s || '').split('-'); return p.length === 3 ? new Date(+p[0], +p[1] - 1, +p[2]) : null; }
+  function fechaLarga(s) {
+    var d = aFecha(s);
+    return d ? DIAS[d.getDay()] + ' ' + d.getDate() + ' de ' + MESES[d.getMonth()] + ' de ' + d.getFullYear() : 'Sin fecha';
+  }
+  function fechaCorta(s) { var d = aFecha(s); return d ? d.getDate() + ' ' + MESES[d.getMonth()].slice(0, 3) : ''; }
+
+  // Filtro de la agenda (solo de este teléfono): proximas, mes, pasadas, todas o rango.
+  function rangoAgenda() {
+    var a = prefs.agenda || {}, d = new Date();
+    if (a.modo === 'mes') return { desde: iso(new Date(d.getFullYear(), d.getMonth(), 1)), hasta: iso(new Date(d.getFullYear(), d.getMonth() + 1, 0)) };
+    if (a.modo === 'pasadas') { d.setDate(d.getDate() - 1); return { desde: '', hasta: iso(d) }; }
+    if (a.modo === 'todas') return { desde: '', hasta: '' };
+    if (a.modo === 'rango') return { desde: a.desde || '', hasta: a.hasta || '' };
+    return { desde: hoyISO(), hasta: '' };  // próximas: de hoy en adelante
+  }
+  function modoAgenda() { return (prefs.agenda && prefs.agenda.modo) || 'proximas'; }
+  // Listas dentro del rango, ordenadas por fecha. Las que no tienen fecha van al final
+  // y solo se ven en "Próximas" y "Todas". En "Pasadas", la más reciente primero.
+  function listasEnRango() {
+    var r = rangoAgenda(), modo = modoAgenda(), desc = modo === 'pasadas';
+    return listas.filter(function (L) {
+      if (!L.fecha) return modo === 'proximas' || modo === 'todas';
+      return (!r.desde || L.fecha >= r.desde) && (!r.hasta || L.fecha <= r.hasta);
+    }).sort(function (a, b) {
+      if (!a.fecha !== !b.fecha) return a.fecha ? -1 : 1;
+      if (a.fecha !== b.fecha) return (a.fecha < b.fecha ? -1 : 1) * (desc ? -1 : 1);
+      return (a.orden || 0) - (b.orden || 0);
+    });
+  }
+
   /* ---------- Listas: canciones en el orden en que se van a tocar ---------- */
-  var plEdit = null, plQuery = '';
+  var plEdit = null, plQuery = '', plAbierta = null;
   function cancionesDe(L) { return L.items.map(findSong).filter(Boolean); }
   function limpiarLista(L) { L.items = L.items.filter(function (id) { return !!findSong(id); }); }
 
@@ -371,48 +412,80 @@
     }).join('');
   }
 
+  // Sección Listas: agenda (filtro de fechas + encabezados) o, si hay una abierta, sus canciones.
   function renderListas() {
     listas.forEach(limpiarLista);
     if (!puedeEditar) plEdit = null;
-    $('count').textContent = listas.length + (listas.length === 1 ? ' lista' : ' listas');
-    var html = puedeEditar ? '<div class="mactions"><button class="btn pri" data-pl="nueva">➕ Nueva lista</button></div>' : '';
-    if (!listas.length) html += '<div class="empty-msg">' + (puedeEditar
-      ? 'Aún no hay listas. Crea una, agrega canciones en el orden en que las vas a tocar y toca ▶ Tocar para irlas pasando una tras otra.'
-      : 'Aún no hay listas. Un editor puede crearlas después de iniciar sesión (menú ⋯ → 🔐).') + '</div>';
+    if (plAbierta) { renderListaAbierta(findLista(plAbierta)); return; }
 
-    listas.forEach(function (L, li) {
-      if (String(plEdit) !== String(L.id)) {
-        html += '<div class="mhead"><span class="mtit">📋 ' + esc(L.nombre) + '</span>' +
-          (L.items.length ? '<a class="btn mini pri" href="#/l/' + L.id + '/0">▶ Tocar</a>' : '') +
-          (puedeEditar ? '<button class="btn mini" data-pl="edit" data-l="' + L.id + '">✎ Editar</button>' : '') + '</div>';
-        cancionesDe(L).forEach(function (s, i) { html += itemHTML(s, i + 1, '#/l/' + L.id + '/' + i); });
-        if (!L.items.length) html += '<p class="help">Lista vacía.' + (puedeEditar ? ' Toca ✎ Editar para agregar canciones.' : '') + '</p>';
-        return;
-      }
-      html += '<div class="mhead"><span class="mtit">✎ Editando lista</span></div>' +
-        '<div class="morden plform">' +
-        '<label class="pllbl" for="plNombre">Nombre</label>' +
-        '<input id="plNombre" class="plinput" value="' + esc(L.nombre) + '" autocomplete="off" placeholder="Ej. Domingo 19 de octubre">' +
-        '<div class="pllbl">Orden</div><div id="plRows">' + plRowsHTML(L) + '</div>' +
-        '<label class="pllbl" for="plBuscar">Agregar canciones</label>' +
-        '<input id="plBuscar" class="plinput" type="search" value="' + esc(plQuery) + '" autocomplete="off" placeholder="🔎 Buscar canción…" enterkeyhint="search">' +
-        '<div id="plRes">' + plResHTML(L) + '</div>' +
-        '<div class="mactions">' +
-        '<button class="btn" data-pl="lup"' + (li === 0 ? ' disabled' : '') + '>▲ Subir lista</button>' +
-        '<button class="btn" data-pl="ldown"' + (li === listas.length - 1 ? ' disabled' : '') + '>▼ Bajar lista</button></div>' +
-        '<div class="mactions"><button class="btn danger" data-pl="borrar">Eliminar lista</button>' +
-        '<button class="btn pri" data-pl="listo">Listo</button></div></div>';
+    var modo = modoAgenda(), r = rangoAgenda(), arr = listasEnRango();
+    $('count').textContent = arr.length + (arr.length === 1 ? ' lista' : ' listas');
+    var html = '<div class="agenda"><div class="chips" role="group" aria-label="Fechas">' +
+      [['proximas', 'Próximas'], ['mes', 'Este mes'], ['pasadas', 'Pasadas'], ['todas', 'Todas']].map(function (c) {
+        return '<button class="chip" data-ag="' + c[0] + '" aria-pressed="' + (modo === c[0]) + '">' + c[1] + '</button>';
+      }).join('') + '</div>' +
+      '<div class="agrango"><label>Desde<input type="date" id="agDesde" value="' + r.desde + '"></label>' +
+      '<label>Hasta<input type="date" id="agHasta" value="' + r.hasta + '"></label></div></div>';
+    if (puedeEditar) html += '<div class="mactions"><button class="btn pri" data-pl="nueva">➕ Nueva lista</button></div>';
+
+    if (!arr.length) {
+      html += '<div class="empty-msg">' + (listas.length
+        ? 'No hay listas en estas fechas.'
+        : puedeEditar ? 'Aún no hay listas. Crea una con la fecha del evento y agrega las canciones en el orden en que se van a tocar.'
+          : 'Aún no hay listas. Un editor puede crearlas después de iniciar sesión (menú ⋯ → 🔐).') + '</div>';
+    }
+    arr.forEach(function (L) {
+      var d = aFecha(L.fecha), n = L.items.length;
+      html += '<a class="item" href="#/l/' + L.id + '">' +
+        '<span class="fechatile' + (d ? '' : ' empty') + '">' + (d ? '<b>' + d.getDate() + '</b><small>' + MESES[d.getMonth()].slice(0, 3) + '</small>' : '<small>sin<br>fecha</small>') + '</span>' +
+        '<span class="txt"><div class="tit">' + esc(L.nombre) + '</div>' +
+        '<div class="sub">' + (d ? DIAS[d.getDay()] + ' · ' : '') + n + (n === 1 ? ' canción' : ' canciones') + '</div></span>' +
+        '<span class="chev" aria-hidden="true">›</span></a>';
     });
     $('lista').innerHTML = html;
   }
 
-  // Crea una lista vacía en Supabase y la agrega al final.
+  // Una lista abierta: encabezado, fecha y canciones en orden (o el formulario si se está editando).
+  function renderListaAbierta(L) {
+    var html = '<div class="mactions"><a class="btn" href="#/">‹ Listas</a></div>';
+    if (!L) {
+      $('count').textContent = '';
+      $('lista').innerHTML = html + '<div class="empty-msg">No se encontró esta lista. Puede que la hayan borrado.</div>';
+      return;
+    }
+    $('count').textContent = L.items.length + (L.items.length === 1 ? ' canción' : ' canciones');
+    if (String(plEdit) === String(L.id)) {
+      html += '<div class="mhead"><span class="mtit">✎ Editando lista</span></div>' +
+        '<div class="morden plform">' +
+        '<label class="pllbl" for="plNombre">Encabezado</label>' +
+        '<input id="plNombre" class="plinput" value="' + esc(L.nombre) + '" autocomplete="off" placeholder="Ej. Culto domingo 10 am">' +
+        '<label class="pllbl" for="plFecha">Fecha del evento</label>' +
+        '<input id="plFecha" class="plinput" type="date" value="' + (L.fecha || '') + '">' +
+        '<div class="pllbl">Orden</div><div id="plRows">' + plRowsHTML(L) + '</div>' +
+        '<label class="pllbl" for="plBuscar">Agregar canciones</label>' +
+        '<input id="plBuscar" class="plinput" type="search" value="' + esc(plQuery) + '" autocomplete="off" placeholder="🔎 Buscar canción…" enterkeyhint="search">' +
+        '<div id="plRes">' + plResHTML(L) + '</div>' +
+        '<div class="mactions"><button class="btn danger" data-pl="borrar">Eliminar lista</button>' +
+        '<button class="btn pri" data-pl="listo">Listo</button></div></div>';
+      $('lista').innerHTML = html;
+      return;
+    }
+    html += '<div class="lhead"><h2>📋 ' + esc(L.nombre) + '</h2><div class="muted">' + esc(fechaLarga(L.fecha)) + '</div></div>' +
+      '<div class="mactions">' +
+      (L.items.length ? '<a class="btn pri" href="#/l/' + L.id + '/0">▶ Tocar</a>' : '') +
+      (puedeEditar ? '<button class="btn" data-pl="edit">✎ Editar</button>' : '') + '</div>';
+    cancionesDe(L).forEach(function (s, i) { html += itemHTML(s, i + 1, '#/l/' + L.id + '/' + i); });
+    if (!L.items.length) html += '<p class="help">Lista vacía.' + (puedeEditar ? ' Toca ✎ Editar para agregar canciones.' : '') + '</p>';
+    $('lista').innerHTML = html;
+  }
+
+  // Crea una lista vacía en Supabase (con la fecha de hoy) y la agrega al final.
   function crearLista(alCrear) {
     return guardar(function () {
-      return sb.from('listas').insert({ nombre: 'Lista ' + (listas.length + 1), orden: maxOrden(listas) + 1 })
-        .select('id,nombre,orden').single();
+      return sb.from('listas').insert({ nombre: 'Lista ' + (listas.length + 1), fecha: hoyISO(), orden: maxOrden(listas) + 1 })
+        .select('id,nombre,fecha,orden').single();
     }, function (r) {
-      var L = { id: r.id, nombre: r.nombre, orden: r.orden, items: [] };
+      var L = { id: r.id, nombre: r.nombre, fecha: r.fecha || null, orden: r.orden, items: [] };
       listas.push(L); saveListas();
       if (alCrear) alCrear(L);
     });
@@ -437,16 +510,31 @@
       .then(chk).catch(function (e) { toast(msgError(e)); });
   }
 
+  // La fecha se guarda al elegirla en el calendario.
+  function guardarFecha(L, fecha) {
+    if (!sb || !puedeEditar) return;
+    afecta(sb.from('listas').update({ fecha: fecha }).eq('id', L.id).select('id'))
+      .then(chk).then(function () {
+        L.fecha = fecha; saveListas();
+        toast(fecha ? 'Fecha: ' + fechaLarga(fecha) : 'Lista sin fecha');
+      }).catch(function (e) {
+        toast(msgError(e));
+        var inp = $('plFecha'); if (inp) inp.value = L.fecha || '';
+      });
+  }
+
   function plAccion(act, b) {
     var L = findLista(plEdit), i = +b.getAttribute('data-i'), x;
     if (act === 'nueva') {
       crearLista(function (N) {
-        plEdit = N.id; plQuery = ''; renderList();
+        plEdit = N.id; plQuery = '';
+        // pushState + route() en vez de location.hash: así el formulario ya existe al poner el foco.
+        history.pushState(null, '', '#/l/' + N.id); route();
         var inp = $('plNombre'); if (inp) { inp.focus(); inp.select(); }
       });
       return;
     }
-    if (act === 'edit') { plEdit = b.getAttribute('data-l'); plQuery = ''; renderList(); return; }
+    if (act === 'edit') { plEdit = plAbierta; plQuery = ''; renderList(); return; }
     if (!L) return;
     if (act === 'listo') { guardarNombre(); plEdit = null; renderList(); return; }
     if (act === 'borrar') {
@@ -456,21 +544,8 @@
         return afecta(sb.from('listas').delete().eq('id', L.id).select('id'));
       }, function () {
         listas = listas.filter(function (l) { return l !== L; });
-        plEdit = null; saveListas(); renderList(); toast('Lista eliminada');
-      });
-      return;
-    }
-    if (act === 'lup' || act === 'ldown') {
-      var li = listas.indexOf(L), lj = li + (act === 'lup' ? -1 : 1);
-      if (!listas[lj]) return;
-      var orden = listas.slice();
-      orden[li] = listas[lj]; orden[lj] = L;
-      guardar(function () {
-        return sb.rpc('reordenar_listas', { ids: orden.map(function (l) { return l.id; }) });
-      }, function () {
-        listas = orden;
-        listas.forEach(function (l, k) { l.orden = k + 1; });
-        saveListas(); renderList();
+        plEdit = null; saveListas(); toast('Lista eliminada');
+        location.hash = '#/';
       });
       return;
     }
@@ -498,6 +573,21 @@
     e.preventDefault();
     plAccion(b.getAttribute('data-pl'), b);
   });
+  // Agenda: botones de rango rápido y fechas Desde / Hasta.
+  $('lista').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-ag]');
+    if (!b) return;
+    prefs.agenda = { modo: b.getAttribute('data-ag') }; savePrefs(); renderList();
+  });
+  $('lista').addEventListener('change', function (e) {
+    if (e.target.id === 'agDesde' || e.target.id === 'agHasta') {
+      prefs.agenda = { modo: 'rango', desde: $('agDesde').value, hasta: $('agHasta').value };
+      savePrefs(); renderList();
+    } else if (e.target.id === 'plFecha') {
+      var L = findLista(plEdit);
+      if (L) guardarFecha(L, fechaValida(e.target.value));
+    }
+  });
   $('lista').addEventListener('input', function (e) {
     var L = findLista(plEdit);
     if (!L) return;
@@ -510,14 +600,19 @@
   });
 
   /* Agregar la canción abierta a una lista */
+  // Se ofrecen las listas de hoy en adelante (y las que no tienen fecha), la más próxima primero.
   function renderPlAdd() {
+    var hoy = hoyISO(), prox = listas.filter(function (L) { return !L.fecha || L.fecha >= hoy; }).sort(function (a, b) {
+      if (!a.fecha !== !b.fecha) return a.fecha ? -1 : 1;
+      return a.fecha === b.fecha ? (a.orden || 0) - (b.orden || 0) : (a.fecha < b.fecha ? -1 : 1);
+    });
     var h = '<b>Agregar “' + esc(cur.titulo) + '” a…</b><div class="stadd">';
-    listas.forEach(function (L) {
+    prox.forEach(function (L) {
       var n = L.items.filter(function (id) { return id === cur.id; }).length;
-      h += '<button class="chip" data-pa="' + L.id + '">📋 ' + esc(L.nombre) + (n ? ' ✓' : '') + '</button>';
+      h += '<button class="chip" data-pa="' + L.id + '">📋 ' + esc(L.nombre) + (L.fecha ? ' · ' + fechaCorta(L.fecha) : '') + (n ? ' ✓' : '') + '</button>';
     });
     h += '<button class="chip" data-pa="nueva">➕ Nueva lista</button></div>';
-    if (!listas.length) h += '<p class="help">Aún no tienes listas. Crea la primera con esta canción.</p>';
+    if (!prox.length) h += '<p class="help">No hay listas de hoy en adelante. Crea una con esta canción.</p>';
     $('plAdd').innerHTML = h;
   }
   $('bLista').addEventListener('click', function () {
@@ -597,14 +692,14 @@
     }
     cargando = Promise.all([
       sb.from('canciones').select(COLS).order('orden').order('titulo'),
-      sb.from('listas').select('id,nombre,orden,lista_canciones(cancion_id,posicion)').order('orden').order('nombre')
+      sb.from('listas').select('*,lista_canciones(cancion_id,posicion)').order('orden').order('nombre')
     ]).then(function (r) {
       cargando = null;
       var d = chk(r);
       var nuevas = d[0].map(filaACancion);
       var nuevasListas = d[1].map(function (l) {
         var it = (l.lista_canciones || []).slice().sort(function (a, b) { return a.posicion - b.posicion; });
-        return { id: l.id, nombre: l.nombre, orden: l.orden, items: it.map(function (x) { return x.cancion_id; }) };
+        return { id: l.id, nombre: l.nombre, fecha: l.fecha || null, orden: l.orden, items: it.map(function (x) { return x.cancion_id; }) };
       });
       migrarIds(songs, nuevas);
       var cambio = JSON.stringify(nuevas) !== JSON.stringify(songs) || JSON.stringify(nuevasListas) !== JSON.stringify(listas);
@@ -711,11 +806,12 @@
             var f = c && (filas[songKey(c)] || porClave[songKey(c)]);
             if (f) items.push(f.id); else faltan++;
           });
-          listas.forEach(function (L) { if (!ex && norm(L.nombre) === norm(R.nombre)) ex = L; });
+          var fR = fechaValida(R.fecha);
+          listas.forEach(function (L) { if (!ex && norm(L.nombre) === norm(R.nombre) && (L.fecha || null) === fR) ex = L; });
           var id = ex ? ex.id : crypto.randomUUID();
           cadena = cadena.then(function (prev) {
             if (prev && prev.error) return prev;
-            var crear = ex ? Promise.resolve({}) : sb.from('listas').insert({ id: id, nombre: R.nombre.trim(), orden: ++ordenL });
+            var crear = ex ? Promise.resolve({}) : sb.from('listas').insert(Object.assign({ id: id, nombre: R.nombre.trim(), orden: ++ordenL }, fR ? { fecha: fR } : {}));
             return crear.then(function (c) {
               if (c.error) return c;
               nLis++;
@@ -740,6 +836,7 @@
     var ls = listas.map(function (L) {
       return {
         nombre: L.nombre,
+        fecha: L.fecha || null,
         canciones: L.items.map(findSong).filter(Boolean).map(function (s) { return { titulo: s.titulo, artista: s.artista || '' }; })
       };
     });
@@ -1138,6 +1235,7 @@
     var s = findSong(id);
     if (!s) { location.hash = '#/'; return; }
     cur = s; plCtx = ctx || null;
+    $('bVolver').setAttribute('href', plCtx ? '#/l/' + plCtx.lista.id : '#/');
     $('plAdd').hidden = true; $('bLista').setAttribute('aria-expanded', 'false');
     $('sTitulo').textContent = s.titulo;
     $('sArtista').textContent = s.artista || '';
@@ -1291,9 +1389,9 @@
 
   function route() {
     var h = location.hash || '#/', m;
-    if (!$('vLista').hidden) listY = window.scrollY;
+    if (!$('vLista').hidden && !plAbierta) listY = window.scrollY;  // posición en la lista principal o la agenda
     stopAuto();
-    if (!/^#\/(c|l)\//.test(h)) wakeOff();
+    if (!/^#\/(c\/|l\/[\w-]+\/\d)/.test(h)) wakeOff();
     // Los id son uuid (letras, números y guiones).
     m = h.match(/^#\/c\/([\w-]+)$/);
 
@@ -1301,15 +1399,22 @@
       // Canción dentro de una lista: se navega con Anterior / Siguiente como en un medley.
       var L = findLista(m[1]), k = +m[2];
       if (L) limpiarLista(L);
-      if (!L || k >= L.items.length) { state.filtro = 'listas'; location.hash = '#/'; return; }
+      if (!L || k >= L.items.length) { state.filtro = 'listas'; location.hash = L ? '#/l/' + L.id : '#/'; return; }
       state.filtro = 'listas'; plEdit = null; curHash = h;
       view('cancion'); showSong(L.items[k], { lista: L, i: k }); window.scrollTo(0, 0);
+      return;
+    }
+    if (!m && (m = h.match(/^#\/l\/([\w-]+)$/))) {
+      // Una lista de la agenda: encabezado, fecha y canciones en orden.
+      if (String(plEdit) !== m[1]) plEdit = null;
+      state.filtro = 'listas'; plAbierta = m[1];
+      view('lista'); renderList(); window.scrollTo(0, 0);
       return;
     }
     if (m) { curHash = h; view('cancion'); showSong(m[1]); window.scrollTo(0, 0); }
     else if (h === '#/nueva') { view('editor'); showEditor(null); window.scrollTo(0, 0); }
     else if ((m = h.match(/^#\/e\/([\w-]+)$/))) { view('editor'); showEditor(m[1]); window.scrollTo(0, 0); }
-    else { view('lista'); renderList(); window.scrollTo(0, listY); }
+    else { plAbierta = null; plEdit = null; view('lista'); renderList(); window.scrollTo(0, listY); }
   }
   window.addEventListener('hashchange', route);
 

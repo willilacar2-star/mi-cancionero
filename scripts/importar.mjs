@@ -85,7 +85,8 @@ console.log('✓ ' + insertadas.length + ' canciones importadas.');
 let n = 0;
 for (const [i, L] of listas.entries()) {
   if (!L || typeof L.nombre !== 'string' || !L.nombre.trim()) continue;
-  const [lista] = await api('POST', 'listas?select=id', { nombre: L.nombre.trim(), orden: i + 1 });
+  const fecha = /^\d{4}-\d{2}-\d{2}$/.test(String(L.fecha || '')) ? L.fecha : null;
+  const [lista] = await api('POST', 'listas?select=id', { nombre: L.nombre.trim(), orden: i + 1, ...(fecha ? { fecha } : {}) });
   const filas = [];
   for (const c of (Array.isArray(L.canciones) ? L.canciones : [])) {
     const id = c && porClave.get(clave(c.titulo, c.artista));
