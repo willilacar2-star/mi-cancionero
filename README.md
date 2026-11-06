@@ -68,8 +68,8 @@ Formato de cada canción:
 
 - `titulo` es lo único obligatorio. `estructura` es opcional.
 - En `estructura` puedes repetir partes y agregar notas entre paréntesis: `"Coro (x4)"`, `"Verso (voz de hombre)"`. Un nombre que no existe en `contenido` (por ejemplo `"Instrumental"`) se muestra como parte sin letra.
-- Para un medley, pon en `seccion` algo como `"Medley Dante Gebel"`. El orden de las canciones dentro del medley es el orden de la columna `orden`.
-- En la app, filtro **Medleys → ✎ Orden** permite reordenar, **✎ Renombrar medley** y **Eliminar medley** (sus canciones no se borran: pasan a `General`).
+- Para un medley, pon el mismo nombre en `seccion` (en la app: "Sección / medley") en cada canción, por ejemplo `"Medley Dante Gebel"` o `"Cadena coros 1"`. Cualquier nombre distinto de `General` cuenta como medley. El orden de las canciones dentro del medley es el orden de la columna `orden`.
+- En la app, el filtro **Medleys** muestra los nombres de los medleys. Al tocar uno se ven sus canciones en orden, con **▶ Tocar**. Los editores tienen **✎ Orden** para reordenar, subir o bajar el medley, **✎ Renombrar medley** y **Eliminar medley** (sus canciones no se borran: pasan a `General`).
 
 ## Listas (agenda para tocar en orden)
 

@@ -10,7 +10,8 @@
   function norm(s) {
     return String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   }
-  function isMedley(s) { return /^medley/i.test(s.seccion || ''); }
+  // Medley = canciones con la misma sección, si no es "General" (ej. "Medley Jubilo", "Cadena coros 1").
+  function isMedley(s) { var x = String(s.seccion || '').trim(); return !!x && x.toLowerCase() !== 'general'; }
 
   /* ---------- Almacenamiento (localStorage con respaldo en memoria) ---------- */
   var mem = {}, warned = false;
@@ -180,8 +181,9 @@
 
   function renderList() {
     renderChips();
-    $('q').parentNode.hidden = state.filtro === 'listas';
+    $('q').parentNode.hidden = state.filtro === 'listas' || (state.filtro === 'medleys' && medAbierto !== null);
     if (state.filtro === 'listas') { renderListas(); return; }
+    if (state.filtro === 'medleys') { renderMedleys(); return; }
     var q = norm($('q').value.trim()), f = state.filtro;
     var arr = songs.filter(function (s) {
       if (f === 'favoritos' && favs.indexOf(s.id) < 0) return false;
@@ -204,47 +206,80 @@
     }
 
     var html = '';
-    if (f === 'medleys') {
-      var grupos = [], mapa = {};
-      arr.forEach(function (s) {
-        if (!mapa[s.seccion]) { mapa[s.seccion] = []; grupos.push(s.seccion); }
-        mapa[s.seccion].push(s);
-      });
-      var puedeOrdenar = !q && puedeEditar;
-      if (!puedeOrdenar) ordenMed = null;
-      grupos.forEach(function (g, gi) {
-        var editando = ordenMed === g;
-        html += '<div class="mhead"><span class="mtit">🎵 ' + esc(g) + '</span>' +
-          (puedeOrdenar && !editando ? '<button class="btn mini" data-mo="' + esc(g) + '">✎ Orden</button>' : '') + '</div>';
-        if (!editando) {
-          mapa[g].forEach(function (s, i) { html += itemHTML(s, i + 1); });
-          return;
-        }
-        html += '<div class="morden">';
-        mapa[g].forEach(function (s, i, lst) {
-          html += '<div class="item"><span class="num">' + (i + 1) + '.</span>' +
-            '<span class="txt"><div class="tit">' + esc(s.titulo) + '</div></span>' +
-            '<button class="btn icon" data-mv="-1" data-id="' + s.id + '" aria-label="Subir"' + (i === 0 ? ' disabled' : '') + '>↑</button>' +
-            '<button class="btn icon" data-mv="1" data-id="' + s.id + '" aria-label="Bajar"' + (i === lst.length - 1 ? ' disabled' : '') + '>↓</button></div>';
-        });
-        html += '<div class="mactions">' +
-          '<button class="btn" data-gmv="-1" data-g="' + esc(g) + '"' + (gi === 0 ? ' disabled' : '') + '>▲ Subir medley</button>' +
-          '<button class="btn" data-gmv="1" data-g="' + esc(g) + '"' + (gi === grupos.length - 1 ? ' disabled' : '') + '>▼ Bajar medley</button>' +
-          '<button class="btn pri" data-mlisto="1">Listo</button></div>' +
-          '<div class="mactions">' +
-          '<button class="btn" data-mren="' + esc(g) + '">✎ Renombrar medley</button>' +
-          '<button class="btn danger" data-mdel="' + esc(g) + '">Eliminar medley</button></div></div>';
-      });
-    } else {
-      arr.slice().sort(function (a, b) { return norm(a.titulo).localeCompare(norm(b.titulo), 'es'); })
-        .forEach(function (s) { html += itemHTML(s); });
-    }
+    arr.slice().sort(function (a, b) { return norm(a.titulo).localeCompare(norm(b.titulo), 'es'); })
+      .forEach(function (s) { html += itemHTML(s); });
     $('lista').innerHTML = html;
   }
 
   $('q').addEventListener('input', renderList);
+  /* ---------- Medleys: nombres y, al entrar, sus canciones en orden ---------- */
+  var ordenMed = null, medAbierto = null;
+  function rutaMedley(g) { return '#/m/' + encodeURIComponent(g); }
+
+  function renderMedleys() {
+    if (medAbierto !== null) { renderMedleyAbierto(medAbierto); return; }
+    ordenMed = null;
+    var q = norm($('q').value.trim()), todos = gruposMedley();
+    var gs = todos.filter(function (g) {
+      if (!q) return true;
+      var hay = norm([g].concat(grupoDe(g).map(function (s) { return s.titulo + ' ' + s.artista; })).join(' '));
+      return q.split(/\s+/).every(function (w) { return hay.indexOf(w) > -1; });
+    });
+    $('count').textContent = gs.length + (gs.length === 1 ? ' medley' : ' medleys');
+    if (!gs.length) {
+      $('lista').innerHTML = '<div class="empty-msg">' + (
+        !songs.length ? (cargando ? 'Cargando canciones…' : 'No hay canciones guardadas en este teléfono. Conéctate a internet y toca menú ⋯ → 🔄 Recargar datos.') :
+        todos.length ? 'No hay medleys con esa búsqueda.' :
+          'Aún no hay medleys. Para armar uno, escribe el mismo nombre en “Sección / medley” en cada canción.') + '</div>';
+      return;
+    }
+    $('lista').innerHTML = gs.map(function (g) {
+      var c = grupoDe(g), titulos = c.slice(0, 3).map(function (s) { return s.titulo; }).join(' · ') + (c.length > 3 ? ' …' : '');
+      return '<a class="item" href="' + rutaMedley(g) + '">' +
+        '<span class="fechatile"><b>' + c.length + '</b><small>🎵</small></span>' +
+        '<span class="txt"><div class="tit">' + esc(g) + '</div><div class="sub">' + esc(titulos) + '</div></span>' +
+        '<span class="chev" aria-hidden="true">›</span></a>';
+    }).join('');
+  }
+
+  // Un medley abierto: nombre, canciones en orden, ▶ Tocar y (editores) ✎ Orden.
+  function renderMedleyAbierto(g) {
+    var c = grupoDe(g), gs = gruposMedley(), gi = gs.indexOf(g);
+    var html = '<div class="mactions"><a class="btn" href="#/">‹ Medleys</a></div>';
+    if (!c.length) {
+      $('count').textContent = '';
+      $('lista').innerHTML = html + '<div class="empty-msg">Este medley ya no existe. Puede que lo hayan renombrado o eliminado.</div>';
+      return;
+    }
+    if (!puedeEditar) ordenMed = null;
+    $('count').textContent = c.length + (c.length === 1 ? ' canción' : ' canciones');
+    html += '<div class="lhead"><h2>🎵 ' + esc(g) + '</h2><div class="muted">' + c.length + (c.length === 1 ? ' canción' : ' canciones') + ' en este orden</div></div>';
+    if (ordenMed !== g) {
+      html += '<div class="mactions"><a class="btn pri" href="#/c/' + c[0].id + '">▶ Tocar</a>' +
+        (puedeEditar ? '<button class="btn" data-mo="' + esc(g) + '">✎ Orden</button>' : '') + '</div>';
+      c.forEach(function (s, i) { html += itemHTML(s, i + 1); });
+      $('lista').innerHTML = html;
+      return;
+    }
+    html += '<div class="morden">';
+    c.forEach(function (s, i, lst) {
+      html += '<div class="item"><span class="num">' + (i + 1) + '.</span>' +
+        '<span class="txt"><div class="tit">' + esc(s.titulo) + '</div></span>' +
+        '<button class="btn icon" data-mv="-1" data-id="' + s.id + '" aria-label="Subir"' + (i === 0 ? ' disabled' : '') + '>↑</button>' +
+        '<button class="btn icon" data-mv="1" data-id="' + s.id + '" aria-label="Bajar"' + (i === lst.length - 1 ? ' disabled' : '') + '>↓</button></div>';
+    });
+    html += '<div class="mactions">' +
+      '<button class="btn" data-gmv="-1" data-g="' + esc(g) + '"' + (gi === 0 ? ' disabled' : '') + '>▲ Subir medley</button>' +
+      '<button class="btn" data-gmv="1" data-g="' + esc(g) + '"' + (gi === gs.length - 1 ? ' disabled' : '') + '>▼ Bajar medley</button>' +
+      '<button class="btn pri" data-mlisto="1">Listo</button></div>' +
+      '<div class="mactions">' +
+      '<button class="btn" data-mren="' + esc(g) + '">✎ Renombrar medley</button>' +
+      '<button class="btn danger" data-mdel="' + esc(g) + '">Eliminar medley</button></div>' +
+      '<p class="help">Para agregar una canción al medley, edítala y escribe este nombre en “Sección / medley”.</p></div>';
+    $('lista').innerHTML = html;
+  }
+
   /* ---------- Orden de los medleys ---------- */
-  var ordenMed = null;
   function grupoDe(g) { return songs.filter(function (s) { return isMedley(s) && s.seccion === g; }); }
   function gruposMedley() {
     var gs = [];
@@ -288,7 +323,7 @@
     if (v === null) return;
     v = v.trim().replace(/\s+/g, ' ');
     if (!v) { toast('Escribe un nombre'); return; }
-    if (!isMedley({ seccion: v })) v = 'Medley ' + v;
+    if (!isMedley({ seccion: v })) { toast('“General” no puede ser nombre de medley'); return; }
     if (v === g) return;
     if (gruposMedley().indexOf(v) > -1 &&
         !confirm('Ya existe “' + v + '”. Las canciones de “' + g + '” se unirán a ese medley. ¿Continuar?')) return;
@@ -297,7 +332,8 @@
     }, function () {
       var n = 0;
       songs.forEach(function (s) { if (isMedley(s) && s.seccion === g) { s.seccion = v; n++; } });
-      ordenMed = v; saveSongs(); renderList();
+      ordenMed = v; medAbierto = v; saveSongs();
+      history.replaceState(null, '', rutaMedley(v)); renderList();
       toast('Medley renombrado (' + n + (n === 1 ? ' canción' : ' canciones') + ')');
     });
   }
@@ -310,8 +346,9 @@
       return afecta(sb.from('canciones').update({ seccion: 'General' }).eq('seccion', g).select('id'));
     }, function () {
       songs.forEach(function (s) { if (isMedley(s) && s.seccion === g) s.seccion = 'General'; });
-      ordenMed = null; saveSongs(); renderList();
+      ordenMed = null; saveSongs();
       toast('Medley eliminado');
+      location.hash = '#/';
     });
   }
 
@@ -333,7 +370,7 @@
     var f = e.target.getAttribute('data-f');
     if (!f) return;
     state.filtro = f;
-    if (plAbierta) { plAbierta = null; plEdit = null; history.replaceState(null, '', '#/'); }
+    if (plAbierta || medAbierto !== null) { plAbierta = null; plEdit = null; medAbierto = null; ordenMed = null; history.replaceState(null, '', '#/'); }
     renderList();
   });
 
@@ -1235,7 +1272,7 @@
     var s = findSong(id);
     if (!s) { location.hash = '#/'; return; }
     cur = s; plCtx = ctx || null;
-    $('bVolver').setAttribute('href', plCtx ? '#/l/' + plCtx.lista.id : '#/');
+    $('bVolver').setAttribute('href', plCtx ? '#/l/' + plCtx.lista.id : (isMedley(s) && state.filtro === 'medleys') ? rutaMedley(s.seccion) : '#/');
     $('plAdd').hidden = true; $('bLista').setAttribute('aria-expanded', 'false');
     $('sTitulo').textContent = s.titulo;
     $('sArtista').textContent = s.artista || '';
@@ -1389,7 +1426,7 @@
 
   function route() {
     var h = location.hash || '#/', m;
-    if (!$('vLista').hidden && !plAbierta) listY = window.scrollY;  // posición en la lista principal o la agenda
+    if (!$('vLista').hidden && !plAbierta && medAbierto === null) listY = window.scrollY;  // posición en la lista principal o la agenda
     stopAuto();
     if (!/^#\/(c\/|l\/[\w-]+\/\d)/.test(h)) wakeOff();
     // Los id son uuid (letras, números y guiones).
@@ -1411,10 +1448,19 @@
       view('lista'); renderList(); window.scrollTo(0, 0);
       return;
     }
+    if (!m && (m = h.match(/^#\/m\/(.+)$/))) {
+      // Un medley: su nombre y sus canciones en orden.
+      var g = m[1];
+      try { g = decodeURIComponent(g); } catch (e) {}
+      if (ordenMed !== g) ordenMed = null;
+      state.filtro = 'medleys'; medAbierto = g;
+      view('lista'); renderList(); window.scrollTo(0, 0);
+      return;
+    }
     if (m) { curHash = h; view('cancion'); showSong(m[1]); window.scrollTo(0, 0); }
     else if (h === '#/nueva') { view('editor'); showEditor(null); window.scrollTo(0, 0); }
     else if ((m = h.match(/^#\/e\/([\w-]+)$/))) { view('editor'); showEditor(m[1]); window.scrollTo(0, 0); }
-    else { plAbierta = null; plEdit = null; view('lista'); renderList(); window.scrollTo(0, listY); }
+    else { plAbierta = null; plEdit = null; medAbierto = null; ordenMed = null; view('lista'); renderList(); window.scrollTo(0, listY); }
   }
   window.addEventListener('hashchange', route);
 
